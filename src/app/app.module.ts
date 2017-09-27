@@ -9,6 +9,9 @@ import { MenuPage } from '../pages/menu/menu';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from '../pages/shared/restConfig';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -18,6 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    RestangularModule.forRoot(RestangularConfigFactory),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
