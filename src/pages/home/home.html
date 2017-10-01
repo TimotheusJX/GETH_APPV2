@@ -13,7 +13,22 @@
       <ion-slide *ngFor="let number of [1,2,3,4]">
         <img src="http://placehold.it/350x200" />
       </ion-slide>
-      
+
     </ion-slides>
   </ion-card>  
+
+  <ion-grid>
+    <ion-row>
+      <ion-slides>
+        <ion-slide *ngFor="let item of items">
+          <ion-card no-padding>
+            <!-- use "<img [src]="..." />" for json query into the array-->
+            <img src="http://placehold.it/350x200" />
+            <h1> {{ item.title }} </h1>
+            <p> {{item.body}} </p>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
 </ion-content>

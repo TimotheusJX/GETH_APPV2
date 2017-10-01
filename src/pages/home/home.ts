@@ -12,13 +12,17 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePage {
 
+  items: FeaturedItems[];
+  errMess: string;    
+
   constructor(public navCtrl: NavController, private restangular: Restangular) {
-    this.getFeaturedItems().subscribe((items) => {
-      console.log(items);
-    });
+    this.getFeaturedItems().subscribe((data) => {
+      console.log(data);
+      this.items = data;
+    }, errmess => {this.items = null; this.errMess = <any>errmess});
   }
 
-  getFeaturedItems(): Observable<FeaturedItems> {
+  getFeaturedItems(): Observable<FeaturedItems[]> {
     return this.restangular.all('posts').getList();
   }
 
