@@ -5,6 +5,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MenuPage } from '../pages/menu/menu';
+import { DevotionsPage } from '../pages/devotions/devotions';
+import { ExhortationsPage } from '../pages/exhortations/exhortations';
+import { MagazinesPage } from '../pages/magazines/magazines';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,7 +19,10 @@ import { RestangularConfigFactory } from '../pages/shared/restConfig';
   declarations: [
     MyApp,
     HomePage,
-    MenuPage
+    MenuPage,
+    DevotionsPage,
+    ExhortationsPage,
+    MagazinesPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,10 @@ import { RestangularConfigFactory } from '../pages/shared/restConfig';
   entryComponents: [
     MyApp,
     HomePage,
-    MenuPage
+    MenuPage,
+    DevotionsPage,
+    ExhortationsPage,
+    MagazinesPage
   ],
   providers: [
     StatusBar,

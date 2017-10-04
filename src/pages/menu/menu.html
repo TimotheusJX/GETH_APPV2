@@ -5,12 +5,36 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="card-background-page">
+    
+    <ion-card>
+      <img src="http://placehold.it/350x200" />
+      <div class="card-title">GBPC</div>
+      <div class="card-subtitle">not my will, but Thine, be done...</div>
+    </ion-card>
+
     <ion-list>
-      <button menuClose ion-item>
-        Home
-      </button>
+
+      <ion-item (click)="openPage('devotions')" menuClose>
+        <ion-icon name="md-clipboard" item-left large></ion-icon>
+        <h2>Devotions</h2>
+        <p>Daily spiritual nourishment</p>
+      </ion-item>
+
+      <ion-item (click)="openPage('exhortations')" menuClose>
+        <ion-icon name="md-clipboard" item-left large></ion-icon>
+        <h2>Exhortations</h2>
+        <p>Preaching faithfully from God's word</p>
+      </ion-item>
+
+      <ion-item (click)="openPage('magazines')" menuClose>
+        <ion-icon name="md-clipboard" item-left large></ion-icon>
+        <h2>Magazines</h2>
+        <p>Witnessing the truth</p>
+      </ion-item>
+
     </ion-list>
+
   </ion-content>
 
 </ion-menu>
