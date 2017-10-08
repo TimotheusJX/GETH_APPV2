@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -15,6 +15,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { RestangularConfigFactory } from '../pages/shared/restConfig';
 
+import { SharedModule } from './shared.module';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -28,6 +30,7 @@ import { RestangularConfigFactory } from '../pages/shared/restConfig';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     RestangularModule.forRoot(RestangularConfigFactory),
+    SharedModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

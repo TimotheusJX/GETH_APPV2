@@ -10,8 +10,8 @@
 <ion-content padding>
   <ion-card>
     <ion-slides autoplay="3000" pager>
-      <ion-slide *ngFor="let number of [1,2,3,4]">
-        <img src="http://placehold.it/350x200" />
+      <ion-slide *ngFor="let banner of banners">
+        <img [src]="banner.image" />
       </ion-slide>
 
     </ion-slides>
@@ -23,9 +23,9 @@
         <ion-slide *ngFor="let item of items">
           <ion-card no-padding>
             <!-- use "<img [src]="..." />" for json query into the array-->
-            <img src="http://placehold.it/350x200" />
+            <img [src]="item.image" />
             <h1> {{ item.title }} </h1>
-            <p> {{item.body}} </p>
+            <p> {{ item.description }} </p>
           </ion-card>
         </ion-slide>
       </ion-slides>

@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+
+import { Devotions } from '../shared/devotionsDesc';
+
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-devotions',
@@ -7,11 +12,18 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class DevotionsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  devotions: Devotions[];
+  errMess: string;
+
+  constructor(public navCtrl: NavController, private restangular: Restangular, public navParams: NavParams) {
+    this.getDevotions().subscribe((data) => {
+      console.log("devotions: " + data);
+      this.devotions = data;
+    }, errmess => {this.devotions = null; this.errMess = <any>errmess});
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DevotionsPage');
+  getDevotions(): Observable<Devotions[]> {
+    return this.restangular.all('devotions').getList();
   }
 
 }

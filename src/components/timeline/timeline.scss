@@ -1,0 +1,245 @@
+timeline {
+    .timeline {
+      margin: 30px 0 0 0;
+      padding: 0;
+      position: relative;
+  
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 10px;
+        background: #afdcf8;
+        left: 20%;
+        margin-left: -10px;
+      }
+      timeline-item {
+        position: relative;
+        display: inline-block;
+  
+        timeline-time {
+          display: block;
+          width: 20%;
+          padding-right: 50px;
+          position: absolute;
+          span {
+            display: block;
+            text-align: right;
+            &:last-child {
+              font-size: 2.9em;
+              color: #3594cb;
+            }
+          }
+        }
+        /* Right content */
+        ion-card {
+          margin-top: 12px !important;
+          margin-bottom: 12px !important;
+          margin-left: 25% !important;
+          width: 75% !important;
+          position: relative;
+        }
+        ion-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1.4em;
+          position: absolute;
+          color: #fff;
+          background: #46a4da;
+          border-radius: 50%;
+          box-shadow: 0 0 0 8px #afdcf8;
+          text-align: center;
+          left: 20%;
+          top: 0;
+          margin: 0 0 0 -25px;
+          line-height: 40px;
+          &:after {
+              left: 46px;
+              border: solid transparent;
+              content: " ";
+              height: 0;
+              width: 0;
+              position: absolute;
+              pointer-events: none;
+              border-left-color: #afdcf8;
+              border-width: 10px;
+              top: 10px;
+            }
+        }
+          &:last-child{
+            width: 100%;
+            ion-icon{
+              box-shadow: none;
+              &:after{
+                border-width: 0;
+              }
+            }
+          }
+      }
+      @media screen and (max-width: map-get($grid-breakpoints,'lg')){
+        timeline-item{
+          timeline-time{
+            font-size: 0.7em;
+          }
+        }
+      }
+      @media screen and (max-width: map-get($grid-breakpoints,'md')){
+        &:before{
+          left: 30px;
+        }
+        timeline-item{
+          ion-card{
+            margin-left: 80px !important;
+          }
+          ion-icon{
+            left: 30px;
+          }
+          timeline-time{
+            font-size: 0.8em;
+            width: 100%;
+            left: 80px;
+            position: relative;
+            span{
+              text-align: left;
+            }
+  
+          }
+        }
+      }
+      @media screen and (max-width: map-get($grid-breakpoints, 'sm' )){
+        &:before{
+          display: none;
+        }
+        timeline-item{
+          &:last-child{
+            visibility: hidden;
+          }
+          ion-icon{
+            position: relative;
+            float: right;
+            left: auto;
+            margin: -55px 5px 0 0;
+            &:after{
+              border-left-color: transparent;
+              border-top-color: #afdcf8;
+              top: 46px;
+              left: 10px;
+            }
+          }
+          timeline-time{
+            width: 100%;
+            position: relative;
+            padding: 0 0 20px 0;
+            left: 20px;
+            span{
+              text-align: left;
+            }
+          }
+  
+          ion-card{
+            width: calc(100% - 20px) !important;
+            margin-left: 10px !important;
+          }
+        }
+      }
+    }
+  
+  }
+
+$read-more-settings: (
+  'rows': 3,
+  'font-size': 16px,
+  'line-height': 1.4,
+  'duration': 500ms,
+  'easing': ease,
+  'text-color': #34495e,
+  'trigger-color': #2980b9,
+  'bg-color': white,
+);
+
+// Optimal height based on your font size and line-height
+$read-more-height: map-get($read-more-settings, 'font-size') * map-get($read-more-settings, 'line-height') * (map-get($read-more-settings, 'rows') + 1); // + 1 for read-more
+
+// Reset
+@import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css);
+
+// Webfont
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+/*
+* {
+  box-sizing: border-box;
+}
+*/
+body {
+  background-color: map-get($read-more-settings, 'bg-color');
+}
+
+.textwrap {
+  font: {
+    family: 'Source Sans Pro', sans-serif;
+    size: map-get($read-more-settings, 'font-size');
+    weight: normal;
+  }
+  line-height: map-get($read-more-settings, 'line-height');
+  padding: 0rem;
+  > * {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  p {
+    margin-bottom: 0.35rem;
+  }
+}
+
+.read-more {
+  position: relative;
+  color: map-get($read-more-settings, 'text-color');
+  text-decoration: none;
+  cursor: text;
+  .trigger {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    color: map-get($read-more-settings, 'trigger-color');
+    font-weight: bold;
+    &::before {
+      content: attr(data-read-more);
+    } 
+  }
+  .content {
+    position: relative;
+    overflow: hidden;
+    max-height: $read-more-height;
+    -webkit-transition: max-height map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing');
+    transition: max-height map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing');
+    &::before {
+      content: '';
+      -webkit-transition: opactiy map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing'), visibility map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing');
+      transition: opactiy map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing'), visibility map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing');
+      background-image: -webkit-linear-gradient(rgba(0,0,0,0), map-get($read-more-settings, 'bg-color'), map-get($read-more-settings, 'bg-color'));
+      background-image: linear-gradient(rgba(0,0,0,0), map-get($read-more-settings, 'bg-color'), map-get($read-more-settings, 'bg-color'));
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: $read-more-height / 2;
+    }
+  }
+  &.expanded {
+    .content {
+      max-height: 600px; // great value for height animation
+    }
+    .content::before {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .trigger {
+      position: relative;
+      &::before {
+        content: attr(data-read-less);
+      } 
+    }
+  }
+}
