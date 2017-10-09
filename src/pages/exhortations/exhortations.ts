@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+
+import { Exhortations } from '../shared/exhortationsDesc';
+
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-exhortations',
@@ -7,11 +12,19 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ExhortationsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  exhortations: Exhortations[];
+  errMess: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private restangular: Restangular) {
+    this.getExhortations().subscribe((data) => {
+      console.log("exhortations: " + data);
+      this.exhortations = data;
+    }, errmess => {this.exhortations = null; this.errMess = <any>errmess});    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ExhortationsPage');
+  getExhortations(): Observable<Exhortations[]> {
+    return this.restangular.all('exhortations').getList();
   }
 
 }
+
