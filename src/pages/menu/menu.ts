@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { DevotionsPage } from '../devotions/devotions';
 import { ExhortationsPage } from '../exhortations/exhortations';
 import { MagazinesPage } from '../magazines/magazines';
+import { RadioPage } from '../radio/radio';
 
 @Component({
   selector: 'page-menu',
@@ -26,6 +27,8 @@ export class MenuPage {
       this.navCtrl.push(DevotionsPage);
     }else if(pageName == "exhortations"){
       this.navCtrl.push(ExhortationsPage);
+    }else if(pageName == "radio"){
+      this.navCtrl.push(RadioPage);
     }else{
       this.navCtrl.push(MagazinesPage);
     }

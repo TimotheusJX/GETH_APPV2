@@ -8,6 +8,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { DevotionsPage } from '../pages/devotions/devotions';
 import { ExhortationsPage } from '../pages/exhortations/exhortations';
 import { MagazinesPage } from '../pages/magazines/magazines';
+import { RadioPage } from '../pages/radio/radio';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,6 +18,11 @@ import { RestangularConfigFactory } from '../pages/shared/restConfig';
 
 import { SharedModule } from './shared.module';
 
+import { File } from '@ionic-native/file';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+
+import { Media, MediaObject } from '@ionic-native/media';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +30,8 @@ import { SharedModule } from './shared.module';
     MenuPage,
     DevotionsPage,
     ExhortationsPage,
-    MagazinesPage
+    MagazinesPage,
+    RadioPage
   ],
   imports: [
     BrowserModule,
@@ -39,12 +46,17 @@ import { SharedModule } from './shared.module';
     MenuPage,
     DevotionsPage,
     ExhortationsPage,
-    MagazinesPage
+    MagazinesPage,
+    RadioPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    File,
+    FileTransfer,
+    FileTransferObject,
+    Media
   ]
 })
 export class AppModule {}
