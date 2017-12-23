@@ -5,6 +5,7 @@ import { DevotionsPage } from '../devotions/devotions';
 import { ExhortationsPage } from '../exhortations/exhortations';
 import { MagazinesPage } from '../magazines/magazines';
 import { RadioPage } from '../radio/radio';
+import { AudioPage } from '../audio/audio';
 
 @Component({
   selector: 'page-menu',
@@ -29,7 +30,9 @@ export class MenuPage {
       this.navCtrl.push(ExhortationsPage);
     }else if(pageName == "radio"){
       this.navCtrl.push(RadioPage);
-    }else{
+    }else if(pageName == "audio"){
+      this.navCtrl.push(AudioPage);
+    }else if(pageName == "magazines"){
       this.navCtrl.push(MagazinesPage);
     }
   }

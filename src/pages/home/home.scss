@@ -1,6 +1,19 @@
 
-ion-card {
-    margin: 0 !important;
-    width: 100% !important;
+page-home {
+    h2, p {
+        color: black;
+      }
+      ion-slides,
+      .swiper-container {
+        height: 100%;
+        width: auto;
+      }
+      .swiper-slide {
+        background-size: cover !important;
+        background-position: center !important;
+      }
+      .swiper-pagination-bullet {
+        background-color: black;
+      }
 }
 

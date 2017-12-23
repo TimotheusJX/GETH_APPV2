@@ -7,28 +7,20 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-card>
-    <ion-slides autoplay="3000" pager>
-      <ion-slide *ngFor="let banner of banners">
-        <img [src]="banner.image" />
+<ion-content>
+  <ion-slides #slider pager>
+    <ion-slide *ngFor="let item of items"
+               [ngStyle]="{'background' : 'url(' + item.image + ')'}">
+      <h2>{{ item.title }}</h2>
+      <p> {{ item.description }} </p><br><br><br>
+      <p> {{ item.page }} </p>
+    </ion-slide>
+    <ion-slides pager direction="vertical">
+      <ion-slide *ngFor="let slide of slides"
+                  [ngStyle]="{'background' : 'url(' + item.image + ')'}">
+        <h2>{{ item.title }}</h2>
+        <p> {{ item.description }} </p>
       </ion-slide>
-
     </ion-slides>
-  </ion-card>  
-
-  <ion-grid>
-    <ion-row>
-      <ion-slides>
-        <ion-slide *ngFor="let item of items">
-          <ion-card no-padding>
-            <!-- use "<img [src]="..." />" for json query into the array-->
-            <img [src]="item.image" />
-            <h1> {{ item.title }} </h1>
-            <p> {{ item.description }} </p>
-          </ion-card>
-        </ion-slide>
-      </ion-slides>
-    </ion-row>
-  </ion-grid>
+  </ion-slides>
 </ion-content>
