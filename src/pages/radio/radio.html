@@ -30,11 +30,11 @@
 
         <ion-col>
           <!-- Play/Pause -->
-          <button ion-button class="play-pause-btn" (click)="playRadio()" color="primary" *ngIf="!is_playing" [disabled]="!is_ready">
+          <button ion-button class="play-pause-btn" (click)="playRadio()" color="primary" *ngIf="!isStreaming">
             <ion-icon name="play"></ion-icon>
           </button>
 
-          <button ion-button class="play-pause-btn" (click)=" pauseRadio()" color="secondary" *ngIf="is_playing" [disabled]="!is_ready">
+          <button ion-button class="play-pause-btn" (click)=" pauseRadio()" color="secondary" *ngIf="isStreaming">
             <ion-icon name="pause"></ion-icon>
           </button>
         </ion-col>

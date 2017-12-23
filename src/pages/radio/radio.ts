@@ -10,9 +10,7 @@ import { Media, MediaObject } from '@ionic-native/media';
 export class RadioPage {
   radio: MediaObject;
   filename: any = "Hotel California";
-  is_playing: boolean = false;
-  is_in_play: boolean = false;
-  is_ready: boolean = false;
+  isStreaming: boolean = false;
 
   message: any;
 
@@ -33,45 +31,17 @@ export class RadioPage {
 
     this.platform.ready().then(() => {
       this.radio = this.media.create(url);
-/*      this.radio.play();
-      this.radio.setVolume(0.0);  // you don't want users to notice that you are playing the file*/
-      this.radio.onStatusUpdate.subscribe(status => {
-        // 2: playing
-        // 3: pause
-        // 4: stop
-        this.message = status;
-        console.log("1111... "+status);
-        switch(status) {
-          case 1:
-            this.is_in_play = false;
-            break;
-          case 2:   // 2: playing
-            this.is_in_play = true;
-            this.is_playing = true;
-            break;
-          case 3:   // 3: pause
-            this.is_in_play = true;
-            this.is_playing = false;
-            break;
-          case 4:   // 4: stop
-          default:
-            this.is_in_play = false;
-            this.is_playing = false;
-            break;
-        }
-      })
-      console.log("audio file set");
-      this.message = "audio file set";
-      this.is_ready = true;
-    });
-  }
+    })
+  };
 
   playRadio() {
     this.radio.play();
+    this.isStreaming = true;
   }
 
   pauseRadio() {
     this.radio.pause();
+    this.isStreaming = false;
   }
 
 }
