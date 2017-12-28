@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { AlertController, NavController, Slides } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { FeaturedItems } from '../shared/featuredItems';
@@ -15,34 +15,30 @@ export class HomePage {
 
   @ViewChild('slider') slider: Slides;
 
-  items: FeaturedItems[];
+  options: any;
+  showArrows = false;
+  showSlide = true;
+
+  slideEffect = "coverflow";
+
+  slides: FeaturedItems[];
   errMess: string;    
 
-  constructor(public navCtrl: NavController, private restangular: Restangular) {
+  constructor(public navCtrl: NavController, private restangular: Restangular, public alertCtrl: AlertController) {
     this.getFeaturedItems().subscribe((data) => {
       console.log(data);
-      this.items = data;
-    }, errmess => {this.items = null; this.errMess = <any>errmess});
+      this.slides = data;
+    }, errmess => {this.slides = null; this.errMess = <any>errmess});
   }
 
   getFeaturedItems(): Observable<FeaturedItems[]> {
     return this.restangular.all('featuredItems').getList();
   }
 
-  currentIndex = 0;
-
-  nextSlide() {
-    this.slider.slideNext();
-  }
-
-  previousSlide() {
-    this.slider.slidePrev();
-  }
-
   onSlideChanged() {
-    this.currentIndex = this.slider.getActiveIndex();
-    console.log('Slide changed! Current index is', this.currentIndex);
+    let currentIndex = this.slider.getActiveIndex();
+    console.log("Slide changed! Current index is", currentIndex);
   }
-  
 
+  transition = 'slide';
 }

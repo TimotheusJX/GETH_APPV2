@@ -9,7 +9,9 @@ import { DevotionsPage } from '../pages/devotions/devotions';
 import { ExhortationsPage } from '../pages/exhortations/exhortations';
 import { MagazinesPage } from '../pages/magazines/magazines';
 import { RadioPage } from '../pages/radio/radio';
-import { AudioPage } from '../pages/audio/audio';
+import { AudioPage } from '../pages/ondemand/audio/audio';
+import { OndemandPage } from '../pages/ondemand/ondemand';
+import { VideoPage } from '../pages/video/video';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +35,9 @@ import { Media, MediaObject } from '@ionic-native/media';
     ExhortationsPage,
     MagazinesPage,
     RadioPage,
-    AudioPage
+    AudioPage,
+    OndemandPage,
+    VideoPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,9 @@ import { Media, MediaObject } from '@ionic-native/media';
     ExhortationsPage,
     MagazinesPage,
     RadioPage,
-    AudioPage
+    AudioPage,
+    OndemandPage,
+    VideoPage
   ],
   providers: [
     StatusBar,
