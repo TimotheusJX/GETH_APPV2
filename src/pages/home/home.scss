@@ -1,7 +1,10 @@
 
 page-home {
     h2, p {
-        color: black;
+        color: white;
+        &.addSpaceAbove{
+          padding-top: 20%; 
+        }
       }
       ion-slides,
       .swiper-container {

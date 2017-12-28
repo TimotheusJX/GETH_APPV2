@@ -13,7 +13,7 @@
                [ngStyle]="{'background' : 'url(' + item.image + ')'}">
       <h2>{{ item.title }}</h2>
       <p> {{ item.description }} </p>
-      <p> {{ item.page }} </p>
+      <p class="addSpaceAbove"> {{ item.page }} </p>
     </ion-slide>
     <ion-slides pager direction="vertical">
       <ion-slide *ngFor="let slide of slides"
