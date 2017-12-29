@@ -4,9 +4,7 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { Observable } from 'rxjs/Observable';
 import { OnDemandCats } from '../shared/onDemandDesc';
-import { OndemandmenPage } from './ondemandmen/ondemandmen';
-import { OndemandwomenPage } from './ondemandwomen/ondemandwomen';
-import { OndemandyouthPage } from './ondemandyouth/ondemandyouth';
+import { OndemandcategoriesPage } from './ondemandcategories/ondemandcategories';
 
 /**
  * Generated class for the OndemandPage page.
@@ -41,11 +39,17 @@ export class OndemandPage {
 
   itemTapped(event, item) {
     if(item.page === "OndemandmenPage"){
-      this.navCtrl.push(OndemandmenPage);
+      this.navCtrl.push(OndemandcategoriesPage, {
+        category: "men"
+      });
     }else if(item.page === "OndemandwomenPage"){
-      this.navCtrl.push(OndemandwomenPage);
+      this.navCtrl.push(OndemandcategoriesPage, {
+        category: "women"
+      });
     }else if(item.page === "OndemandyouthPage"){
-      this.navCtrl.push(OndemandyouthPage);
+      this.navCtrl.push(OndemandcategoriesPage, {
+        category: "youth"
+      });
     }
   }
 

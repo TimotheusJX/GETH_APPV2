@@ -217,4 +217,7 @@ export class AudioPage {
     this.viewCtrl.dismiss();
   }
 
+  ionViewWillLeave(){
+    this.stopPlayRecording();
+  }
 }

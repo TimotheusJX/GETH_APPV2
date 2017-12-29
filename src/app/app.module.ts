@@ -12,9 +12,7 @@ import { RadioPage } from '../pages/radio/radio';
 import { AudioPage } from '../pages/ondemand/audio/audio';
 import { OndemandPage } from '../pages/ondemand/ondemand';
 import { VideoPage } from '../pages/video/video';
-import { OndemandmenPage } from '../pages/ondemand/ondemandmen/ondemandmen';
-import { OndemandwomenPage } from '../pages/ondemand/ondemandwomen/ondemandwomen';
-import { OndemandyouthPage } from '../pages/ondemand/ondemandyouth/ondemandyouth';
+import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
 import { AboutusPage } from '../pages/aboutus/aboutus';
 import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
 
@@ -43,9 +41,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     AudioPage,
     OndemandPage,
     VideoPage,
-    OndemandmenPage,
-    OndemandwomenPage,
-    OndemandyouthPage,
+    OndemandcategoriesPage,
     AboutusPage,
     PrayerlistPage,
   ],
@@ -67,9 +63,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     AudioPage,
     OndemandPage,
     VideoPage,
-    OndemandmenPage,
-    OndemandwomenPage,
-    OndemandyouthPage,
+    OndemandcategoriesPage,
     AboutusPage,
     PrayerlistPage,
   ],
