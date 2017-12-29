@@ -3,7 +3,11 @@ import { NavController, NavParams } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { Observable } from 'rxjs/Observable';
-import { OnDemandCat } from '../shared/onDemandDesc';
+import { OnDemandCats } from '../shared/onDemandDesc';
+import { OndemandmenPage } from './ondemandmen/ondemandmen';
+import { OndemandwomenPage } from './ondemandwomen/ondemandwomen';
+import { OndemandyouthPage } from './ondemandyouth/ondemandyouth';
+
 /**
  * Generated class for the OndemandPage page.
  *
@@ -17,12 +21,12 @@ import { OnDemandCat } from '../shared/onDemandDesc';
 })
 export class OndemandPage {
 
-  onDemandCategories: OnDemandCat[];
+  onDemandCategories: OnDemandCats[];
   errMess: string;
 
   constructor(public navCtrl: NavController, private restangular: Restangular, public navParams: NavParams) {
     this.getCategories().subscribe((data) => {
-      console.log("onDemandCategories: " + data);
+      console.log(data);
       this.onDemandCategories = data;
     }, errmess => {this.onDemandCategories = null; this.errMess = <any>errmess});
   }
@@ -31,12 +35,18 @@ export class OndemandPage {
     console.log('ionViewDidLoad OndemandPage');
   }
 
-  getCategories(): Observable<OnDemandCat[]> {
-    return this.restangular.all('OnDemand_categories').getList();
+  getCategories(): Observable<OnDemandCats[]> {
+    return this.restangular.all('ondemandcats').getList();
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(item.page);
+    if(item.page === "OndemandmenPage"){
+      this.navCtrl.push(OndemandmenPage);
+    }else if(item.page === "OndemandwomenPage"){
+      this.navCtrl.push(OndemandwomenPage);
+    }else if(item.page === "OndemandyouthPage"){
+      this.navCtrl.push(OndemandyouthPage);
+    }
   }
 
 }

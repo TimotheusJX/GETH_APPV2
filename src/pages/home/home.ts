@@ -15,10 +15,6 @@ export class HomePage {
 
   @ViewChild('slider') slider: Slides;
 
-  options: any;
-  showArrows = false;
-  showSlide = true;
-
   slideEffect = "coverflow";
 
   slides: FeaturedItems[];
@@ -39,6 +35,4 @@ export class HomePage {
     let currentIndex = this.slider.getActiveIndex();
     console.log("Slide changed! Current index is", currentIndex);
   }
-
-  transition = 'slide';
 }

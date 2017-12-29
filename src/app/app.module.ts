@@ -12,6 +12,11 @@ import { RadioPage } from '../pages/radio/radio';
 import { AudioPage } from '../pages/ondemand/audio/audio';
 import { OndemandPage } from '../pages/ondemand/ondemand';
 import { VideoPage } from '../pages/video/video';
+import { OndemandmenPage } from '../pages/ondemand/ondemandmen/ondemandmen';
+import { OndemandwomenPage } from '../pages/ondemand/ondemandwomen/ondemandwomen';
+import { OndemandyouthPage } from '../pages/ondemand/ondemandyouth/ondemandyouth';
+import { AboutusPage } from '../pages/aboutus/aboutus';
+import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,7 +42,12 @@ import { Media, MediaObject } from '@ionic-native/media';
     RadioPage,
     AudioPage,
     OndemandPage,
-    VideoPage
+    VideoPage,
+    OndemandmenPage,
+    OndemandwomenPage,
+    OndemandyouthPage,
+    AboutusPage,
+    PrayerlistPage,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +66,12 @@ import { Media, MediaObject } from '@ionic-native/media';
     RadioPage,
     AudioPage,
     OndemandPage,
-    VideoPage
+    VideoPage,
+    OndemandmenPage,
+    OndemandwomenPage,
+    OndemandyouthPage,
+    AboutusPage,
+    PrayerlistPage,
   ],
   providers: [
     StatusBar,

@@ -7,13 +7,15 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle></button>
     <ion-title>Audio On Demand</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let card of onDemandCategories" (click)="itemTapped($event, card)" [ngStyle]="{'background' : 'url(' + card.imageUrl + ')'}">
+    <ion-card *ngFor="let card of onDemandCategories" (click)="itemTapped($event, card)">
+      <img [src]="card.imageUrl"/>
       <div class="card-title">{{card.title}}</div>
       <div class="card-subtitle">{{card.subtitle}}</div>
     </ion-card>

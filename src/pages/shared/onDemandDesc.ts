@@ -1,5 +1,6 @@
-export class OnDemandCat {
+export class OnDemandCats {
     imageUrl: string;
     title: string;
-    subtitle: string
+    subtitle: string;
+    page: string;
 }

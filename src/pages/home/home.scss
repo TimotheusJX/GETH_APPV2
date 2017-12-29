@@ -3,6 +3,10 @@ page-home {
   h2, p {
     color: white;
   }
+  .verticalAlignCentre{
+    height: 100%;
+    justify-content: center;
+  }
   ion-slides,
   .swiper-container {
     height: 70vh;
