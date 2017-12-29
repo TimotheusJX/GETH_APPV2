@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Platform, NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
 
 import { DatePipe } from '@angular/common';
 
@@ -20,9 +20,10 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 })
 
 export class AudioPage {
-  filename: any = "Hotel California";
+  filename: any;
   curr_playing_file: MediaObject;
   storageDirectory: any;
+  url: any;
 
   is_playing: boolean = false;
   is_in_play: boolean = false;
@@ -44,7 +45,8 @@ export class AudioPage {
     public loadingCtrl: LoadingController,
     private file: File,
     private transfer: FileTransfer,
-    private media: Media) {
+    private media: Media,
+    public viewCtrl: ViewController) {
       // assign storage directory
       this.platform.ready().then(() => {
         if(this.platform.is('ios')) {
@@ -53,6 +55,8 @@ export class AudioPage {
           this.storageDirectory = this.file.externalDataDirectory;
         }
       });
+      this.url = navParams.get('url');
+      this.filename = navParams.get('title');
   }
 
   ionViewWillEnter(){
@@ -61,12 +65,12 @@ export class AudioPage {
   }
 
   prepareAudioFile() {
-    let url = "http://fabienne.sigonney.free.fr/tranquilit%E9/Eagles%20-%20Hotel%20California%20(Acoustic).mp3";
+    //let url = "http://fabienne.sigonney.free.fr/tranquilit%E9/Eagles%20-%20Hotel%20California%20(Acoustic).mp3";
     this.platform.ready().then(() => {
       this.file.resolveDirectoryUrl(this.storageDirectory).then((resolvedDirectory) => {
         // inspired by: https://github.com/ionic-team/ionic-native/issues/1711
         console.log("resolved  directory: " + resolvedDirectory.nativeURL);
-        this.file.checkFile(resolvedDirectory.nativeURL, "hotel_california.mp3").then((data) => {
+        this.file.checkFile(resolvedDirectory.nativeURL, this.filename + ".mp3").then((data) => {
           if(data == true) {  // exist
             this.getDurationAndSetToPlay();
           } else {  // not sure if File plugin will return false. go to download
@@ -84,7 +88,7 @@ export class AudioPage {
             });
             loading.present();
             const fileTransfer: FileTransferObject = this.transfer.create();
-            fileTransfer.download(url, this.storageDirectory + "hotel_california.mp3").then((entry) => {
+            fileTransfer.download(this.url, this.storageDirectory + this.filename + ".mp3").then((entry) => {
               console.log('download complete' + entry.toURL());
               loading.dismiss();
               this.getDurationAndSetToPlay();
@@ -108,7 +112,7 @@ export class AudioPage {
   }
 
   getDurationAndSetToPlay() {
-    this.curr_playing_file = this.createAudioFile(this.storageDirectory, "hotel_california.mp3");
+    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.filename + ".mp3");
     this.curr_playing_file.play();
     this.curr_playing_file.setVolume(0.0);  // you don't want users to notice that you are playing the file
     let self = this;
@@ -147,7 +151,7 @@ export class AudioPage {
   }
 
   setRecordingToPlay() {
-    this.curr_playing_file = this.createAudioFile(this.storageDirectory, "hotel_california.mp3");
+    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.filename + ".mp3");
     this.curr_playing_file.onStatusUpdate.subscribe(status => {
       // 2: playing
       // 3: pause
@@ -207,6 +211,10 @@ export class AudioPage {
       default:
         break;
     }
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
 }
