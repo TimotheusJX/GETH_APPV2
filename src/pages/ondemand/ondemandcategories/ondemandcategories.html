@@ -15,9 +15,12 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of onDemandItems" (click)="itemTapped($event, item)">
-        <h2>{{item.title}}</h2>
-        <p>{{item.broadcast}}</p>
+    <button ion-item *ngFor="let item of onDemandItems" (click)="itemTapped($event, item)" class="item-ribbon">
+      <span class="ribbon cruzeiro" *ngIf="item.status != 'old'">
+        <span>{{item.status}}</span>
+      </span>
+      <h2>{{item.title}}</h2>
+      <p>{{item.broadcast}}</p>
     </button>
   </ion-list>
 

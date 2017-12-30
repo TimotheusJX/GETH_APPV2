@@ -7,12 +7,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>magazines</ion-title>
+    <ion-title>Bible Witness Magazine</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let item of onDemandItems" (click)="itemTapped($event, item)" class="item-ribbon">
+      <span class="ribbon cruzeiro" *ngIf="item.status != 'old'">
+        <span>{{item.status}}</span>
+      </span>
+      <h2>{{item.title}}</h2>
+      <p>{{item.date}} {{item.description}}</p>
+    </button>
+  </ion-list>
 
 </ion-content>

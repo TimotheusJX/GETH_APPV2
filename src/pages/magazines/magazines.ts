@@ -5,6 +5,7 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-magazines',
   templateUrl: 'magazines.html',
 })
+
 export class MagazinesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
