@@ -28,6 +28,7 @@ import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 
 import { Media, MediaObject } from '@ionic-native/media';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     FileTransfer,
     FileTransferObject,
     Media,
+    DocumentViewer,
   ]
 })
 export class AppModule {}

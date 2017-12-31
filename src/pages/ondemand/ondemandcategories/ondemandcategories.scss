@@ -22,7 +22,26 @@ page-ondemandcategories {
   .active .modal-backdrop-bg {
     opacity: 0.5;
   }
+     // Creates a ribbon effect with the given options:
+  @mixin ribbonize ($ribbon-color, $text-color: white, $border-width: 3px) {
+    span {
+      color: $text-color;
+      background: $ribbon-color;
+      &::before {
+        border-left: $border-width solid $ribbon-color;
+        border-top: $border-width solid $ribbon-color;
+      }
+      &::after {
+        border-right: $border-width solid $ribbon-color;
+        border-top: $border-width solid $ribbon-color;
+      }
+    }
+  }
+  
   $default: #f53d3d;
+  $blue: #387ef5;
+  $yellow: #f7e023;
+
   .item-ribbon{
     background-color: #fff;
     position: relative;
@@ -44,7 +63,6 @@ page-ondemandcategories {
         text-transform: uppercase;
         text-align: center;
         line-height: 20px;
-        -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
         width: 100px;
@@ -79,34 +97,12 @@ page-ondemandcategories {
     }
   }
 
-  $cruzeiro: #387ef5;
-  .ribbon.cruzeiro {
-    span {
-      background: $cruzeiro;
-      &::before {
-        border-left: 3px solid $cruzeiro;
-        border-top: 3px solid $cruzeiro;
-      }
-      &::after {
-        border-right: 3px solid $cruzeiro;
-        border-top: 3px solid $cruzeiro;
-      }
-    }
+  .ribbon.blue {
+    @include ribbonize($blue);
   }
 
-  $atletico: darken(#f4f4f4, 45%);
-  .ribbon.atletico {
-    span {
-      background: $atletico;
-      &::before {
-        border-left: 3px solid $atletico;
-        border-top: 3px solid $atletico;
-      }
-      &::after {
-        border-right: 3px solid $atletico;
-        border-top: 3px solid $atletico;
-      }
-    }
+  .ribbon.yellow {
+    @include ribbonize($yellow, black);
   }
 }
 

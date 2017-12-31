@@ -16,8 +16,8 @@
 <ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let item of onDemandItems" (click)="itemTapped($event, item)" class="item-ribbon">
-      <span class="ribbon cruzeiro" *ngIf="item.status != 'old'">
-        <span>{{item.status}}</span>
+      <span class="ribbon {{item.class}}" *ngIf="item.ribbontext != 'no'">
+        <span>{{item.ribbontext}}</span>
       </span>
       <h2>{{item.title}}</h2>
       <p>{{item.broadcast}}</p>
