@@ -15,6 +15,7 @@ import { VideoPage } from '../pages/video/video';
 import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
 import { AboutusPage } from '../pages/aboutus/aboutus';
 import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
+import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,12 +24,13 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
 import { RestangularConfigFactory } from '../pages/shared/restConfig';
 
 import { SharedModule } from './shared.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileOpener } from '@ionic-native/file-opener';
 
 import { Media, MediaObject } from '@ionic-native/media';
-import { DocumentViewer } from '@ionic-native/document-viewer';
 
 @NgModule({
   declarations: [
@@ -45,12 +47,14 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     OndemandcategoriesPage,
     AboutusPage,
     PrayerlistPage,
+    ViewmagazinePage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     RestangularModule.forRoot(RestangularConfigFactory),
     SharedModule,
+    PdfViewerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -67,6 +71,7 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     OndemandcategoriesPage,
     AboutusPage,
     PrayerlistPage,
+    ViewmagazinePage,
   ],
   providers: [
     StatusBar,
@@ -76,7 +81,7 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     FileTransfer,
     FileTransferObject,
     Media,
-    DocumentViewer,
+    FileOpener,
   ]
 })
 export class AppModule {}
