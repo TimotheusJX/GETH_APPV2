@@ -39,17 +39,11 @@ export class OndemandPage {
 
   itemTapped(event, item) {
     if(item.page === "OndemandmenPage"){
-      this.navCtrl.push(OndemandcategoriesPage, {
-        category: "men"
-      });
+      this.navCtrl.push(OndemandcategoriesPage, item);
     }else if(item.page === "OndemandwomenPage"){
-      this.navCtrl.push(OndemandcategoriesPage, {
-        category: "women"
-      });
+      this.navCtrl.push(OndemandcategoriesPage, item);
     }else if(item.page === "OndemandyouthPage"){
-      this.navCtrl.push(OndemandcategoriesPage, {
-        category: "youth"
-      });
+      this.navCtrl.push(OndemandcategoriesPage, item);
     }
   }
 

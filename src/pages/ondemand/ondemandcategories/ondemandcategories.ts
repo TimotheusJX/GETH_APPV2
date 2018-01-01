@@ -18,26 +18,24 @@ import { AudioPage } from '../audio/audio';
 export class OndemandcategoriesPage {
   onDemandItems: OnDemandItem[];
   errMess: string;
-  category: string;
+  page: string;
   onDemandCategoryTitle: string;
 
   constructor(public navCtrl: NavController, private restangular: Restangular, public navParams: NavParams, public modalCtrl: ModalController) {
-    this.category = navParams.get('category');
-    this.getItems(this.category).subscribe((data) => {
+    this.page = navParams.get('page');
+    this.onDemandCategoryTitle = navParams.get('title');
+    this.getItems(this.page).subscribe((data) => {
       console.log(data);
       this.onDemandItems = data;
     }, errmess => {this.onDemandItems = null; this.errMess = <any>errmess});
   }
 
-  getItems(category): Observable<OnDemandItem[]> {
-    if(category === "men"){
-      this.onDemandCategoryTitle = "Men";
+  getItems(page): Observable<OnDemandItem[]> {
+    if(page === "OndemandmenPage"){
       return this.restangular.all('OnDemand_men').getList();
-    }else if(category === "women"){
-      this.onDemandCategoryTitle = "Women";
+    }else if(page === "OndemandwomenPage"){
       return this.restangular.all('OnDemand_women').getList();
-    }else if(category === "youth"){
-      this.onDemandCategoryTitle = "Youth";
+    }else if(page === "OndemandyouthPage"){
       return this.restangular.all('OnDemand_youth').getList();
     }
   }

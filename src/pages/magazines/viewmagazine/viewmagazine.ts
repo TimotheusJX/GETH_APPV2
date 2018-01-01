@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { Magazines } from '../../shared/magazines';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';

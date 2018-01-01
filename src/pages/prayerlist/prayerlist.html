@@ -7,12 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>prayerlist</ion-title>
+    <ion-title>Prayer List</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list>
+    <button ion-item *ngFor="let item of prayerlists" (click)="itemTapped($event, item)" class="item-ribbon">
+      <span class="ribbon {{item.class}}" *ngIf="item.ribbontext != 'no'">
+        <span>{{item.ribbontext}}</span>
+      </span>
+      <h2>{{item.title}}</h2>
+      <p>{{item.date}}</p>
+    </button>
+  </ion-list>
 </ion-content>
