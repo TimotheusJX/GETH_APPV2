@@ -8,7 +8,11 @@ import { RadioPage } from '../radio/radio';
 import { OndemandPage } from '../ondemand/ondemand';
 import { VideoPage } from '../video/video';
 import { PrayerlistPage } from '../prayerlist/prayerlist';
-import { AboutusPage } from '../aboutus/aboutus';
+import { AboutusPage } from '../aboutus/aboutus'; 
+
+import { Menuavatar } from '../shared/menuavatar';
+import { Observable } from 'rxjs/Observable';
+import { RestangularModule, Restangular } from 'ngx-restangular';
 
 @Component({
   selector: 'page-menu',
@@ -17,9 +21,16 @@ import { AboutusPage } from '../aboutus/aboutus';
 export class MenuPage {
 
   homePage: Component;
+  menuavatar: Menuavatar[];
+  errMess: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private restangular: Restangular) {
     this.homePage = HomePage;
+    this.getMenuAvatar().subscribe((data) => {
+      console.log(data);
+      //to replace url of image src assets/img/avatar/gbpc.png
+      this.menuavatar = data;
+    }, errmess => {this.menuavatar = null; this.errMess = <any>errmess});
   }
 
   ionViewDidLoad() {
@@ -44,6 +55,10 @@ export class MenuPage {
     }else if(pageName === "aboutus"){
       this.navCtrl.push(AboutusPage);
     }
+  }
+
+  getMenuAvatar(): Observable<Menuavatar[]> {
+    return this.restangular.all('menuavatar').getList();
   }
 
 }

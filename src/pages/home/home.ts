@@ -3,7 +3,6 @@ import { AlertController, NavController, Slides } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { FeaturedItems } from '../shared/featuredItems';
-import { Banners } from '../shared/banners';
 
 import { Observable } from 'rxjs/Observable';
 
