@@ -9,7 +9,7 @@ import { Media, MediaObject } from '@ionic-native/media';
 
 export class RadioPage {
   radio: MediaObject;
-  filename: any = "Hotel California";
+  filename: any = "Testing...";
   isStreaming: boolean = false;
 
   message: any;

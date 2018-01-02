@@ -6,4 +6,6 @@ export class Magazines {
     image: string;
     ribbontext: string;
     class: string;
+    key: string;
+    isFavorite: boolean;
 }

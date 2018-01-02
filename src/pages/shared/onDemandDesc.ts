@@ -3,4 +3,5 @@ export class OnDemandCats {
     title: string;
     subtitle: string;
     page: string;
+    key: string;
 }

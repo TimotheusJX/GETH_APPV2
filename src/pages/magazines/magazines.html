@@ -5,26 +5,37 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Bible Witness Magazine</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
-    <button ion-item *ngFor="let item of magazines" (click)="itemTapped($event, item)">
-      <ion-thumbnail item-start class="item-ribbon">
-        <span class="ribbon {{ item.class }}" *ngIf="item.ribbontext != 'no'">
-          <span>{{ item.ribbontext }}</span>
-        </span>
-        <img [src]="item.image">
-      </ion-thumbnail>
-      <h2>{{item.title}}</h2>
-      <p>{{item.date}} {{item.description}}</p>
-    </button>
-  </ion-list>
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
+  <div *ngIf="searching" class="spinner-container">
+      <ion-spinner></ion-spinner>
+  </div>
+  <ion-list *ngIf="magazines && magazines.length">
+    <ion-item-sliding *ngFor="let item of magazines" #slidingItem>
+      <button ion-item detail-none (click)="itemTapped($event, item)">
+        <ion-thumbnail item-start class="item-ribbon">
+          <span class="ribbon {{ item.class }}" *ngIf="item.ribbontext != 'no'">
+            <span>{{ item.ribbontext }}</span>
+          </span>
+          <img [src]="item.image">
+        </ion-thumbnail>
+        <h2>{{item.title}}</h2>
+        <p>{{item.date}} {{item.description}}</p>
+        <button ion-button color="secondary" clear item-end *ngIf="item.isFavorite == true"><ion-icon name='star' is-active="false"></ion-icon></button>
+      </button>
 
+      <ion-item-options icon-start (ionSwipe)="removeDownloadedItem($event, item, slidingItem)" *ngIf="item.isFavorite == true">
+          <button color="danger" ion-button expandable (click)="removeDownloadedItem($event, item, slidingItem)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

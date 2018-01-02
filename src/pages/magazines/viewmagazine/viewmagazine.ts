@@ -4,6 +4,7 @@ import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FileOpener } from '@ionic-native/file-opener';
+import { FavoriteProvider } from '../../shared/monitoringStorage';
 
 /**
  * Generated class for the ViewmagazinePage page.
@@ -21,6 +22,8 @@ export class ViewmagazinePage {
   bookTitle: string;
   storageDirectory: any;
   pdfSrc: string;
+  storageKey: string;
+  isFavorite: boolean;
 
   constructor(    
     private file: File,
@@ -29,10 +32,19 @@ export class ViewmagazinePage {
     public platform: Platform, 
     public navCtrl: NavController,
     public navParams: NavParams,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public favoriteProvider: FavoriteProvider) {
     this.url = navParams.get('url');
     this.bookTitle = navParams.get('title');
-    console.log("here: " + this.url);
+    this.isFavorite = navParams.get('isFavorite');
+    let key = navParams.get('key');
+    //determine the storageKey to use
+    if(key === 'magazines'){
+      this.storageKey = "magazines";
+    }else if(key === 'prayerlists'){
+      this.storageKey = "prayerlists";
+    }
+    //console.log("here: " + this.url);
     // assign storage directory
     this.platform.ready().then(() => {
       if(this.platform.is('ios')) {
@@ -41,6 +53,10 @@ export class ViewmagazinePage {
         this.storageDirectory = this.file.externalDataDirectory;
       }
     });
+  }
+
+  ionViewWillEnter(){
+    // comment out the following line when adjusting UI in browsers
     this.preparePdf();
   }
 
@@ -79,9 +95,10 @@ export class ViewmagazinePage {
               //open pdf file
               this.pdfSrc = this.storageDirectory + this.bookTitle + '.pdf';
 
-              //insert info into db
-
-
+              //insert info into db as downloaded/favourite content
+              this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
+                this.isFavorite = true;
+              });
 
             }).catch(err_2 => {
               console.log("Download error!");

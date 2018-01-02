@@ -16,6 +16,7 @@ import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ond
 import { AboutusPage } from '../pages/aboutus/aboutus';
 import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
 import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
+import { FavoriteProvider } from '../pages/shared/monitoringStorage';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,6 +26,7 @@ import { RestangularConfigFactory } from '../pages/shared/restConfig';
 
 import { SharedModule } from './shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
@@ -55,6 +57,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     RestangularModule.forRoot(RestangularConfigFactory),
     SharedModule,
     PdfViewerModule,
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,6 +85,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     FileTransferObject,
     Media,
     FileOpener,
+    FavoriteProvider,
   ]
 })
 export class AppModule {}

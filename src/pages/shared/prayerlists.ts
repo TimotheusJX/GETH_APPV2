@@ -4,4 +4,6 @@ export class Prayerlists {
     url: string;
     ribbontext: string;
     class: string;
+    key: string;
+    isFavorite: boolean;
 }

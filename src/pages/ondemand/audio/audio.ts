@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
 
-import { DatePipe } from '@angular/common';
-
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-
+import { FavoriteProvider } from '../../shared/monitoringStorage';
 /**
  * Generated class for the AudioPage page.
  *
@@ -24,6 +22,8 @@ export class AudioPage {
   curr_playing_file: MediaObject;
   storageDirectory: any;
   url: any;
+  storageKey: string;
+  isFavorite: boolean;
 
   is_playing: boolean = false;
   is_in_play: boolean = false;
@@ -46,7 +46,8 @@ export class AudioPage {
     private file: File,
     private transfer: FileTransfer,
     private media: Media,
-    public viewCtrl: ViewController) {
+    public viewCtrl: ViewController,
+    public favoriteProvider: FavoriteProvider) {
       // assign storage directory
       this.platform.ready().then(() => {
         if(this.platform.is('ios')) {
@@ -57,6 +58,15 @@ export class AudioPage {
       });
       this.url = navParams.get('url');
       this.filename = navParams.get('title');
+      let key = navParams.get('key');
+      //determine the storageKey to use
+      if(key === 'women'){
+        this.storageKey = "women";
+      }else if(key === 'men'){
+        this.storageKey = "men";
+      }else if(key === 'youth'){
+        this.storageKey = "youth";
+      }
   }
 
   ionViewWillEnter(){
@@ -84,13 +94,17 @@ export class AudioPage {
             // not found! download!
             console.log("not found! download!");
             let loading = this.loadingCtrl.create({
-              content: 'Downloading the song from the web...'
+              content: 'Downloading the recording...'
             });
             loading.present();
             const fileTransfer: FileTransferObject = this.transfer.create();
             fileTransfer.download(this.url, this.storageDirectory + this.filename + ".mp3").then((entry) => {
               console.log('download complete' + entry.toURL());
               loading.dismiss();
+              //insert info into db as downloaded/favourite content
+              this.favoriteProvider.favoriteItem(this.storageKey, this.filename).then(() => {
+                this.isFavorite = true;
+              });
               this.getDurationAndSetToPlay();
             }).catch(err_2 => {
               console.log("Download error!");
