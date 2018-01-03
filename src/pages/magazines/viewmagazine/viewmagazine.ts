@@ -88,6 +88,37 @@ export class ViewmagazinePage {
               content: 'Downloading the PDF...'
             });
             loading.present();
+            //download and read file starts
+            window.requestFileSystem(this.storageDirectory, 0, function (fs) {
+              console.log('file system open: ' + fs.name);
+              fs.root.getFile(this.bookTitle, { create: true, exclusive: false }, function (fileEntry) {
+                console.log('fileEntry is file? ' + fileEntry.isFile.toString());
+                let oReq: any = new XMLHttpRequest();
+                // Make sure you add the domain name to the Content-Security-Policy <meta> element.
+                oReq.open("GET", this.url, true);
+                // Define how you want the XHR data to come back
+                oReq.responseType = "blob";
+                oReq.onload = function (oEvent) {
+                  let blob: any = oReq.response; // Note: not oReq.responseText
+                  if (blob) {
+                    // Create a URL based on the blob
+                    let url: any = window.URL.createObjectURL(blob);
+                    loading.dismiss();
+                    //open pdf file
+                    this.pdfSrc = url;
+                    //insert info into db as downloaded/favourite content
+                    this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
+                      this.isFavorite = true;
+                    });
+                  } else console.error('we didnt get an XHR response!');
+                };
+                oReq.send(null);
+              }, function (err) {loading.dismiss(); console.error('error getting file! ' + err); });
+            }, function (err) { console.error('error getting persistent fs! ' + err); });
+          
+
+/*
+            //filetransfer start
             const fileTransfer: FileTransferObject = this.transfer.create();
             fileTransfer.download(this.url, this.storageDirectory + this.bookTitle + '.pdf').then((entry) => {
               console.log('download complete' + entry.toURL());
@@ -105,6 +136,9 @@ export class ViewmagazinePage {
               loading.dismiss();
               console.log(err_2);
             });
+*/
+
+
           }
         });
       });
@@ -116,4 +150,33 @@ export class ViewmagazinePage {
     .then(() => console.log('File is opened'))
     .catch(e => console.log('Error openening file', e));
   }
+  //to replace file transfer
+  /*downloadandreadFile(loading){
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+      console.log('file system open: ' + fs.name);
+      fs.root.getFile(this.bookTitle, { create: true, exclusive: false }, function (fileEntry) {
+        console.log('fileEntry is file? ' + fileEntry.isFile.toString());
+        let oReq: any = new XMLHttpRequest();
+        // Make sure you add the domain name to the Content-Security-Policy <meta> element.
+        oReq.open("GET", this.url, true);
+        // Define how you want the XHR data to come back
+        oReq.responseType = "blob";
+        oReq.onload = function (oEvent) {
+          let blob: any = oReq.response; // Note: not oReq.responseText
+          if (blob) {
+            // Create a URL based on the blob
+            let url: any = window.URL.createObjectURL(blob);
+            loading.dismiss();
+            //open pdf file
+            this.pdfSrc = url;
+            //insert info into db as downloaded/favourite content
+            this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
+              this.isFavorite = true;
+            });
+          } else console.error('we didnt get an XHR response!');
+        };
+        oReq.send(null);
+      }, function (err) {loading.dismiss(); console.error('error getting file! ' + err); });
+    }, function (err) { console.error('error getting persistent fs! ' + err); });
+  }*/
 }
