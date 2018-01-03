@@ -17,9 +17,11 @@ import { AboutusPage } from '../pages/aboutus/aboutus';
 import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
 import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
+import { PopupfabmodalPage } from '../pages/aboutus/popupfabmodal/popupfabmodal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HTTP } from '@ionic-native/http';
 
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { RestangularConfigFactory } from '../pages/shared/restConfig';
@@ -29,7 +31,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { File } from '@ionic-native/file';
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { FileOpener } from '@ionic-native/file-opener';
 
 import { Media, MediaObject } from '@ionic-native/media';
@@ -50,6 +51,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     AboutusPage,
     PrayerlistPage,
     ViewmagazinePage,
+    PopupfabmodalPage,
   ],
   imports: [
     BrowserModule,
@@ -75,17 +77,17 @@ import { Media, MediaObject } from '@ionic-native/media';
     AboutusPage,
     PrayerlistPage,
     ViewmagazinePage,
+    PopupfabmodalPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     File,
-    FileTransfer,
-    FileTransferObject,
     Media,
     FileOpener,
     FavoriteProvider,
+    HTTP,
   ]
 })
 export class AppModule {}

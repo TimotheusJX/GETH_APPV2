@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { File } from '@ionic-native/file';
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FileOpener } from '@ionic-native/file-opener';
 import { FavoriteProvider } from '../../shared/monitoringStorage';
+import { HTTP } from '@ionic-native/http';
 
 /**
  * Generated class for the ViewmagazinePage page.
@@ -27,13 +27,14 @@ export class ViewmagazinePage {
 
   constructor(    
     private file: File,
-    private transfer: FileTransfer,
     private fileOpener: FileOpener,
     public platform: Platform, 
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public favoriteProvider: FavoriteProvider) {
+    public favoriteProvider: FavoriteProvider,
+    private http: HTTP
+  ) {
     this.url = navParams.get('url');
     this.bookTitle = navParams.get('title');
     this.isFavorite = navParams.get('isFavorite');
@@ -89,56 +90,28 @@ export class ViewmagazinePage {
             });
             loading.present();
             //download and read file starts
-            window.requestFileSystem(this.storageDirectory, 0, function (fs) {
-              console.log('file system open: ' + fs.name);
-              fs.root.getFile(this.bookTitle, { create: true, exclusive: false }, function (fileEntry) {
-                console.log('fileEntry is file? ' + fileEntry.isFile.toString());
-                let oReq: any = new XMLHttpRequest();
-                // Make sure you add the domain name to the Content-Security-Policy <meta> element.
-                oReq.open("GET", this.url, true);
-                // Define how you want the XHR data to come back
-                oReq.responseType = "blob";
-                oReq.onload = function (oEvent) {
-                  let blob: any = oReq.response; // Note: not oReq.responseText
-                  if (blob) {
-                    // Create a URL based on the blob
-                    let url: any = window.URL.createObjectURL(blob);
-                    loading.dismiss();
-                    //open pdf file
-                    this.pdfSrc = url;
-                    //insert info into db as downloaded/favourite content
-                    this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
-                      this.isFavorite = true;
-                    });
-                  } else console.error('we didnt get an XHR response!');
-                };
-                oReq.send(null);
-              }, function (err) {loading.dismiss(); console.error('error getting file! ' + err); });
-            }, function (err) { console.error('error getting persistent fs! ' + err); });
-          
-
-/*
-            //filetransfer start
-            const fileTransfer: FileTransferObject = this.transfer.create();
-            fileTransfer.download(this.url, this.storageDirectory + this.bookTitle + '.pdf').then((entry) => {
-              console.log('download complete' + entry.toURL());
+            console.log("resolved directory 2: " + resolvedDirectory.nativeURL);
+            this.http.downloadFile(
+              this.url, 
+              {}, 
+              {}, 
+              resolvedDirectory.nativeURL + this.bookTitle + ".pdf"
+            ).then((response) => {
+                // prints the filename
+                console.log(response.status);
+                // prints the error
+                console.log("response error: " + response.error);
+                loading.dismiss();
+                //insert info into db as downloaded/favourite content
+                this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
+                  this.isFavorite = true;
+                });
+                this.pdfSrc = resolvedDirectory.nativeURL + this.bookTitle + ".pdf";
+            }).catch(error => {
+              console.log("Download error! " + error.status);
               loading.dismiss();
-              //open pdf file
-              this.pdfSrc = this.storageDirectory + this.bookTitle + '.pdf';
-
-              //insert info into db as downloaded/favourite content
-              this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
-                this.isFavorite = true;
-              });
-
-            }).catch(err_2 => {
-              console.log("Download error!");
-              loading.dismiss();
-              console.log(err_2);
+              console.log(error.error);
             });
-*/
-
-
           }
         });
       });
@@ -150,33 +123,4 @@ export class ViewmagazinePage {
     .then(() => console.log('File is opened'))
     .catch(e => console.log('Error openening file', e));
   }
-  //to replace file transfer
-  /*downloadandreadFile(loading){
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-      console.log('file system open: ' + fs.name);
-      fs.root.getFile(this.bookTitle, { create: true, exclusive: false }, function (fileEntry) {
-        console.log('fileEntry is file? ' + fileEntry.isFile.toString());
-        let oReq: any = new XMLHttpRequest();
-        // Make sure you add the domain name to the Content-Security-Policy <meta> element.
-        oReq.open("GET", this.url, true);
-        // Define how you want the XHR data to come back
-        oReq.responseType = "blob";
-        oReq.onload = function (oEvent) {
-          let blob: any = oReq.response; // Note: not oReq.responseText
-          if (blob) {
-            // Create a URL based on the blob
-            let url: any = window.URL.createObjectURL(blob);
-            loading.dismiss();
-            //open pdf file
-            this.pdfSrc = url;
-            //insert info into db as downloaded/favourite content
-            this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
-              this.isFavorite = true;
-            });
-          } else console.error('we didnt get an XHR response!');
-        };
-        oReq.send(null);
-      }, function (err) {loading.dismiss(); console.error('error getting file! ' + err); });
-    }, function (err) { console.error('error getting persistent fs! ' + err); });
-  }*/
 }

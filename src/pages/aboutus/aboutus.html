@@ -4,15 +4,31 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header no-border>
 
-  <ion-navbar>
-    <ion-title>aboutus</ion-title>
-  </ion-navbar>
+    <ion-navbar transparent>
+      <ion-title></ion-title>
+    </ion-navbar>
 
-</ion-header>
+  </ion-header>
 
-
-<ion-content padding>
-
-</ion-content>
+  <ion-content *ngIf="aboutUs && aboutUs.length">
+    <header>
+      <h1>{{aboutUs[0].titleLineOne}} <span>{{aboutUs[0].titleLineTwo}}</span> {{aboutUs[0].titleLineThree}}</h1>
+      <img [src]="aboutUs[0].imgUrl">
+    </header>
+    <main>
+      <p>{{aboutUs[0].firstPara}}</p>
+      <p>{{aboutUs[0].secondPara}}</p>
+      <p>{{aboutUs[0].thirdPara}}</p>
+    </main>
+    <ion-fab right bottom middle>
+      <button class="pop-in"
+              [ngClass]="{ 'expand' : expanded, 'contract': contracted }"
+              ion-fab mini
+              (click)="expand()">
+        <ion-icon [hidden]="!showIcon" name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-fab>
+  </ion-content>
+  

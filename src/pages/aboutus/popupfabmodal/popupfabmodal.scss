@@ -1,0 +1,86 @@
+page-popupfabmodal {
+    animation: fade-in .8s ease-in-out;
+    @keyframes fade-in {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
+    .scroll-content {
+        background: #fff;
+    }
+    
+    ion-icon, div {
+        color: #00ccb2;
+        font-weight: bold;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        margin: auto;
+    }
+
+    .transparent-header {
+        // This is just to make the header transparent and button/icon with white color
+        .toolbar-content,
+        .back-button {
+          color: white;
+        }
+        .toolbar-background,
+        ion-navbar,
+        ion-header {
+          background: transparent !important;
+          background-color: transparent !important;
+        }
+        .header-md::after,
+        .toolbar-background-ios {
+          background-image: none;
+          border-bottom: 0;
+        }
+        .header-ios .toolbar-background-ios,
+        .footer-ios .toolbar-background-ios {
+          border: 0;
+        }
+        // ---
+    }
+    .header-image {
+        background-image: url(../../assets/img/background/background-2.jpg);
+        height: 30vh;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        z-index: -1;
+    }
+    .main-content {
+        margin-top: -20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 20px;
+        background-color: white;
+        -webkit-box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+        // background: #F5F5F5;
+        position: relative !important;
+    }
+    .circular {
+        width: 100px;
+        height: 100px;
+        position: inherit;
+        border-radius: 50%;
+        -webkit-border-radius: 150px;
+        -moz-border-radius: 150px;
+        border: solid white;
+        background: url(../../assets/img/avatar/cosima-avatar.jpg) no-repeat;
+        background-size: 100%;
+        margin-top: -70px;
+        margin-left: auto;
+        margin-right: auto;
+        // margin-bottom: 50px;
+    }
+    .profile-description {
+        font-size: 15px;
+        color: #888;
+    }
+}

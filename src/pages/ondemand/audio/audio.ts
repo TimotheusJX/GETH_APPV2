@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
-
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { FavoriteProvider } from '../../shared/monitoringStorage';
+import { HTTP } from '@ionic-native/http';
 /**
  * Generated class for the AudioPage page.
  *
@@ -44,10 +43,10 @@ export class AudioPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     private file: File,
-    private transfer: FileTransfer,
     private media: Media,
     public viewCtrl: ViewController,
-    public favoriteProvider: FavoriteProvider) {
+    public favoriteProvider: FavoriteProvider,
+    private http: HTTP) {
       // assign storage directory
       this.platform.ready().then(() => {
         if(this.platform.is('ios')) {
@@ -97,19 +96,28 @@ export class AudioPage {
               content: 'Downloading the recording...'
             });
             loading.present();
-            const fileTransfer: FileTransferObject = this.transfer.create();
-            fileTransfer.download(this.url, this.storageDirectory + this.filename + ".mp3").then((entry) => {
-              console.log('download complete' + entry.toURL());
+            //download and read file starts
+            console.log("resolved directory 2: " + resolvedDirectory.nativeURL);
+            this.http.downloadFile(
+              this.url, 
+              {}, 
+              {}, 
+              resolvedDirectory.nativeURL + this.filename + ".mp3"
+            ).then((response) => {
+                // prints the filename
+                console.log(response.status);
+                // prints the error
+                console.log("response error: " + response.error);
+                loading.dismiss();
+                //insert info into db as downloaded/favourite content
+                this.favoriteProvider.favoriteItem(this.storageKey, this.filename).then(() => {
+                  this.isFavorite = true;
+                });
+                this.getDurationAndSetToPlay();
+            }).catch(error => {
+              console.log("Download error! " + error.status);
               loading.dismiss();
-              //insert info into db as downloaded/favourite content
-              this.favoriteProvider.favoriteItem(this.storageKey, this.filename).then(() => {
-                this.isFavorite = true;
-              });
-              this.getDurationAndSetToPlay();
-            }).catch(err_2 => {
-              console.log("Download error!");
-              loading.dismiss();
-              console.log(err_2);
+              console.log(error.error);
             });
           }
         });
