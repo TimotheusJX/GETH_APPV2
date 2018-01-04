@@ -15,7 +15,7 @@
     </ion-navbar>
   </ion-header>
 -->
-  <ion-content fullscreen parallax-header no-bounce class="bg-modal container transparent-header">
+  <ion-content parallax-header no-bounce fullscreen class="bg-modal container transparent-header" *ngIf="churchInfo && churchInfo.length">
     <ion-header>
       <ion-navbar>
         <ion-buttons right>
@@ -27,57 +27,65 @@
     </ion-header>
     <ion-slides pager>
       <ion-slide>
-
-        <div class="header-image"></div>
+        <div class="header-image" [ngStyle]="{'background-image': 'url(' + churchInfo[0].churchStaffHeaderImage +')'}"></div>
         <div class="main-content" text-wrap text-center>
-          <div class="circular"></div>
-          <h2>{{churchInfo.name}}</h2>
-          <p>{{churchInfo.worshipVenue}} &bull; {{churchInfo.worshipLocation}}</p>
-          <p class="profile-description">{{churchInfo.mainGoal}}</p>
+            <flash-card *ngFor="let card of churchInfo[0].churchSessionAndStaff" >
+              <div class="fc-front">
+                <img *ngIf="card.front.image"  [src]="card.front.image" />
+                <h2 text-center>{{card.front.title}}</h2>
+                <h3 text-center>{{card.front.subtitle}}</h3>
+                <hr />
+                <p *ngIf="card.front.title" >{{card.front.content}}</p>
+              </div>
+              <div class="fc-back">
+                <img *ngIf="card.back.image"  [src]="card.back.image" />
+                <h2 text-center>{{card.back.title}}</h2>
+                <h3 text-center>{{card.back.subtitle}}</h3>
+                <hr />
+                <p *ngIf="card.back.title" >{{card.back.content}}</p>
+              </div>
+            </flash-card>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="header-image" [ngStyle]="{'background-image': 'url(' + churchInfo[0].headerImage +')'}"></div>
+        <div class="main-content" text-wrap text-center>
+          <div class="circular" [ngStyle]="{'background-image': 'url(' + churchInfo[0].circularImage +')'}"></div>
+          <h2>{{churchInfo[0].churchName}}</h2>
+          <p>{{churchInfo[0].worshipPlace}} &bull; {{churchInfo[0].worshipLocation}}</p>
+          <p class="profile-description">{{churchInfo[0].worshipTiming}}</p>
           <hr>
           <ion-list no-lines>
               <ion-item>
-                  <ion-icon name="mail" color="primary" item-start></ion-icon>
+                  <ion-icon item-start name="mail" color="primary"></ion-icon>
                   <p>Email</p>
-                  {{churchInfo.email}}
-                  <a button ion-button href="mailto:{{churchInfo.email}}" color="primary" item-end medium>Send</a>
+                  {{churchInfo[0].email}}
+                  <a button ion-button href="mailto:{{churchInfo[0].email}}" color="primary" item-end medium>Send</a>
               </ion-item>
               <ion-item>
                   <ion-icon item-start name="call" color="danger"></ion-icon>
                   <p>Mobile</p>
-                  {{churchInfo.phone}}
-                  <a button ion-button href="tel:{{churchInfo.phone}}" color="danger" item-end medium>Call</a>
+                  {{churchInfo[0].phoneChurchOffice}}
+                  <a button ion-button href="tel:{{churchInfo[0].phoneChurchOffice}}" color="danger" item-end medium>Call</a>
               </ion-item>
               <ion-item>
                   <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon>
                   <p>Whatsapp</p>
-                  {{churchInfo.whatsapp}}
-                  <a button ion-button color="secondary" item-end medium href="whatsapp://send?text=Hi from ionic&phone=+{{churchInfo.phone}}&abid=+{{churchInfo.phone}}">Message</a>
+                  {{churchInfo[0].whatsapp}}
+                  <a button ion-button color="secondary" item-end medium href="whatsapp://send?text=Hi from ionic&phone=+{{churchInfo[0].whatsapp}}&abid=+{{churchInfo[0].whatsapp}}">Message</a>
               </ion-item>
               <ion-item>
                   <ion-icon item-start name="pin" color="twitter"></ion-icon>
-                  <p>{{churchInfo.address}}</p>
+                  <p>Church Office</p>
+                  {{churchInfo[0].churchOfficeAddress}}
+              </ion-item>
+              <ion-item>
+                  <ion-icon item-start name="pin" color="twitter"></ion-icon>
+                  <p>Church Worship Venue</p>
+                  {{churchInfo[0].worshipPlaceAddress}}
               </ion-item>
           </ion-list>
-          <h2>Get in touch</h2>
-          <hr>
-          <a href="#" button ion-button block color="linkedin" icon-start>
-              <ion-icon name='logo-linkedin'></ion-icon>
-              LinkedIn
-          </a>
-          <a href="#" button ion-button block color="fb" icon-start>
-              <ion-icon name='logo-facebook'></ion-icon>
-              Facebook
-          </a>
-          <a href="#" button ion-button block color="danger" icon-start>
-              <ion-icon name='logo-youtube'></ion-icon>
-              Youtube
-          </a>
         </div>
-
-      </ion-slide>
-      <ion-slide>
-        Slide 2
       </ion-slide>
     </ion-slides>
   </ion-content>

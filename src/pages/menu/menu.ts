@@ -9,6 +9,7 @@ import { OndemandPage } from '../ondemand/ondemand';
 import { VideoPage } from '../video/video';
 import { PrayerlistPage } from '../prayerlist/prayerlist';
 import { AboutusPage } from '../aboutus/aboutus'; 
+import { TestimonyPage } from '../testimony/testimony'; 
 
 import { Menuavatar } from '../shared/menuavatar';
 import { Observable } from 'rxjs/Observable';
@@ -54,6 +55,8 @@ export class MenuPage {
       this.navCtrl.push(PrayerlistPage);
     }else if(pageName === "aboutus"){
       this.navCtrl.push(AboutusPage);
+    }else if(pageName === "testimonies"){
+      this.navCtrl.push(TestimonyPage);
     }
   }
 

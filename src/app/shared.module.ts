@@ -1,16 +1,18 @@
-import { COMPONENTS } from './app.imports';
+import { COMPONENTS, DIRECTIVES } from './app.imports';
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 
 @NgModule({
   declarations: [
-    COMPONENTS
+    COMPONENTS,
+    DIRECTIVES
   ],
   imports: [
     IonicModule,
   ],
   exports: [
-    COMPONENTS
+    COMPONENTS,
+    DIRECTIVES
   ]
 })
 

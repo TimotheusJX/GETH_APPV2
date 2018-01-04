@@ -9,7 +9,7 @@ page-popupfabmodal {
         background: #fff;
     }
     
-    ion-icon, div {
+    ion-icon {
         color: #00ccb2;
         font-weight: bold;
     }
@@ -45,7 +45,7 @@ page-popupfabmodal {
         // ---
     }
     .header-image {
-        background-image: url(../../assets/img/background/background-2.jpg);
+        //background-image: url(../../../assets/img/background/background-2.jpg);
         height: 30vh;
         background-size: cover;
         background-position: center center;
@@ -72,7 +72,7 @@ page-popupfabmodal {
         -webkit-border-radius: 150px;
         -moz-border-radius: 150px;
         border: solid white;
-        background: url(../../assets/img/avatar/cosima-avatar.jpg) no-repeat;
+        background: no-repeat;
         background-size: 100%;
         margin-top: -70px;
         margin-left: auto;
@@ -83,4 +83,10 @@ page-popupfabmodal {
         font-size: 15px;
         color: #888;
     }
+
+    .swiper-slide { 
+        overflow-y: scroll; 
+        display: block; 
+    }
+ 
 }

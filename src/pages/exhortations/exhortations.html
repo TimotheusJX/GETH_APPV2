@@ -1,13 +1,20 @@
-<ion-header>
+<!--<ion-header>
 
   <ion-navbar transparent>
     <ion-title></ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header>-->
 
 
 <ion-content padding>
+  <ion-header>
+
+    <ion-navbar transparent>
+      <ion-title></ion-title>
+    </ion-navbar>
+  
+  </ion-header>
   <timeline endIcon="bookmarks">
     <timeline-item *ngFor="let exhortation of exhortations">
       <timeline-time [time]="exhortation.created"></timeline-time>

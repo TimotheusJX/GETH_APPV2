@@ -18,6 +18,7 @@ import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
 import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
 import { PopupfabmodalPage } from '../pages/aboutus/popupfabmodal/popupfabmodal';
+import { TestimonyPage } from '../pages/testimony/testimony';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -34,6 +35,7 @@ import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 
 import { Media, MediaObject } from '@ionic-native/media';
+//import { FlashCardComponent } from '../components/flash-card/flash-card';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     PrayerlistPage,
     ViewmagazinePage,
     PopupfabmodalPage,
+    TestimonyPage,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     PrayerlistPage,
     ViewmagazinePage,
     PopupfabmodalPage,
+    TestimonyPage,
   ],
   providers: [
     StatusBar,
