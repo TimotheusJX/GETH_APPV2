@@ -20,6 +20,7 @@ import { FormControl } from '@angular/forms';
 })
 export class OndemandcategoriesPage {
   onDemandItems: OnDemandItem[];
+  currentODItems: OnDemandItem[];
   errMess: string;
   page: string;
   storageDirectory: any;
@@ -78,7 +79,8 @@ export class OndemandcategoriesPage {
         }
       })
       this.onDemandItems = data;
-    }, errmess => {this.onDemandItems = null; this.errMess = <any>errmess});
+      this.currentODItems = data;
+    }, errmess => {this.onDemandItems = null; this.currentODItems = null; this.errMess = <any>errmess});
   }
 
   getItems(page): Observable<OnDemandItem[]> {
@@ -149,24 +151,12 @@ export class OndemandcategoriesPage {
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
-      this.getItems(this.page).subscribe((data) => {
+//      this.getItems(this.page).subscribe((data) => {
         //set isFavorite to true if item already downloaded, else set false
-        this.favoriteProvider.getAllFavoriteItems(this.storageKey).then(result => {
-          if (result) {
-            console.log("value of result: ");
-            console.log(result);
-            for(let item of data){
-              if(result.indexOf(item.title) != -1){
-                item.isFavorite = true;
-              }else{
-                item.isFavorite = false;
-              }
-            }
-          }
-        })
-        this.onDemandItems = data;
+        
+        this.onDemandItems = this.currentODItems;
         this.searchItems();
-      }, errmess => {this.onDemandItems = null; this.errMess = <any>errmess});
+//      }, errmess => {this.onDemandItems = null; this.errMess = <any>errmess});
     });
   }
 
@@ -176,7 +166,7 @@ export class OndemandcategoriesPage {
 
   searchItems() {
     if (this.searchTerm && this.searchTerm.trim() != '') {
-      this.onDemandItems = this.onDemandItems.filter((item) => {
+      this.onDemandItems = this.currentODItems.filter((item) => {
         return item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
       });  
     }

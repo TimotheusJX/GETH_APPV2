@@ -21,6 +21,7 @@ import { FormControl } from '@angular/forms';
 })
 export class PrayerlistPage {
   prayerlists: Prayerlists[];
+  currentPList: Prayerlists[];
   errMess: string;
   storageDirectory: any;
   storageKey: string = 'prayerlists';
@@ -65,7 +66,8 @@ export class PrayerlistPage {
         }
       })
       this.prayerlists = data;
-    }, errmess => {this.prayerlists = null; this.errMess = <any>errmess});
+      this.currentPList = data;
+    }, errmess => {this.prayerlists = null; this.currentPList = null; this.errMess = <any>errmess});
   }
 
   ionViewDidLoad() {
@@ -121,24 +123,11 @@ export class PrayerlistPage {
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
-      this.getPrayerLists().subscribe((data) => {
+//      this.getPrayerLists().subscribe((data) => {
         //set isFavorite to true if item already downloaded, else set false
-        this.favoriteProvider.getAllFavoriteItems(this.storageKey).then(result => {
-          if (result) {
-            console.log("value of result: ");
-            console.log(result);
-            for(let item of data){
-              if(result.indexOf(item.title) != -1){
-                item.isFavorite = true;
-              }else{
-                item.isFavorite = false;
-              }
-            }
-          }
-        })
-        this.prayerlists = data;
+        this.prayerlists = this.currentPList;
         this.searchItems();
-      }, errmess => {this.prayerlists = null; this.errMess = <any>errmess});
+//      }, errmess => {this.prayerlists = null; this.errMess = <any>errmess});
     });
   }
 
@@ -148,7 +137,7 @@ export class PrayerlistPage {
 
   searchItems() {
     if (this.searchTerm && this.searchTerm.trim() != '') {
-      this.prayerlists = this.prayerlists.filter((item) => {
+      this.prayerlists = this.currentPList.filter((item) => {
         return item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
       });  
     }

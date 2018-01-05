@@ -15,6 +15,8 @@ import { FormControl } from '@angular/forms';
 
 export class MagazinesPage {
   magazines: Magazines[];
+  currentMag: Magazines[];
+  fixMag: Magazines[];
   errMess: string;
   storageDirectory: any;
   storageKey: string = 'magazines';
@@ -62,7 +64,8 @@ export class MagazinesPage {
         }
       })
       this.magazines = data;
-    }, errmess => {this.magazines = null; this.errMess = <any>errmess});
+      this.currentMag = data;
+    }, errmess => {this.magazines = null; this.currentMag = null; this.errMess = <any>errmess});
   }
 
   getMagazines(): Observable<Magazines[]> {
@@ -114,25 +117,12 @@ export class MagazinesPage {
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
-      this.getMagazines().subscribe((data) => {
-        console.log("magazines: " + data);
+//      this.getMagazines().subscribe((data) => {
+//        console.log("magazines: " + data);
         //set isFavorite to true if item already downloaded, else set false
-        this.favoriteProvider.getAllFavoriteItems(this.storageKey).then(result => {
-          if (result) {
-            console.log("value of result: ");
-            console.log(result);
-            for(let item of data){
-              if(result.indexOf(item.title) != -1){
-                item.isFavorite = true;
-              }else{
-                item.isFavorite = false;
-              }
-            }
-          }
-        })
-        this.magazines = data;
-        this.searchItems();
-      }, errmess => {this.magazines = null; this.errMess = <any>errmess});
+      this.magazines = this.currentMag;
+      this.searchItems();
+//      }, errmess => {this.magazines = null; this.errMess = <any>errmess});
     });
   }
 
@@ -142,7 +132,7 @@ export class MagazinesPage {
 
   searchItems() {
     if (this.searchTerm && this.searchTerm.trim() != '') {
-      this.magazines = this.magazines.filter((item) => {
+      this.magazines = this.currentMag.filter((item) => {
         return item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
       });  
     }
