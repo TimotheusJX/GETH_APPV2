@@ -27,25 +27,24 @@
     </ion-header>
     <ion-slides pager>
       <ion-slide>
-        <div class="header-image" [ngStyle]="{'background-image': 'url(' + churchInfo[0].churchStaffHeaderImage +')'}"></div>
-        <div class="main-content" text-wrap text-center>
-            <flash-card *ngFor="let card of churchInfo[0].churchSessionAndStaff" >
-              <div class="fc-front">
-                <img *ngIf="card.front.image"  [src]="card.front.image" />
-                <h2 text-center>{{card.front.title}}</h2>
-                <h3 text-center>{{card.front.subtitle}}</h3>
-                <hr />
-                <p *ngIf="card.front.title" >{{card.front.content}}</p>
-              </div>
-              <div class="fc-back">
-                <img *ngIf="card.back.image"  [src]="card.back.image" />
-                <h2 text-center>{{card.back.title}}</h2>
-                <h3 text-center>{{card.back.subtitle}}</h3>
-                <hr />
-                <p *ngIf="card.back.title" >{{card.back.content}}</p>
-              </div>
-            </flash-card>
-        </div>
+        <flash-card *ngFor="let card of churchInfo[0].churchSessionAndStaff" >
+          <div class="flash-card-front">
+              <figure class="snip1574">
+                  <img [src]="card.front.image" alt="sample" />
+                  <figcaption>
+                    <h3>{{card.front.title}}</h3>
+                    <h5 *ngIf="card.front.subtitle">{{card.front.subtitle}}</h5>
+                  </figcaption>
+                </figure>
+          </div>
+          <div class="flash-card-back">
+              <img *ngIf="card.back.image"  [src]="card.back.image" />
+              <h2 text-center>{{card.back.title}}</h2>
+              <h3 text-center>{{card.back.subtitle}}</h3>
+              <hr />
+              <p *ngIf="card.back.title" >{{card.back.content}}</p>
+          </div>
+        </flash-card>
       </ion-slide>
       <ion-slide>
         <div class="header-image" [ngStyle]="{'background-image': 'url(' + churchInfo[0].headerImage +')'}"></div>

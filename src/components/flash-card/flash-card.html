@@ -1,10 +1,16 @@
 
-<ion-card class="fc-container" (click)="toggle()" [class.fc-back]="toggled" #fcContainer>
-    <div class="front" #front>
-        <ng-content class="" select=".fc-front"></ng-content>
-    </div>
+<div class="flip-container" (click)="flip()" [class.flipped]="flipped">
  
-    <div class="back" #back>
-        <ng-content select=".fc-back"></ng-content>
+        <div class="flipper">
+     
+            <div class="front">
+                <ng-content select=".flash-card-front"></ng-content>
+            </div>
+     
+            <div class="back">
+                <ng-content select=".flash-card-back"></ng-content>
+            </div>
+     
+        </div>
+     
     </div>
-</ion-card>
