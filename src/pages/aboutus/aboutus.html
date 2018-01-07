@@ -12,10 +12,9 @@
 
   </ion-header>
 
-  <ion-content *ngIf="aboutUs && aboutUs.length">
-    <header>
+  <ion-content fullscreen *ngIf="aboutUs && aboutUs.length">
+    <header [ngStyle]="{'background-image' : 'url(' + aboutUs[0].imgUrl + ')'}">
       <h1>{{aboutUs[0].titleLineOne}} <span>{{aboutUs[0].titleLineTwo}}</span> {{aboutUs[0].titleLineThree}}</h1>
-      <img [src]="aboutUs[0].imgUrl">
     </header>
     <main>
       <p>{{aboutUs[0].firstPara}}</p>

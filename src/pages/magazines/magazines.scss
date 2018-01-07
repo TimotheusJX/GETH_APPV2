@@ -87,4 +87,28 @@ page-magazines {
     text-align: center;
     padding: 10px;
   }
+
+  .bar-button,
+  .toolbar-title {
+    color: #fff;
+  }
+
+  /* Header */
+  .toolbar-background {
+      border-color: transparent;
+      background: rgba(0, 0, 0, 0.14) !important;
+  }
+
+  .scroll-content {
+      padding-top: 45px !important;
+  }
+
+.toolbar .searchbar-ios .searchbar-input {
+    background: white;
+}
+
+  .toolbar{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 }

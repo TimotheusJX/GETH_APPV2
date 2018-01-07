@@ -110,6 +110,26 @@ page-ondemandcategories {
     text-align: center;
     padding: 10px;
   }
+
+  .bar-button,
+  .toolbar-title {
+    color: #fff;
+  }
+
+  /* Header */
+  .toolbar-background {
+      border-color: transparent;
+      background: rgba(0, 0, 0, 0.14) !important;
+  }
+
+  .scroll-content {
+      padding-top: 89px !important;
+  }
+
+  .toolbar{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 }
 
 ion-modal.inset-modal {

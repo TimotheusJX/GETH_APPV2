@@ -14,7 +14,7 @@ page-aboutus {
         margin: 0;
     }
     header {
-        background-image: url('../assets/img/blog/mountain-range.jpg');
+    //    background-image: url('../assets/img/blog/mountain-range.jpg');
         padding-top: 61.73333333%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -117,5 +117,16 @@ page-aboutus {
 
   ion-icon {
     transition: display 1s ease-in;
+  }
+
+  .bar-button,
+  .toolbar-title {
+    color: #fff;
+  }
+
+  /* Header */
+  .toolbar-background {
+      border-color: transparent;
+      background: rgba(0, 0, 0, 0.14) !important;
   }
 }

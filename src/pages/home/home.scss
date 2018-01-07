@@ -81,5 +81,20 @@ page-home {
   .bullet-icon-4 {
     background: url(../assets/icon/heart.svg) no-repeat;
   }
+
+  .bar-button,
+  .toolbar-title {
+    color: #fff;
+  }
+
+  /* Header */
+  .toolbar-background {
+      border-color: transparent;
+      background: rgba(0, 0, 0, 0.14) !important;
+  }
+
+  .scroll-content {
+      padding-top: 45px !important;
+  }
 }
 

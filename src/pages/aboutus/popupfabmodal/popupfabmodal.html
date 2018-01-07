@@ -4,87 +4,78 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<!--
+
 <ion-header no-border>
-    <ion-navbar transparent>
-      <ion-buttons right>
-        <button ion-button large (click)="dismiss(false)">
-            <ion-icon name="close"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
--->
-  <ion-content parallax-header no-bounce fullscreen class="bg-modal container transparent-header" *ngIf="churchInfo && churchInfo.length">
-    <ion-header>
-      <ion-navbar>
-        <ion-buttons right>
-          <button ion-button large (click)="dismiss(false)">
-              <ion-icon name="close"></ion-icon>
-          </button>
-        </ion-buttons>
-      </ion-navbar>
-    </ion-header>
-    <ion-slides pager>
-      <ion-slide>
-        <flash-card *ngFor="let card of churchInfo[0].churchSessionAndStaff" >
-          <div class="flash-card-front">
-              <figure class="snip1574">
-                  <img [src]="card.front.image" alt="sample" />
-                  <figcaption>
-                    <h3>{{card.front.title}}</h3>
-                    <h5 *ngIf="card.front.subtitle">{{card.front.subtitle}}</h5>
-                  </figcaption>
-                </figure>
-          </div>
-          <div class="flash-card-back">
-              <img *ngIf="card.back.image"  [src]="card.back.image" />
-              <h2 text-center>{{card.back.title}}</h2>
-              <h3 text-center>{{card.back.subtitle}}</h3>
-              <hr />
-              <p *ngIf="card.back.title" >{{card.back.content}}</p>
-          </div>
-        </flash-card>
-      </ion-slide>
-      <ion-slide>
-        <div class="header-image" [ngStyle]="{'background-image': 'url(' + churchInfo[0].headerImage +')'}"></div>
-        <div class="main-content" text-wrap text-center>
-          <div class="circular" [ngStyle]="{'background-image': 'url(' + churchInfo[0].circularImage +')'}"></div>
-          <h2>{{churchInfo[0].churchName}}</h2>
-          <p>{{churchInfo[0].worshipPlace}} &bull; {{churchInfo[0].worshipLocation}}</p>
-          <p class="profile-description">{{churchInfo[0].worshipTiming}}</p>
-          <hr>
-          <ion-list no-lines>
-              <ion-item>
-                  <ion-icon item-start name="mail" color="primary"></ion-icon>
-                  <p>Email</p>
-                  {{churchInfo[0].email}}
-                  <a button ion-button href="mailto:{{churchInfo[0].email}}" color="primary" item-end medium>Send</a>
-              </ion-item>
-              <ion-item>
-                  <ion-icon item-start name="call" color="danger"></ion-icon>
-                  <p>Mobile</p>
-                  {{churchInfo[0].phoneChurchOffice}}
-                  <a button ion-button href="tel:{{churchInfo[0].phoneChurchOffice}}" color="danger" item-end medium>Call</a>
-              </ion-item>
-              <ion-item>
-                  <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon>
-                  <p>Whatsapp</p>
-                  {{churchInfo[0].whatsapp}}
-                  <a button ion-button color="secondary" item-end medium href="whatsapp://send?text=Hi from ionic&phone=+{{churchInfo[0].whatsapp}}&abid=+{{churchInfo[0].whatsapp}}">Message</a>
-              </ion-item>
-              <ion-item>
-                  <ion-icon item-start name="pin" color="twitter"></ion-icon>
-                  <p>Church Office</p>
-                  {{churchInfo[0].churchOfficeAddress}}
-              </ion-item>
-              <ion-item>
-                  <ion-icon item-start name="pin" color="twitter"></ion-icon>
-                  <p>Church Worship Venue</p>
-                  {{churchInfo[0].worshipPlaceAddress}}
-              </ion-item>
-          </ion-list>
+  <ion-navbar transparent>
+    <ion-buttons right>
+      <button ion-button large strong (click)="dismiss(false)">
+          <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content fullscreen parallax-header no-bounce padding class="container" *ngIf="churchInfo && churchInfo.length">
+  <ion-slides pager>
+    <ion-slide>
+      <flash-card *ngFor="let card of churchInfo[0].churchSessionAndStaff" >
+        <div class="flash-card-front">
+            <figure class="snip1574">
+                <img [src]="card.front.image" alt="sample" />
+                <figcaption>
+                  <h3>{{card.front.title}}</h3>
+                  <h5 *ngIf="card.front.subtitle">{{card.front.subtitle}}</h5>
+                </figcaption>
+              </figure>
         </div>
-      </ion-slide>
-    </ion-slides>
-  </ion-content>
+        <div class="flash-card-back">
+            <img *ngIf="card.back.image"  [src]="card.back.image" />
+            <h2 text-center>{{card.back.title}}</h2>
+            <h3 text-center>{{card.back.subtitle}}</h3>
+            <hr />
+            <p *ngIf="card.back.title" >{{card.back.content}}</p>
+        </div>
+      </flash-card>
+    </ion-slide>
+    <ion-slide>
+      <div class="header-image" [ngStyle]="{'background-image': 'url(' + churchInfo[0].headerImage +')'}"></div>
+      <div class="main-content" text-wrap text-center>
+        <div class="circular" [ngStyle]="{'background-image': 'url(' + churchInfo[0].circularImage +')'}"></div>
+        <h2>{{churchInfo[0].churchName}}</h2>
+        <p>{{churchInfo[0].worshipPlace}} &bull; {{churchInfo[0].worshipLocation}}</p>
+        <p class="profile-description">{{churchInfo[0].worshipTiming}}</p>
+        <hr>
+        <ion-list no-lines>
+            <ion-item>
+                <ion-icon item-start name="mail" color="primary"></ion-icon>
+                <p>Email</p>
+                {{churchInfo[0].email}}
+                <a button ion-button href="mailto:{{churchInfo[0].email}}" color="primary" item-end medium>Send</a>
+            </ion-item>
+            <ion-item>
+                <ion-icon item-start name="call" color="danger"></ion-icon>
+                <p>Mobile</p>
+                {{churchInfo[0].phoneChurchOffice}}
+                <a button ion-button href="tel:{{churchInfo[0].phoneChurchOffice}}" color="danger" item-end medium>Call</a>
+            </ion-item>
+            <ion-item>
+                <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon>
+                <p>Whatsapp</p>
+                {{churchInfo[0].whatsapp}}
+                <a button ion-button color="secondary" item-end medium href="whatsapp://send?text=Hi from ionic&phone=+{{churchInfo[0].whatsapp}}&abid=+{{churchInfo[0].whatsapp}}">Message</a>
+            </ion-item>
+            <ion-item>
+                <ion-icon item-start name="pin" color="twitter"></ion-icon>
+                <p>Church Office</p>
+                {{churchInfo[0].churchOfficeAddress}}
+            </ion-item>
+            <ion-item>
+                <ion-icon item-start name="pin" color="twitter"></ion-icon>
+                <p>Church Worship Venue</p>
+                {{churchInfo[0].worshipPlaceAddress}}
+            </ion-item>
+        </ion-list>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

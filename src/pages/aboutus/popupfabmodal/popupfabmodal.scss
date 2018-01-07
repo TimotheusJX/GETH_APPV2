@@ -15,10 +15,6 @@ page-popupfabmodal {
         100% { opacity: 1; }
     }
     
-    .scroll-content {
-        background: #fff;
-    }
-    
     ion-icon {
         color: #00ccb2;
         font-weight: bold;
@@ -31,28 +27,20 @@ page-popupfabmodal {
         margin: auto;
     }
 
-    .transparent-header {
-        // This is just to make the header transparent and button/icon with white color
-        .toolbar-content,
-        .back-button {
-          color: white;
-        }
-        .toolbar-background,
-        ion-navbar,
-        ion-header {
-          background:transparent !important;
-          background-color: rgba(0, 0, 0, 0.05) !important;
-        }
-        .header-md::after,
-        .toolbar-background-ios {
-          background-image: none;
-          border-bottom: 0;
-        }
-        .header-ios .toolbar-background-ios,
-        .footer-ios .toolbar-background-ios {
-          border: 0;
-        }
+    .scroll-content {
+        background: #ffffff;
+        padding-top: 0px !important;
+    }
 
+    /* Header */
+    .toolbar-background {
+        border-color: transparent;
+        background: rgba(0, 0, 0, 0.07) !important;
+    }
+
+    .bar-button,
+    .toolbar-title {
+        color: white;
     }
     //slide 2
     .header-image {
@@ -176,5 +164,4 @@ page-popupfabmodal {
         color: #bbb;
         letter-spacing: 1px;
     }
-
 }

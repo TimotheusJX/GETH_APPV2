@@ -1,3 +1,16 @@
 page-video {
+    .bar-button,
+    .toolbar-title {
+      color: #fff;
+    }
 
+    /* Header */
+    .toolbar-background {
+        border-color: transparent;
+        background: rgba(0, 0, 0, 0.14) !important;
+    }
+
+    .scroll-content {
+        padding-top: 45px !important;
+    }
 }
