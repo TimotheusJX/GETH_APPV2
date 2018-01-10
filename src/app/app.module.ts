@@ -37,6 +37,9 @@ import { FileOpener } from '@ionic-native/file-opener';
 import { Media, MediaObject } from '@ionic-native/media';
 //import { FlashCardComponent } from '../components/flash-card/flash-card';
 
+import { RestProvider } from '../providers/rest/rest';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -63,6 +66,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     SharedModule,
     PdfViewerModule,
     IonicStorageModule.forRoot(),
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,6 +96,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     FileOpener,
     FavoriteProvider,
     HTTP,
+    RestProvider,
   ]
 })
 export class AppModule {}
