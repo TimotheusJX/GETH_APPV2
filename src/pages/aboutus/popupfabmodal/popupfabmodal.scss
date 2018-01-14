@@ -116,7 +116,7 @@ page-popupfabmodal {
     .snip1574 img {
         max-width: 100%;
         vertical-align: top;
-        opacity: 0.7;
+        opacity: 0.77;
     }
 
     .snip1574 figcaption {
@@ -164,4 +164,75 @@ page-popupfabmodal {
         color: #bbb;
         letter-spacing: 1px;
     }
+
+        //styling test body for back page
+        .text-body{
+            padding: 0.25rem;
+            min-width: 100%;
+            margin: 0 auto;
+            text-align: justify;
+            height:100%;
+        }
+    
+        .text-body h3{
+            display: block;
+            -webkit-margin-before: 0.67em;
+            -webkit-margin-after: 0.67em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            font-weight: bold;
+        }
+
+        .text-body h5{
+            margin-top: 0px;
+        }
+
+    
+        .text-body p{
+            display: block;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+        }
+    
+        .stylehr{
+            padding: 0;
+            margin: 0 0 -1.5em 0;
+            border: none;
+            border-top: 1px solid #999;
+            color: #666;
+            text-align: center;
+            display: block;
+            unicode-bidi: isolate;
+            -webkit-margin-before: 0.5em;
+            -webkit-margin-after: 0.5em;
+            -webkit-margin-start: auto;
+            -webkit-margin-end: auto;
+            overflow: hidden;
+        }
+    
+        stylehr:after {
+            display: inline-block;
+            position: relative;
+            top: -0.58em;
+            font-size: 1.5em;
+            padding: 0 0.25em;
+            background: white;
+          }
+          
+        //stylehr:nth-of-type(1):after { content: "\263c"; }
+        .styleScrollArea{
+            height: 100%;
+        }
+
+        .scroll-zoom-wrapper{
+            margin-right: 5%;
+            margin-left: 5%;
+            font-size: medium;
+        }
+
+        .slide-zoom{
+            margin-top: 18%;
+        }
 }

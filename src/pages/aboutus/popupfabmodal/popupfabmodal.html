@@ -15,7 +15,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content fullscreen parallax-header no-bounce padding class="container" *ngIf="churchInfo && churchInfo.length">
+<ion-content fullscreen parallax-header no-bounce class="container" *ngIf="churchInfo && churchInfo.length">
   <ion-slides pager>
     <ion-slide>
       <flash-card *ngFor="let card of churchInfo[0].churchSessionAndStaff" >
@@ -28,12 +28,18 @@
                 </figcaption>
               </figure>
         </div>
-        <div class="flash-card-back">
-            <img *ngIf="card.back.image"  [src]="card.back.image" />
-            <h2 text-center>{{card.back.title}}</h2>
-            <h3 text-center>{{card.back.subtitle}}</h3>
-            <hr />
-            <p *ngIf="card.back.title" >{{card.back.content}}</p>
+        <div class="flash-card-back text-body">
+          <ion-scroll scrollY="true" class="styleScrollArea">
+              <h3>
+                {{card.back.title}} <span><h5>{{card.back.subtitle}}</h5></span>
+              </h3>
+    
+              <hr class="stylehr">
+    
+              <p>
+                {{card.back.content}}
+              </p>
+          </ion-scroll>
         </div>
       </flash-card>
     </ion-slide>

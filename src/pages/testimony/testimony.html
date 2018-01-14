@@ -14,22 +14,30 @@
 </ion-header>
 
 <ion-content padding *ngIf="testimonies && testimonies.length">
-    <flash-card *ngFor="let testimony of testimonies">
-      <div class="fc-front"> 
-        <figure class="snip1574">
-          <img [src]="assets/img/misc/testimonial1.jpg" alt="profile-sample2" />
+  <flash-card *ngFor="let testimony of testimonies">
+    <div class="flash-card-front" >
+        <figure class="snip1574" >
+          <img [src]="testimony.front.imageUrl" alt="sample" />
           <figcaption>
-            <blockquote>
-              <p>{{testimony.quote}}</p>
-            </blockquote>
-            <h3>{{testimony.name}}</h3>
-            <h5>{{testimony.position}}</h5>
+            <h3 *ngIf="testimony.front.quote">{{testimony.front.quote}}</h3>
+            <p>{{testimony.front.name}} - {{testimony.front.identity}}</p>
           </figcaption>
         </figure>
-      </div>
-      <div class="fc-back">
-          {{testimony.content}}
-      </div>
-    </flash-card>
+    </div>
 
+    <div class="flash-card-back text-body">
+      <ion-scroll scrollY="true" class="styleScrollArea">
+          <h3>
+            {{testimony.back.title}} - <span><h5>{{testimony.back.subtitle}}</h5></span>
+          </h3>
+
+          <hr class="stylehr">
+
+          <p>
+            {{testimony.back.content}}
+          </p>
+      </ion-scroll>
+    </div>
+
+  </flash-card>
 </ion-content>

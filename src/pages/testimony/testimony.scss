@@ -82,18 +82,71 @@ page-testimony {
         text-align: center;
     }
 
+    /* Header */
     .bar-button,
     .toolbar-title {
-      color: #fff;
+      color: white;
     }
 
-    /* Header */
     .toolbar-background {
         border-color: transparent;
         background: rgba(0, 0, 0, 0.14) !important;
     }
 
-    .scroll-content {
-        padding-top: 45px !important;
+    //styling test body for back page
+    .text-body{
+        padding: 0.25rem;
+        min-width: 100%;
+        margin: 0 auto;
+        text-align: justify;
+        height:100%;
+    }
+
+    .text-body h3{
+        display: block;
+        font-size: 2em;
+        -webkit-margin-before: 0.67em;
+        -webkit-margin-after: 0.67em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        font-weight: bold;
+    }
+
+    .text-body p{
+        display: block;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+
+    .stylehr{
+        padding: 0;
+        margin: 0 0 -1.5em 0;
+        border: none;
+        border-top: 1px solid #999;
+        color: #666;
+        text-align: center;
+        display: block;
+        unicode-bidi: isolate;
+        -webkit-margin-before: 0.5em;
+        -webkit-margin-after: 0.5em;
+        -webkit-margin-start: auto;
+        -webkit-margin-end: auto;
+        overflow: hidden;
+    }
+
+    stylehr:after {
+        display: inline-block;
+        position: relative;
+        top: -0.58em;
+        font-size: 1.5em;
+        padding: 0 0.25em;
+        background: white;
+      }
+      
+    //stylehr:nth-of-type(1):after { content: "\263c"; }
+    .styleScrollArea{
+        height: 100%;
     }
 }
