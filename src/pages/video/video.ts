@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest';
 
 /**
  * Generated class for the VideoPage page.
@@ -15,11 +16,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class VideoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+//grab list of videos from gbpc vimeo english sermon channel
+
+  videos: Object = {};
+  videoData: String[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+    this.getVideos();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VideoPage');
+    this.getVideos();
+  }
+
+  getVideos(){
+    this.restProvider.getVideos()
+      .subscribe(
+        videos => this.videos = videos);
+        this.videoData = this.videos.data;
+        //error => this.errorMessage = <any>error);
   }
 
 }
