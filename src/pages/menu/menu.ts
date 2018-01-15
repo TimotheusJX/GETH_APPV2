@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DevotionsPage } from '../devotions/devotions';
@@ -24,6 +24,7 @@ export class MenuPage {
   homePage: Component;
   menuavatar: Menuavatar[];
   errMess: string;
+  @ViewChild('content') childNavCtrl: NavController;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private restangular: Restangular) {
     this.homePage = HomePage;
@@ -40,23 +41,25 @@ export class MenuPage {
 
   openPage(pageName: String){
     if(pageName === "devotions"){
-      this.navCtrl.push(DevotionsPage);
+      this.childNavCtrl.setRoot(DevotionsPage);
     }else if(pageName === "exhortations"){
-      this.navCtrl.push(ExhortationsPage);
+      this.childNavCtrl.setRoot(ExhortationsPage);
     }else if(pageName === "radio"){
-      this.navCtrl.push(RadioPage);
+      this.childNavCtrl.setRoot(RadioPage);
     }else if(pageName === "ondemand"){
-      this.navCtrl.push(OndemandPage);
+      this.childNavCtrl.setRoot(OndemandPage);
     }else if(pageName === "magazines"){
-      this.navCtrl.push(MagazinesPage);
+      this.childNavCtrl.setRoot(MagazinesPage);
     }else if(pageName === "video"){
-      this.navCtrl.push(VideoPage);
+      this.childNavCtrl.setRoot(VideoPage);
     }else if(pageName === "prayerlist"){
-      this.navCtrl.push(PrayerlistPage);
+      this.childNavCtrl.setRoot(PrayerlistPage);
     }else if(pageName === "aboutus"){
-      this.navCtrl.push(AboutusPage);
+      this.childNavCtrl.setRoot(AboutusPage);
     }else if(pageName === "testimonies"){
-      this.navCtrl.push(TestimonyPage);
+      this.childNavCtrl.setRoot(TestimonyPage);
+    }else if(pageName === "home"){
+      this.childNavCtrl.setRoot(HomePage);
     }
   }
 
