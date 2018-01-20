@@ -25,7 +25,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HTTP } from '@ionic-native/http';
 
 import { RestangularModule, Restangular } from 'ngx-restangular';
+//import { RestangularConfigFactory, RestangularVideoFactory, RESTANGULAR_VIDEO } from '../pages/shared/restConfig';
 import { RestangularConfigFactory } from '../pages/shared/restConfig';
+import {  } from '../pages/shared/restConfig';
 
 import { SharedModule } from './shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -35,6 +37,9 @@ import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 
 import { Media, MediaObject } from '@ionic-native/media';
+import { HttpModule } from '@angular/http';
+import { YtProvider } from '../providers/yt/yt';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 //import { FlashCardComponent } from '../components/flash-card/flash-card';
 
 @NgModule({
@@ -63,6 +68,7 @@ import { Media, MediaObject } from '@ionic-native/media';
     SharedModule,
     PdfViewerModule,
     IonicStorageModule.forRoot(),
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,6 +98,9 @@ import { Media, MediaObject } from '@ionic-native/media';
     FileOpener,
     FavoriteProvider,
     HTTP,
+    YtProvider,
+    YoutubeVideoPlayer
+    //{provide: RESTANGULAR_VIDEO, useFactory:  RestangularVideoFactory, deps: [Restangular]},
   ]
 })
 export class AppModule {}

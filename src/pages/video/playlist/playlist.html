@@ -1,0 +1,24 @@
+<!--
+  Generated template for the PlaylistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar transparent>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content *ngIf="videos" fullscreen>
+  <ion-list>
+    <button ion-item *ngFor="let video of videos | async" (click)="openVideo(video)" detail-none>
+    <ion-thumbnail item-start *ngIf="video.snippet.thumbnails">
+      <img [src]="video.snippet.thumbnails.default.url" onError="this.src='../../assets/img/avatar/gbpc2.jpeg';" alt="..." />
+    </ion-thumbnail>
+    <h2 *ngIf="video.snippet.title">{{ video.snippet.title }}</h2>
+    <p *ngIf="video.snippet.description">{{ video.snippet.description }}</p>
+    </button>
+  </ion-list>
+</ion-content>

@@ -1,12 +1,12 @@
-page-video {
-    .bar-button,
-    .toolbar-title {
-      color: #fff;
-    }
-
+page-playlist {
     /* Header */
     .toolbar-background {
         border-color: transparent;
         background: rgba(0, 0, 0, 0.14) !important;
+    }
+
+    .bar-button,
+    .toolbar-title {
+      color: #fff;
     }
 }

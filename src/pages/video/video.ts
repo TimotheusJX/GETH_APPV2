@@ -1,76 +1,35 @@
+import { YtProvider } from './../../providers/yt/yt';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the VideoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
+import { NavController, AlertController} from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+ 
 @Component({
   selector: 'page-video',
   templateUrl: 'video.html',
 })
 export class VideoPage {
-
-//grab list of videos from gbpc vimeo english sermon channel
-
-  videos: Object = {};
-  videoData: String[];
-/*
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.getVideos();
+  channelId = 'UClVkY596eV54qWAv3VCiMrQ'; // Gethsemane Channel ID
+  playlists: Observable<any[]>;
+ 
+  constructor(public navCtrl: NavController, private ytProvider: YtProvider, private alertCtrl: AlertController) { 
+    this.searchPlaylists();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad VideoPage');
-    this.getVideos();
+ 
+  searchPlaylists() {
+    this.playlists = this.ytProvider.getPlaylistsForChannel(this.channelId);
+    this.playlists.subscribe(data => {
+      console.log('playlists: ', data);
+    }, err => {
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        message: 'No Playlists found for that Channel ID',
+        buttons: ['OK']
+      });
+      alert.present();
+    })
   }
-
-  getVideos(){
-    this.restProvider.getVideos()
-      .subscribe(
-        videos => this.videos = videos);
-        // sthis.videoData = this.videos.data;
-        //error => this.errorMessage = <any>error);
+ 
+  openPlaylist(id) {
+    this.navCtrl.push('PlaylistPage', {id: id});
   }
-
-   // private apiUrl = 'https://restcountries.eu/rest/v2/all';
-  private apiUrl = 'https://api.vimeo.com/channels/gethsemanebpc/videos';
-  private auth = 'Bearer b639f9e8945bde4ca962fec9c4bc7e9b';
-
-  constructor(public http: HttpClient) {
-    console.log('Hello RestProvider Provider');
-  }
-
-  getVideos(): Observable<string[]> {
-    let httpHeaders = new HttpHeaders();
-    httpHeaders.set('Authorization', this.auth);
-    return this.http.get(this.apiUrl, {
-                      headers: httpHeaders,
-                      responseType: 'json'
-                    })
-                   // .do((this.extractData) => console.log(this.extractData)
-                    .map(this.extractData)
-                    .catch(this.handleError)
-  }
-
-  private extractData(res: Response) {
-    let body = res;
-    return body || { };
-  }
-
-  private handleError (error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const err = error || '';
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
-  }*/
 }

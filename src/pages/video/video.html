@@ -1,26 +1,19 @@
-<!--
-  Generated template for the VideoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header no-border>
-
   <ion-navbar transparent>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title></ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content fullscreen padding>
-  <ion-list inset>
-    <ion-item *ngFor="let video of videoData">
-      <h2>{{video.name}}</h2>
-      <p>{{video.description}}</p>
-    </ion-item>
+<ion-content *ngIf="playlists" fullscreen>
+  <ion-list no-padding>
+    <button ion-item *ngFor="let list of playlists | async" (click)="openPlaylist(list.id)">
+      <ion-thumbnail item-start>
+        <img [src]="list.snippet.thumbnails.default.url" onError="this.src='../assets/img/avatar/gbpc2.jpeg';"  alt="...">
+      </ion-thumbnail>
+      <h2>{{ list.snippet.title }}</h2>
+      <p>{{ list.snippet.publishedAt | date:'short' }}</p>
+    </button>
   </ion-list>
 </ion-content>
