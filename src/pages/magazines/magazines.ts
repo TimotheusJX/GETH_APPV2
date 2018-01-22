@@ -114,15 +114,11 @@ export class MagazinesPage {
   }
 
   ionViewWillEnter(){
-    this.prepareData();
+  //  this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
-//      this.getMagazines().subscribe((data) => {
-//        console.log("magazines: " + data);
-        //set isFavorite to true if item already downloaded, else set false
       this.magazines = this.currentMag;
       this.searchItems();
-//      }, errmess => {this.magazines = null; this.errMess = <any>errmess});
     });
   }
 

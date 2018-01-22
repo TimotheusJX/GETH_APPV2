@@ -20,7 +20,7 @@
   </div>
   <ion-list *ngIf="magazines && magazines.length">
     <ion-item-sliding *ngFor="let item of magazines" #slidingItem>
-      <button ion-item detail-none (click)="itemTapped($event, item)">
+      <ion-item detail-none (click)="itemTapped($event, item)">
         <ion-thumbnail item-start class="item-ribbon">
           <span class="ribbon {{ item.class }}" *ngIf="item.ribbontext != 'no'">
             <span>{{ item.ribbontext }}</span>
@@ -30,7 +30,7 @@
         <h2>{{item.title}}</h2>
         <p>{{item.date}} {{item.description}}</p>
         <button ion-button color="secondary" clear item-end *ngIf="item.isFavorite == true"><ion-icon name='star' is-active="false"></ion-icon></button>
-      </button>
+      </ion-item>
 
       <ion-item-options icon-start (ionSwipe)="removeDownloadedItem($event, item, slidingItem)" *ngIf="item.isFavorite == true">
           <button color="danger" ion-button expandable (click)="removeDownloadedItem($event, item, slidingItem)">

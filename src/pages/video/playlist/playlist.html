@@ -5,20 +5,23 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-
   <ion-navbar transparent>
     <ion-title></ion-title>
+    <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
   </ion-navbar>
-
 </ion-header>
-<ion-content *ngIf="videos" fullscreen>
-  <ion-list>
-    <button ion-item *ngFor="let video of videos | async" (click)="openVideo(video)" detail-none>
-    <ion-thumbnail item-start *ngIf="video.snippet.thumbnails">
-      <img [src]="video.snippet.thumbnails.default.url" onError="this.src='../../assets/img/avatar/gbpc2.jpeg';" alt="..." />
-    </ion-thumbnail>
-    <h2 *ngIf="video.snippet.title">{{ video.snippet.title }}</h2>
-    <p *ngIf="video.snippet.description">{{ video.snippet.description }}</p>
-    </button>
+<ion-content *ngIf="videosInPlaylist" fullscreen>
+  <div *ngIf="searching" class="spinner-container">
+      <ion-spinner></ion-spinner>
+  </div>
+  <ion-list [virtualScroll]="videosInPlaylist" approxItemHeight="40px" approxHeaderHeight="0px" approxFooterHeight="0px">
+    <ion-item *virtualItem="let video" (click)="openVideo(video)">
+      <ion-thumbnail item-start *ngIf="video.snippet.thumbnails">
+        <img [src]="video.snippet.thumbnails.default.url" onError="this.src='../../assets/img/avatar/gbpc2.jpeg';" alt="..." />
+      </ion-thumbnail>
+      <h2 *ngIf="video.snippet.title">{{ video.snippet.title }}</h2>
+      <p *ngIf="video.snippet.description">{{ video.snippet.description }}</p>
+      <p *ngIf="video.snippet.publishedAt">{{ video.snippet.publishedAt | date:'short' }}</p>
+    </ion-item>
   </ion-list>
 </ion-content>

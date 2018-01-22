@@ -9,4 +9,18 @@ page-playlist {
     .toolbar-title {
       color: #fff;
     }
+
+    .toolbar .searchbar-ios .searchbar-input {
+        background: white;
+    } 
+
+    .scroll-content {
+        padding-top: 45px !important;
+    }
+
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
 }

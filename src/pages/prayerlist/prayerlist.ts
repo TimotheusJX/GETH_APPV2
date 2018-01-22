@@ -120,7 +120,7 @@ export class PrayerlistPage {
   }
 
   ionViewWillEnter(){
-    this.prepareData();
+    //this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
 //      this.getPrayerLists().subscribe((data) => {

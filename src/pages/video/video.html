@@ -3,17 +3,17 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title></ion-title>
+    <ion-title>Playlists</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content *ngIf="playlists" fullscreen>
-  <ion-list no-padding>
-    <button ion-item *ngFor="let list of playlists | async" (click)="openPlaylist(list.id)">
+  <ion-list [virtualScroll]="playlists" approxItemHeight="40px" approxHeaderHeight="0px" approxFooterHeight="0px">
+    <ion-item *virtualItem="let list" (click)="openPlaylist(list.id)">
       <ion-thumbnail item-start>
-        <img [src]="list.snippet.thumbnails.default.url" onError="this.src='../assets/img/avatar/gbpc2.jpeg';"  alt="...">
+        <ion-img [src]="list.snippet.thumbnails.default.url" onError="this.src='../assets/img/avatar/gbpc2.jpeg';"  alt="..."></ion-img>
       </ion-thumbnail>
       <h2>{{ list.snippet.title }}</h2>
       <p>{{ list.snippet.publishedAt | date:'short' }}</p>
-    </button>
+    </ion-item>
   </ion-list>
 </ion-content>
