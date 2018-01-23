@@ -19,6 +19,7 @@ import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
 import { PopupfabmodalPage } from '../pages/aboutus/popupfabmodal/popupfabmodal';
 import { TestimonyPage } from '../pages/testimony/testimony';
+import { PlaylistPage } from '../pages/video/playlist/playlist';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -60,6 +61,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     ViewmagazinePage,
     PopupfabmodalPage,
     TestimonyPage,
+    PlaylistPage,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     ViewmagazinePage,
     PopupfabmodalPage,
     TestimonyPage,
+    PlaylistPage,
   ],
   providers: [
     StatusBar,

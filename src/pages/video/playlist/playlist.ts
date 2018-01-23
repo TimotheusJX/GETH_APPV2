@@ -17,11 +17,12 @@ export class PlaylistPage {
   listId: any;
   videoListSize: number;
   nextPageTokenString: string;
-  hasNextPageTokenString: boolean = false;
   errorMessage: string;
   searchControl: FormControl;
   searchTerm: string = '';
   searching: any = false;
+  errMess: string;
+  apiKey:string;
  
   constructor(private navParams: NavParams, 
     private ytProvider: YtProvider, 
@@ -31,14 +32,18 @@ export class PlaylistPage {
   ){
     this.searchControl = new FormControl();
     this.listId = this.navParams.get('id');
-    this.ytProvider.getListVideos(this.listId).subscribe(data => {
+    this.ytProvider.getCredentials().subscribe((data) => {
+      this.apiKey = data.apiKey;
+      this.searchPlaylistVideos();
+    }, errmess => {this.errMess = <any>errmess});
+  }
+
+  searchPlaylistVideos(){
+    this.ytProvider.getListVideos(this.listId, this.apiKey).subscribe(data => {
       this.tempVideosInPlaylist = data.items;
       this.videoListSize = data.pageInfo.totalResults;
       if(data.hasOwnProperty('nextPageToken')){
         this.nextPageTokenString = data.nextPageToken;
-        this.hasNextPageTokenString = true;
-      }
-      if(this.hasNextPageTokenString){
         this.getNextPageVideos();
       }else{
         this.videosInPlaylist = this.tempVideosInPlaylist;
@@ -57,14 +62,12 @@ export class PlaylistPage {
   //retrieve second page of videos
   getNextPageVideos(){
     console.log("here 111 ");
-    this.ytProvider.getNextListVideos(this.listId, this.nextPageTokenString).subscribe((data) => {
+    this.ytProvider.getNextListVideos(this.listId, this.nextPageTokenString, this.apiKey).subscribe((data) => {
       console.log('videos2222: ', data);
       if(data.hasOwnProperty('nextPageToken')){
         this.nextPageTokenString = data.nextPageToken;
         this.getNextPageVideos();
         console.log("here 222");
-      }else{
-        this.hasNextPageTokenString = false;
       }
       for(let i=0; i<data.items.length; i++) {
         this.tempVideosInPlaylist.push(data.items[i]);
