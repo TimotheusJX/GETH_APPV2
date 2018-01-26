@@ -10,7 +10,7 @@
   <ion-list [virtualScroll]="playlists" approxItemHeight="40px" approxHeaderHeight="0px" approxFooterHeight="0px">
     <ion-item *virtualItem="let list" (click)="openPlaylist(list.id)">
       <ion-thumbnail item-start>
-        <ion-img [src]="list.snippet.thumbnails.default.url" onError="this.src='../assets/img/avatar/gbpc2.jpeg';"  alt="..."></ion-img>
+        <ion-img [src]="list.snippet.thumbnails.default.url"  alt="..."></ion-img>
       </ion-thumbnail>
       <h2>{{ list.snippet.title }}</h2>
       <p>{{ list.snippet.publishedAt | date:'short' }}</p>

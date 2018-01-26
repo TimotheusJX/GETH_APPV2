@@ -17,7 +17,7 @@ import { FlashCardComponent } from '../../../components/flash-card/flash-card';
   templateUrl: 'popupfabmodal.html',
 })
 export class PopupfabmodalPage {
-  churchInfo: ChurchInfoDesc[];
+  churchInfo: ChurchInfoDesc;
   errMess: string;
 
   constructor(
@@ -41,8 +41,8 @@ export class PopupfabmodalPage {
     this.viewCtrl.dismiss();
   }
 
-  getChurchInfo(): Observable<ChurchInfoDesc[]> {
-    return this.restangular.all('churchInfo').getList();
+  getChurchInfo(): Observable<ChurchInfoDesc> {
+    return this.restangular.one('churchInfo').get();
   }
 
 }

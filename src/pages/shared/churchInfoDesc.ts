@@ -7,7 +7,6 @@ export class ChurchInfoDesc {
     worshipTiming: string;
     email: string;
     phoneChurchOffice: string;
-    whatsapp: string;
     churchOfficeAddress: string;
     worshipPlaceAddress: string;
     churchSessionAndStaff: [{

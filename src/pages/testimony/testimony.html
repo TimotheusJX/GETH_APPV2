@@ -16,8 +16,8 @@
 
 </ion-header>
 
-<ion-content padding *ngIf="testimonies && testimonies.length">
-  <flash-card *ngFor="let testimony of testimonies">
+<ion-content fullscreen padding *ngIf="testimonies && testimonies.length">
+  <flash-card class="styleCardSide" *ngFor="let testimony of testimonies">
     <div class="flash-card-front" >
         <figure class="snip1574" >
           <img [src]="testimony.front.imageUrl" alt="sample" />
@@ -27,20 +27,17 @@
           </figcaption>
         </figure>
     </div>
-
     <div class="flash-card-back text-body">
       <ion-scroll scrollY="true" class="styleScrollArea">
+        <div class="stylebackcard">
           <h3>
             {{testimony.back.title}} - <span><h5>{{testimony.back.subtitle}}</h5></span>
           </h3>
-
-          <hr class="stylehr">
-
-          <p>
+          <p class="main-content">
             {{testimony.back.content}}
           </p>
+        </div>
       </ion-scroll>
     </div>
-
   </flash-card>
 </ion-content>

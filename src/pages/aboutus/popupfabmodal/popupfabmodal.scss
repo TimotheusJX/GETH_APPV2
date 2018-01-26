@@ -28,7 +28,6 @@ page-popupfabmodal {
     }
 
     .scroll-content {
-        background: #ffffff;
         padding-top: 0px !important;
     }
 
@@ -45,7 +44,7 @@ page-popupfabmodal {
     //slide 2
     .header-image {
         //background-image: url(../../../assets/img/background/background-2.jpg);
-        height: 30vh;
+        height: 37vh;
         background-size: cover;
         background-position: center center;
         position: relative;
@@ -57,9 +56,9 @@ page-popupfabmodal {
         margin-right: 10px;
         padding: 20px;
         background-color: white;
-        -webkit-box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
-        box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0px 0px 55px -17px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 55px -17px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 55px -17px rgba(0, 0, 0, 0.75);
         // background: #F5F5F5;
         position: relative !important;
         z-index: 0;
@@ -165,74 +164,55 @@ page-popupfabmodal {
         letter-spacing: 1px;
     }
 
-        //styling test body for back page
-        .text-body{
-            padding: 0.25rem;
-            min-width: 100%;
-            margin: 0 auto;
-            text-align: justify;
-            height:100%;
-        }
-    
-        .text-body h3{
-            display: block;
-            -webkit-margin-before: 0.67em;
-            -webkit-margin-after: 0.67em;
-            -webkit-margin-start: 0px;
-            -webkit-margin-end: 0px;
-            font-weight: bold;
-        }
+    //styling text body for back page
+    .main-content{
+        color: #666;
+    }
 
-        .text-body h5{
-            margin-top: 0px;
-        }
+    .text-body{
+        padding: 0;
+        min-width: 100%;
+        margin: 0 auto;
+        text-align: justify;
+        height:100%;
+        background: whitesmoke;
+    }
 
-    
-        .text-body p{
-            display: block;
-            -webkit-margin-before: 1em;
-            -webkit-margin-after: 1em;
-            -webkit-margin-start: 0px;
-            -webkit-margin-end: 0px;
-        }
-    
-        .stylehr{
-            padding: 0;
-            margin: 0 0 -1.5em 0;
-            border: none;
-            border-top: 1px solid #999;
-            color: #666;
-            text-align: center;
-            display: block;
-            unicode-bidi: isolate;
-            -webkit-margin-before: 0.5em;
-            -webkit-margin-after: 0.5em;
-            -webkit-margin-start: auto;
-            -webkit-margin-end: auto;
-            overflow: hidden;
-        }
-    
-        stylehr:after {
-            display: inline-block;
-            position: relative;
-            top: -0.58em;
-            font-size: 1.5em;
-            padding: 0 0.25em;
-            background: white;
-          }
-          
-        //stylehr:nth-of-type(1):after { content: "\263c"; }
-        .styleScrollArea{
-            height: 100%;
-        }
+    .text-body h3{
+        display: block;
+        -webkit-margin-before: 0.67em;
+        -webkit-margin-after: 0.67em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        font-weight: bold;
+        margin-left: 2% !important;
+    }
 
-        .scroll-zoom-wrapper{
-            margin-right: 5%;
-            margin-left: 5%;
-            font-size: medium;
-        }
+    .text-body h5{
+        margin-top: 0px;
+    }
 
-        .slide-zoom{
-            margin-top: 18%;
-        }
+
+    .text-body p{
+        display: block;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+        
+    //stylehr:nth-of-type(1):after { content: "\263c"; }
+    .styleScrollArea{
+        height: 100%;
+    }
+
+    .scroll-zoom-wrapper{
+        margin-right: 3%;
+        margin-left: 3%;
+        font-size: medium;
+    }
+
+    .adjustTop{
+        margin-top: 18%;
+    }
 }

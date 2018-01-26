@@ -16,7 +16,7 @@ import { PopupfabmodalPage } from './popupfabmodal/popupfabmodal';
   templateUrl: 'aboutus.html',
 })
 export class AboutusPage {
-  aboutUs: AboutUsDesc[];
+  aboutUs: AboutUsDesc;
   errMess: string;
   expanded: any;
   contracted: any;
@@ -39,8 +39,8 @@ export class AboutusPage {
     console.log('ionViewDidLoad AboutusPage');
   }
 
-  getAboutUs(): Observable<AboutUsDesc[]> {
-    return this.restangular.all('aboutus').getList();
+  getAboutUs(): Observable<AboutUsDesc> {
+    return this.restangular.one('aboutus').get();
   }
 
   expand() {

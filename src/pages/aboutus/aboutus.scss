@@ -1,132 +1,109 @@
 page-aboutus {
-    @font-face {
-        font-family: 'Sucrose Bold Two';
-        src: url('assets/fonts/sucrose.woff2') format('woff2');
-    }
-    @font-face {
-        font-family: 'IM Fell French Canon Pro';
-        src: url('assets/fonts/im-fell-french-canon-pro.woff2') format('woff2');
-    }
-    * {
-        box-sizing: border-box;
-    }
-    body {
-        margin: 0;
-    }
-    header {
-    //    background-image: url('../assets/img/blog/mountain-range.jpg');
-        padding-top: 61.73333333%;
-        background-repeat: no-repeat;
+/* Image */
+    .pic-image{
         background-size: cover;
-        font-family: 'Sucrose Bold Two';
-        overflow: hidden;
-    }
-    header img {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 45.8%;
-    }
-    header h1 {
-        position: fixed;
-        top: 2rem;
-        right: 2rem;
-        font-size: 12vw;
-        line-height: .8;
-        margin-top: 15%;
-        text-align: center;
-    }
-    header h1 span {
-        display: block;
-        font-size: 8.75vw;
-    }
-    main {
-        background: #fff;
+        height: 50vh;
         position: relative;
-        border: 1px solid #fff;
-        font-family: 'IM Fell French Canon Pro';
-        font-size: 1.4rem;
-        padding: 2rem 25%;
-        line-height: 1.6;
     }
-    main p {
-        -webkit-margin-after: 14px;
-        -webkit-margin-before: 14px;
+
+    .pic-banner {
+        color: white;
+        background: rgba(0,0,0,.3);
+        height: 10vh;
+        width: 100vw;
+        position: absolute;
+        bottom: -1px;
+
+        .header-subtitle {
+            display: block;
+            font-size: 1.2rem;
+        }
+
+        .church-name {
+            font-size: 3rem;
+        }
     }
-    @media all and (max-width: 400px) {
-        main {
-            padding: 2rem;
+    /* Content */
+    .content {
+        background: whitesmoke;
+    }
+
+    .scroll-content {
+        padding-top: 0 !important;
+    }
+    
+    .main-content {
+        color: #666;
+    }
+//fab
+    .preload {
+        animation: none !important;
+    }
+
+    .fab {
+        transition: 1s all ease;
+        margin-top: 20rem !important;
+        margin-right: 3rem !important;
+        background: #00ccb2;
+    }
+
+    .expand {
+        animation: expand 0.5s cubic-bezier(.66, .35,.96,.38) forwards;
+    }
+
+    .contract {
+        animation: contract 0.4s cubic-bezier(0.75, .80, 0.25, 0) forwards;
+    }
+
+    .scroll-content {
+        background: #fff;
+    }
+
+    @keyframes contract {
+        0%   {
+        transform: scale(100);
+        border-radius: 100%;
+        margin: 0;
+        }
+        100% {
+        transform: scale(1);
         }
     }
 
-  .preload {
-    animation: none !important;
-  }
-
-  .fab {
-    transition: 1s all ease;
-    margin-top: 20rem !important;
-    margin-right: 3rem !important;
-    background: #00ccb2;
-  }
-
-  .expand {
-      animation: expand 0.5s cubic-bezier(.66, .35,.96,.38) forwards;
-  }
-
-  .contract {
-    animation: contract 0.4s cubic-bezier(0.75, .80, 0.25, 0) forwards;
-  }
-
-  .scroll-content {
-    background: #fff;
-  }
-
-  @keyframes contract {
-    0%   {
-      transform: scale(100);
-      border-radius: 100%;
-      margin: 0;
+    @keyframes expand {
+        50%  {
+        transform: scale(100);
+        }
+        100% {
+        transform: scale(100);
+        border-radius: 100%;
+        margin: 0;
+        }
     }
-    100% {
-      transform: scale(1);
+
+    ion-card {
+        position: relative;
+        height: 80vh;
+
+        h4 {
+        left: 5%;
+        bottom: 3%;
+        position: absolute;
+        }
     }
-  }
 
-  @keyframes expand {
-    50%  {
-      transform: scale(100);
+    ion-icon {
+        transition: display 1s ease-in;
     }
-    100% {
-      transform: scale(100);
-      border-radius: 100%;
-      margin: 0;
+
+    .bar-button,
+    .toolbar-title {
+        color: #fff;
     }
-  }
 
-  ion-card {
-    position: relative;
-    height: 80vh;
-
-    h4 {
-       left: 5%;
-       bottom: 3%;
-       position: absolute;
+    /* Header */
+    .toolbar-background {
+        border-color: transparent;
+        background: rgba(0, 0, 0, 0.14) !important;
     }
-  }
-
-  ion-icon {
-    transition: display 1s ease-in;
-  }
-
-  .bar-button,
-  .toolbar-title {
-    color: #fff;
-  }
-
-  /* Header */
-  .toolbar-background {
-      border-color: transparent;
-      background: rgba(0, 0, 0, 0.14) !important;
-  }
 }
