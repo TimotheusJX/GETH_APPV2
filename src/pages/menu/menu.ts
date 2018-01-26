@@ -22,7 +22,7 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
 export class MenuPage {
 
   homePage: Component;
-  menuavatar: Menuavatar[];
+  menuavatar: Menuavatar;
   errMess: string;
   @ViewChild('content') childNavCtrl: NavController;
 
@@ -63,8 +63,8 @@ export class MenuPage {
     }
   }
 
-  getMenuAvatar(): Observable<Menuavatar[]> {
-    return this.restangular.all('menuavatar').getList();
+  getMenuAvatar(): Observable<Menuavatar> {
+    return this.restangular.one('menuavatar').get();
   }
 
 }
