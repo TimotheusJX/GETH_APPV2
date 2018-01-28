@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { AboutUsDesc } from '../shared/aboutusDesc';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Observable } from 'rxjs/Observable';
@@ -11,6 +11,7 @@ import { PopupfabmodalPage } from './popupfabmodal/popupfabmodal';
  * Ionic pages and navigation.
  */
 
+@IonicPage({})
 @Component({
   selector: 'page-aboutus',
   templateUrl: 'aboutus.html',

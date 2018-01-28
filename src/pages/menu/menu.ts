@@ -8,13 +8,13 @@ import { RadioPage } from '../radio/radio';
 import { OndemandPage } from '../ondemand/ondemand';
 import { VideoPage } from '../video/video';
 import { PrayerlistPage } from '../prayerlist/prayerlist';
-import { AboutusPage } from '../aboutus/aboutus'; 
 import { TestimonyPage } from '../testimony/testimony'; 
 
 import { Menuavatar } from '../shared/menuavatar';
 import { Observable } from 'rxjs/Observable';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 
+@IonicPage({})
 @Component({
   selector: 'page-menu',
   templateUrl: 'menu.html',
@@ -41,7 +41,7 @@ export class MenuPage {
 
   openPage(pageName: String){
     if(pageName === "devotions"){
-      this.childNavCtrl.setRoot(DevotionsPage);
+      this.childNavCtrl.setRoot('DevotionsPage');
     }else if(pageName === "exhortations"){
       this.childNavCtrl.setRoot(ExhortationsPage);
     }else if(pageName === "radio"){
@@ -55,7 +55,7 @@ export class MenuPage {
     }else if(pageName === "prayerlist"){
       this.childNavCtrl.setRoot(PrayerlistPage);
     }else if(pageName === "aboutus"){
-      this.childNavCtrl.setRoot(AboutusPage);
+      this.childNavCtrl.setRoot('AboutusPage');
     }else if(pageName === "testimonies"){
       this.childNavCtrl.setRoot(TestimonyPage);
     }else if(pageName === "home"){

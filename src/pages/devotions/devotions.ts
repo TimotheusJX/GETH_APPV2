@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { Devotions } from '../shared/devotionsDesc';
 
 import { Observable } from 'rxjs/Observable';
 
+@IonicPage({})
 @Component({
   selector: 'page-devotions',
   templateUrl: 'devotions.html',

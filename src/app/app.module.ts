@@ -4,8 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { MenuPage } from '../pages/menu/menu';
-import { DevotionsPage } from '../pages/devotions/devotions';
 import { ExhortationsPage } from '../pages/exhortations/exhortations';
 import { MagazinesPage } from '../pages/magazines/magazines';
 import { RadioPage } from '../pages/radio/radio';
@@ -13,7 +11,6 @@ import { AudioPage } from '../pages/ondemand/audio/audio';
 import { OndemandPage } from '../pages/ondemand/ondemand';
 import { VideoPage } from '../pages/video/video';
 import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
-import { AboutusPage } from '../pages/aboutus/aboutus';
 import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
 import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
@@ -28,7 +25,6 @@ import { HTTP } from '@ionic-native/http';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 //import { RestangularConfigFactory, RestangularVideoFactory, RESTANGULAR_VIDEO } from '../pages/shared/restConfig';
 import { RestangularConfigFactory } from '../pages/shared/restConfig';
-import {  } from '../pages/shared/restConfig';
 
 import { SharedModule } from './shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -47,8 +43,6 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
   declarations: [
     MyApp,
     HomePage,
-    MenuPage,
-    DevotionsPage,
     ExhortationsPage,
     MagazinesPage,
     RadioPage,
@@ -56,7 +50,6 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     OndemandPage,
     VideoPage,
     OndemandcategoriesPage,
-    AboutusPage,
     PrayerlistPage,
     ViewmagazinePage,
     PopupfabmodalPage,
@@ -76,8 +69,6 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
   entryComponents: [
     MyApp,
     HomePage,
-    MenuPage,
-    DevotionsPage,
     ExhortationsPage,
     MagazinesPage,
     RadioPage,
@@ -85,7 +76,6 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     OndemandPage,
     VideoPage,
     OndemandcategoriesPage,
-    AboutusPage,
     PrayerlistPage,
     ViewmagazinePage,
     PopupfabmodalPage,
