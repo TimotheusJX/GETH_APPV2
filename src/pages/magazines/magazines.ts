@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams, LoadingController, ItemSliding } from 'ionic-angular';
+import { IonicPage, Platform, NavController, NavParams, LoadingController, ItemSliding } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Magazines } from '../shared/magazines';
 import { Observable } from 'rxjs/Observable';
@@ -8,6 +8,7 @@ import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../shared/monitoringStorage';
 import { FormControl } from '@angular/forms';
 
+@IonicPage({})
 @Component({
   selector: 'page-magazines',
   templateUrl: 'magazines.html',

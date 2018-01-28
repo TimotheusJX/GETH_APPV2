@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import { OndemandcategoriesPage } from './ondemandcategories/ondemandcategories'
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+@IonicPage({})
 @Component({
   selector: 'page-ondemand',
   templateUrl: 'ondemand.html',

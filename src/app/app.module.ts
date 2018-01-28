@@ -4,10 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { MagazinesPage } from '../pages/magazines/magazines';
 import { RadioPage } from '../pages/radio/radio';
 import { AudioPage } from '../pages/ondemand/audio/audio';
-import { OndemandPage } from '../pages/ondemand/ondemand';
 import { VideoPage } from '../pages/video/video';
 import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
 import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
@@ -42,10 +40,8 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
   declarations: [
     MyApp,
     HomePage,
-    MagazinesPage,
     RadioPage,
     AudioPage,
-    OndemandPage,
     VideoPage,
     OndemandcategoriesPage,
     PrayerlistPage,
@@ -67,10 +63,8 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
   entryComponents: [
     MyApp,
     HomePage,
-    MagazinesPage,
     RadioPage,
     AudioPage,
-    OndemandPage,
     VideoPage,
     OndemandcategoriesPage,
     PrayerlistPage,
