@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { AudioPage } from '../pages/ondemand/audio/audio';
 import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
 import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
@@ -35,7 +34,6 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     AudioPage,
     OndemandcategoriesPage,
     ViewmagazinePage,
@@ -54,7 +52,6 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     AudioPage,
     OndemandcategoriesPage,
     ViewmagazinePage,

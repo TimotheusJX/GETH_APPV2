@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { AlertController, NavController, Slides } from 'ionic-angular';
+import { IonicPage, AlertController, NavController, Slides } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { FeaturedItems } from '../shared/featuredItems';
 
 import { Observable } from 'rxjs/Observable';
-
+@IonicPage({})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { Menuavatar } from '../shared/menuavatar';
 import { Observable } from 'rxjs/Observable';
 import { RestangularModule, Restangular } from 'ngx-restangular';
@@ -18,7 +17,7 @@ export class MenuPage {
   @ViewChild('content') childNavCtrl: NavController;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private restangular: Restangular) {
-    this.homePage = HomePage;
+    this.homePage = 'HomePage';
     this.getMenuAvatar().subscribe((data) => {
       console.log(data);
       //to replace url of image src assets/img/avatar/gbpc.png
@@ -50,7 +49,7 @@ export class MenuPage {
     }else if(pageName === "testimonies"){
       this.childNavCtrl.setRoot('TestimonyPage');
     }else if(pageName === "home"){
-      this.childNavCtrl.setRoot(HomePage);
+      this.childNavCtrl.setRoot('HomePage');
     }
   }
 
