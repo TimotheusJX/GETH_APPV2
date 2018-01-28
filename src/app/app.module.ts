@@ -5,12 +5,10 @@ import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AudioPage } from '../pages/ondemand/audio/audio';
-import { VideoPage } from '../pages/video/video';
 import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
 import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
 import { PopupfabmodalPage } from '../pages/aboutus/popupfabmodal/popupfabmodal';
-import { TestimonyPage } from '../pages/testimony/testimony';
 import { PlaylistPage } from '../pages/video/playlist/playlist';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -39,11 +37,9 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     MyApp,
     HomePage,
     AudioPage,
-    VideoPage,
     OndemandcategoriesPage,
     ViewmagazinePage,
     PopupfabmodalPage,
-    TestimonyPage,
     PlaylistPage,
   ],
   imports: [
@@ -60,11 +56,9 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     MyApp,
     HomePage,
     AudioPage,
-    VideoPage,
     OndemandcategoriesPage,
     ViewmagazinePage,
     PopupfabmodalPage,
-    TestimonyPage,
     PlaylistPage,
   ],
   providers: [

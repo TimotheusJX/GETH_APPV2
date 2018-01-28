@@ -1,9 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { VideoPage } from '../video/video';
-import { TestimonyPage } from '../testimony/testimony'; 
-
 import { Menuavatar } from '../shared/menuavatar';
 import { Observable } from 'rxjs/Observable';
 import { RestangularModule, Restangular } from 'ngx-restangular';
@@ -45,13 +42,13 @@ export class MenuPage {
     }else if(pageName === "magazines"){
       this.childNavCtrl.setRoot('MagazinesPage');
     }else if(pageName === "video"){
-      this.childNavCtrl.setRoot(VideoPage);
+      this.childNavCtrl.setRoot('VideoPage');
     }else if(pageName === "prayerlist"){
       this.childNavCtrl.setRoot('PrayerlistPage');
     }else if(pageName === "aboutus"){
       this.childNavCtrl.setRoot('AboutusPage');
     }else if(pageName === "testimonies"){
-      this.childNavCtrl.setRoot(TestimonyPage);
+      this.childNavCtrl.setRoot('TestimonyPage');
     }else if(pageName === "home"){
       this.childNavCtrl.setRoot(HomePage);
     }

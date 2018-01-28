@@ -1,9 +1,9 @@
 import { YtProvider } from './../../providers/yt/yt';
 import { Component } from '@angular/core';
-import { NavController, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, AlertController} from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { PlaylistPage } from './playlist/playlist';
- 
+@IonicPage({})
 @Component({
   selector: 'page-video',
   templateUrl: 'video.html',

@@ -9,5 +9,8 @@ import { VideoPage } from './video';
   imports: [
     IonicPageModule.forChild(VideoPage),
   ],
+  exports: [
+    VideoPage,   
+  ],
 })
 export class VideoPageModule {}

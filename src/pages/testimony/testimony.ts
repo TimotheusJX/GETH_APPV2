@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { FlashCardComponent } from '../../components/flash-card/flash-card';
@@ -10,7 +10,7 @@ import { TestimoniesDesc } from '../shared/testimoniesDesc';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+@IonicPage({})
 @Component({
   selector: 'page-testimony',
   templateUrl: 'testimony.html',
