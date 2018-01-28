@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 
+@IonicPage({})
 @Component({
   selector: 'page-radio',
   templateUrl: 'radio.html',

@@ -9,5 +9,8 @@ import { PrayerlistPage } from './prayerlist';
   imports: [
     IonicPageModule.forChild(PrayerlistPage),
   ],
+  exports: [
+    PrayerlistPage,   
+  ]
 })
 export class PrayerlistPageModule {}

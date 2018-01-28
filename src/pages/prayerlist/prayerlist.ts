@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams, LoadingController, ItemSliding } from 'ionic-angular';
+import { IonicPage, Platform, NavController, NavParams, LoadingController, ItemSliding } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Prayerlists } from '../shared/prayerlists';
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
  * Ionic pages and navigation.
  */
 
+@IonicPage({})
 @Component({
   selector: 'page-prayerlist',
   templateUrl: 'prayerlist.html',

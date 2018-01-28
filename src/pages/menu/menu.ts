@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { RadioPage } from '../radio/radio';
 import { VideoPage } from '../video/video';
-import { PrayerlistPage } from '../prayerlist/prayerlist';
 import { TestimonyPage } from '../testimony/testimony'; 
 
 import { Menuavatar } from '../shared/menuavatar';
@@ -41,7 +39,7 @@ export class MenuPage {
     }else if(pageName === "exhortations"){
       this.childNavCtrl.setRoot('ExhortationsPage');
     }else if(pageName === "radio"){
-      this.childNavCtrl.setRoot(RadioPage);
+      this.childNavCtrl.setRoot('RadioPage');
     }else if(pageName === "ondemand"){
       this.childNavCtrl.setRoot('OndemandPage');
     }else if(pageName === "magazines"){
@@ -49,7 +47,7 @@ export class MenuPage {
     }else if(pageName === "video"){
       this.childNavCtrl.setRoot(VideoPage);
     }else if(pageName === "prayerlist"){
-      this.childNavCtrl.setRoot(PrayerlistPage);
+      this.childNavCtrl.setRoot('PrayerlistPage');
     }else if(pageName === "aboutus"){
       this.childNavCtrl.setRoot('AboutusPage');
     }else if(pageName === "testimonies"){

@@ -9,5 +9,8 @@ import { RadioPage } from './radio';
   imports: [
     IonicPageModule.forChild(RadioPage),
   ],
+  exports: [
+    RadioPage,   
+  ]
 })
 export class RadioPageModule {}

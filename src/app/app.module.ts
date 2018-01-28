@@ -4,11 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { RadioPage } from '../pages/radio/radio';
 import { AudioPage } from '../pages/ondemand/audio/audio';
 import { VideoPage } from '../pages/video/video';
 import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
-import { PrayerlistPage } from '../pages/prayerlist/prayerlist';
 import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
 import { PopupfabmodalPage } from '../pages/aboutus/popupfabmodal/popupfabmodal';
@@ -40,11 +38,9 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
   declarations: [
     MyApp,
     HomePage,
-    RadioPage,
     AudioPage,
     VideoPage,
     OndemandcategoriesPage,
-    PrayerlistPage,
     ViewmagazinePage,
     PopupfabmodalPage,
     TestimonyPage,
@@ -63,11 +59,9 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
   entryComponents: [
     MyApp,
     HomePage,
-    RadioPage,
     AudioPage,
     VideoPage,
     OndemandcategoriesPage,
-    PrayerlistPage,
     ViewmagazinePage,
     PopupfabmodalPage,
     TestimonyPage,
