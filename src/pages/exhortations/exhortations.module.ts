@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { DevotionsPage } from './devotions';
+import { ExhortationsPage } from './exhortations';
 import { SharedModule } from '../../app/shared.module';
 
 @NgModule({
   declarations: [
-    DevotionsPage,
+    ExhortationsPage,
   ],
   imports: [
     SharedModule,
-    IonicPageModule.forChild(DevotionsPage),
+    IonicPageModule.forChild(ExhortationsPage),
   ],
   exports: [
-    DevotionsPage
+    ExhortationsPage
   ]
 })
-export class DevotionsPageModule {}
+export class ExhortationsPageModule {}

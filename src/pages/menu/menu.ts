@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { DevotionsPage } from '../devotions/devotions';
-import { ExhortationsPage } from '../exhortations/exhortations';
 import { MagazinesPage } from '../magazines/magazines';
 import { RadioPage } from '../radio/radio';
 import { OndemandPage } from '../ondemand/ondemand';
@@ -43,7 +41,7 @@ export class MenuPage {
     if(pageName === "devotions"){
       this.childNavCtrl.setRoot('DevotionsPage');
     }else if(pageName === "exhortations"){
-      this.childNavCtrl.setRoot(ExhortationsPage);
+      this.childNavCtrl.setRoot('ExhortationsPage');
     }else if(pageName === "radio"){
       this.childNavCtrl.setRoot(RadioPage);
     }else if(pageName === "ondemand"){
