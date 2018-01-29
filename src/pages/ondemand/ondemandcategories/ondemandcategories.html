@@ -13,12 +13,12 @@
 </ion-header>
 
  
-<ion-content *ngIf="onDemandItems && onDemandItems.length" fullscreen>
+<ion-content fullscreen>
   <div *ngIf="searching" class="spinner-container">
       <ion-spinner></ion-spinner>
   </div>
-  <ion-list [virtualScroll]="onDemandItems" approxItemHeight="40px" approxHeaderHeight="0px" approxFooterHeight="0px">
-    <ion-item-sliding *virtualItem="let item" #slidingItem>
+  <ion-list *ngIf="onDemandItems && onDemandItems.length">
+    <ion-item-sliding *ngFor="let item of onDemandItems" #slidingItem>
       <ion-item (click)="itemTapped($event, item)" class="item-ribbon">
         <span class="ribbon {{item.class}}" *ngIf="item.ribbontext != 'no'">
           <span>{{item.ribbontext}}</span>
