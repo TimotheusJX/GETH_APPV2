@@ -11,7 +11,7 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
 })
 export class MenuPage {
 
-  homePage: Component;
+  homePage: any;
   menuavatar: Menuavatar;
   errMess: string;
   @ViewChild('content') childNavCtrl: NavController;
