@@ -60,7 +60,7 @@ export class OndemandcategoriesPage {
         this.storageDirectory = this.file.externalDataDirectory;
       }
     });
-    this.prepareData();
+    //this.prepareData();
   }
   
   prepareData(){

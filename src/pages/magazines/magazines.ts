@@ -43,7 +43,7 @@ export class MagazinesPage {
         this.storageDirectory = this.file.externalDataDirectory;
       }
     });
-    this.prepareData();
+    //this.prepareData();
   }
 
   prepareData(){
@@ -115,7 +115,7 @@ export class MagazinesPage {
   }
 
   ionViewWillEnter(){
-  //  this.prepareData();
+    this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
       this.magazines = this.currentMag;
