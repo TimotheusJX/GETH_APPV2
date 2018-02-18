@@ -99,7 +99,7 @@ page-popupfabmodal {
         margin: 8px 0px;
         min-width: 250px;
         max-width: 100%;
-        width: 100%;
+        //width: 100%;
         background-color: #000000;
         color: #ffffff;
         text-align: center;
@@ -114,13 +114,14 @@ page-popupfabmodal {
 
     .snip1574 img {
         max-width: 100%;
+        max-height: 100%;
         vertical-align: top;
         opacity: 0.77;
     }
 
     .snip1574 figcaption {
         position: absolute;
-        top: 0;
+        //top: 0;
         bottom: 0;
         left: 0;
         right: 0;

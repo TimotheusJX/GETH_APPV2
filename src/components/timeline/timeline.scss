@@ -229,7 +229,7 @@ body {
   }
   &.expanded {
     .content {
-      max-height: 600px; // great value for height animation
+      max-height: 5000px; // great value for height animation
     }
     .content::before {
       opacity: 0;
