@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
+import { Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../../shared/monitoringStorage';
 import { HTTP } from '@ionic-native/http';
+import { Radiolinks } from '../../shared/radiolinks';
+import { Observable } from 'rxjs/Observable';
+import { Restangular } from 'ngx-restangular';
 /**
  * Generated class for the AudioPage page.
  *
@@ -23,6 +26,7 @@ export class AudioPage {
   url: any;
   storageKey: string;
   isFavorite: boolean;
+  radiolinks: Radiolinks;
 
   is_playing: boolean = false;
   is_in_play: boolean = false;
@@ -37,6 +41,8 @@ export class AudioPage {
   get_duration_interval: any;
   get_position_interval: any;
 
+  errMess: string;
+
   constructor(
     public platform: Platform,
     public navCtrl: NavController,
@@ -44,9 +50,10 @@ export class AudioPage {
     public loadingCtrl: LoadingController,
     private file: File,
     private media: Media,
-    public viewCtrl: ViewController,
+    //public viewCtrl: ViewController,
     public favoriteProvider: FavoriteProvider,
-    private http: HTTP) {
+    private http: HTTP,
+    private restangular: Restangular) {
       // assign storage directory
       this.platform.ready().then(() => {
         if(this.platform.is('ios')) {
@@ -71,6 +78,14 @@ export class AudioPage {
   ionViewWillEnter(){
     // comment out the following line when adjusting UI in browsers
     this.prepareAudioFile();
+    this.prepareAudioResource().subscribe((data) => {
+      console.log("links: " + data);
+      this.radiolinks = data;
+    }, errmess => {this.radiolinks = null; this.errMess = <any>errmess});
+  }
+
+  prepareAudioResource(): Observable<Radiolinks> {
+    return this.restangular.one('radioresources').get();
   }
 
   prepareAudioFile() {
@@ -235,9 +250,9 @@ export class AudioPage {
     }
   }
 
-  dismiss() {
+/*  dismiss() {
     this.viewCtrl.dismiss();
-  }
+  }*/
 
   ionViewWillLeave(){
     this.stopPlayRecording();

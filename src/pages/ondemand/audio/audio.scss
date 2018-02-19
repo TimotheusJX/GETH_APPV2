@@ -1,99 +1,107 @@
 page-audio {
-    .avatar {
-        display: block;
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-        background-image: url('https://s-media-cache-ak0.pinimg.com/originals/82/8d/9c/828d9ce86050123bd1ec659604fab945.jpg');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
+  .play-pause-btn {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      box-shadow: 0 0 10px #999;
+      font-size: 2.3em;
+      border-radius: 50%;
+  }
+  .skip-btn {
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-shadow: 0 0 10px #999;
+  }
+  * {
+      margin: 0;
+      padding: 0;
+      color: #FFF;
+  }
+  .general-style {
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      background: rgb(255, 255, 255);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+  }
+  #center {
+      height: 100%;
+      border-radius: 3px;
+      //background: url('assets/img/misc/aurorabackground.jpeg');
+      background-size: cover;
+      //border: 4px solid #DDD;
+      text-align: center;
+      -webkit-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.3);
+      -moz-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.3);
+      box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.3);
+  }
+  #menu {
+      height: 60px;
+      width: 100%;
+  }
+  #album {
+      height: 250px;
+      width: 100%;
+  }
+  #current-song {
+      height: 25px;
+      width: 100%;
+      font-size: 25px;
+      padding-bottom: 10px;
+  }
+  #space {
+      height: 33.33333333px;
+      width: 100%;
+  }
+  .row{
+    max-height: 100%;
+  }
+  #art {
+      width: 214.28571429px;
+      height: 214.28571429px;
+      //background-image: url("https://bit.ly/11m2z3C");
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 4px solid #FFF;
+      -webkit-box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3), inset 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3), inset 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3), inset 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
+  }
+  #play {
+      display: inline-block;
+  }
+  #forw,
+  #back {
+      padding: 0 30px;
+      display: inline-block;
+      letter-spacing: -4px;
+  }
+  #back .button-inner {
+    padding-left: 11px;
+  }
 
-        margin: 0 auto;
-        border: 2px solid #f1f1f1;
-        box-shadow: 0 0 5px #999;
-    }
-
-    .play-pause-btn {
-        display: inline-block;
-        width: 80px;
-        height: 80px;
-        box-shadow: 0 0 10px #999;
-        font-size: 2.3em;
-        border-radius: 50%;
-    }
-
-    .skip-btn {
-        display: inline-block;
-        vertical-align: middle;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        box-shadow: 0 0 10px #999;
-    }
-
-    .round {
-        border-radius: 8%;
-      }
-      .scroll-content {
-        overflow: hidden;
-      }
-      .swiper-pagination-bullet {
-        background-color: white;
-      }
-      .swiper-pagination-bullet-active {
-        background-color: #FA3;
-        transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-      }
-      ion-list {
-        margin: 0 !important;
-      }
-      ion-slides,
-      .swiper-container,
-      {
-        height: 90%;
-        border-radius: 8% 8% 0 0;
-      }
-      .slider-item {
-        height: auto;
-        width: 100%;
-        background-size: cover;
-      }
-      .slide-zoom {
-        height: 100%;
-        background: linear-gradient(transparent, rgba(0, 0, 0, 0.22)) !important;
-      }
-      .text-wrapper {
-        width: 100vw;
-        height: 100vh;
-      }
-      .slide-text {
-        position: relative;
-        text-align: center;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .text-center {
-        text-align: center;
-        color: white;
-      }
-      .scroll-content {
-        border-radius: 3%;
-      }
-      button.footer-button {
-        height: 15%;
-        background-color: #578be4;
-        bottom: 0px;
-        position: absolute;
-        margin: 0;
-      }
-
-      .scroll-content {
-        background: hsl(40, 75%, 98%);
-      }
-
-      ion-icon, div {
-        color: rgb(125, 140, 225);
-        font-weight: bold;
-     }
+  .play-button-position {
+      padding-left: 7px;
+  }
+  .bar-button,
+  .toolbar-title {
+    color: #fff;
+  }
+  /* Header */
+  .toolbar-background {
+      border-color: transparent;
+      background: rgba(0, 0, 0, 0.14) !important;
+  }
+  .scroll-content {
+      padding-top: 0px !important;
+  }
+  .bar-position {
+    margin-top: 33px;
+  }
 }

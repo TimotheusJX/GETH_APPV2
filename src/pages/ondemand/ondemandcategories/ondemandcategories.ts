@@ -98,10 +98,10 @@ export class OndemandcategoriesPage {
   }
 
   itemTapped(event, item) {
-    this.openModal(item);
+    this.navCtrl.push(AudioPage, item);
   }
 
-  openModal(item) {
+/*  openModal(item) {
     console.log("this is items" + item);
     let modal = this.modalCtrl.create(AudioPage, item, { cssClass: 'inset-modal' });
     modal.onDidDismiss(() => {
@@ -109,7 +109,7 @@ export class OndemandcategoriesPage {
     });
     modal.present();
   }
-
+*/
   removeDownloadedItem(event, item, slidingItem:ItemSliding){
     let audioTitle: string = item.title;
     this.platform.ready().then(() => {
