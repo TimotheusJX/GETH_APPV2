@@ -16,7 +16,7 @@ import { HTTP } from '@ionic-native/http';
 
 import { RestangularModule, Restangular } from 'ngx-restangular';
 //import { RestangularConfigFactory, RestangularVideoFactory, RESTANGULAR_VIDEO } from '../pages/shared/restConfig';
-import { RestangularConfigFactory } from '../pages/shared/restConfig';
+import { RestangularConfigFactory, RestangularRadioFactory, RESTANGULAR_RADIO } from '../pages/shared/restConfig';
 
 import { SharedModule } from './shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -68,8 +68,8 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     FavoriteProvider,
     HTTP,
     YtProvider,
-    YoutubeVideoPlayer
-    //{provide: RESTANGULAR_VIDEO, useFactory:  RestangularVideoFactory, deps: [Restangular]},
+    YoutubeVideoPlayer,
+    {provide: RESTANGULAR_RADIO, useFactory:  RestangularRadioFactory, deps: [Restangular]},
   ]
 })
 export class AppModule {}

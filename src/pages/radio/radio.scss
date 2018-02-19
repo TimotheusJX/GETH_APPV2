@@ -1,19 +1,117 @@
 page-radio {
-    .avatar {
-        display: block;
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-        background-image: url('https://s-media-cache-ak0.pinimg.com/originals/82/8d/9c/828d9ce86050123bd1ec659604fab945.jpg');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-
-        margin: 0 auto;
-        border: 2px solid #f1f1f1;
-        box-shadow: 0 0 5px #999;
+    * {
+        margin: 0;
+        padding: 0;
+        color: #FFF;
     }
-
+    .general-style {
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        background: rgb(255, 255, 255);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    #center {
+        height: 100%;
+        border-radius: 3px;
+        //background: url('assets/img/misc/aurorabackground.jpeg');
+        background-size: cover;
+        //border: 4px solid #DDD;
+        text-align: center;
+        -webkit-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.3);
+        -moz-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.3);
+        box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.3);
+    }
+    #menu {
+        height: 60px;
+        width: 100%;
+    }
+    #album {
+        height: 250px;
+        width: 100%;
+    }
+    #current-song {
+        height: 25px;
+        width: 100%;
+        font-size: 25px;
+        padding-bottom: 10px;
+    }
+    #current-artist {
+        padding: 0 auto;
+        height: 10px;
+        width: 100%;
+    }
+    #time {
+        margin-top: 15px;
+        height: 33.33333333px;
+        width: 100%;
+    }
+    #space {
+        height: 33.33333333px;
+        width: 100%;
+    }
+    #info {
+        height: 60px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.3);
+    }
+    #art {
+        width: 214.28571429px;
+        height: 214.28571429px;
+        //background-image: url("https://bit.ly/11m2z3C");
+        margin: 0 auto;
+        border-radius: 50%;
+        border: 4px solid #FFF;
+        -webkit-box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3), inset 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3), inset 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3), inset 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
+    }
+    #sta {
+        font-weight: 200;
+        display: inline-block;
+        width: 120px;
+        margin-top: 11px;
+    }
+    #fin {
+        display: inline-block;
+        width: 125px;
+        height: 35%;
+        background: transparent;
+        border: 2px solid #FFF;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    #stat {
+        font-weight: 200;
+        float: left;
+        width: 120px;
+    }
+    #fint {
+        font-weight: 200;
+        display: inline-block;
+        width: 120px;
+    }
+    #play {
+        display: inline-block;
+    }
+    #next-title {
+        margin-top: 7px;
+        font-weight: 600;
+    }
+    #next-artist {
+        margin-top: 5px;
+    }
+    #forw,
+    #back {
+        padding: 0 30px;
+        display: inline-block;
+        letter-spacing: -4px;
+    }
+    
+      
     .play-pause-btn {
         display: inline-block;
         width: 80px;
@@ -23,13 +121,8 @@ page-radio {
         border-radius: 50%;
     }
 
-    .skip-btn {
-        display: inline-block;
-        vertical-align: middle;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        box-shadow: 0 0 10px #999;
+    .play-button-position {
+        padding-left: 7px;
     }
 
     .bar-button,
@@ -44,6 +137,6 @@ page-radio {
     }
 
     .scroll-content {
-        padding-top: 45px !important;
+        padding-top: 0px !important;
     }
 }

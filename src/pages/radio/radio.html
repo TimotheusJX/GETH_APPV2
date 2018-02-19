@@ -16,35 +16,36 @@
 </ion-header>
 
 
-<ion-content fullscreen padding>
-  <!-- Playback section -->
-  <div text-center>
-    <!-- File name -->
-    <br>
-    <h1>{{ filename }}</h1>
-    <br>
-
-    <!-- avatar -->
-    <div class="avatar"></div>
-    <br>
+<ion-content fullscreen class="general-style" *ngIf="radioplaylist && radiolinks">
+    <div id="center" [ngStyle]="{ 'background': 'url(' + radiolinks.backgroundImg + ')'}">
+      <div id="menu"></div>
+      <div id="album">
+        <div id="art" [ngStyle]="{ 'background-image': 'url(' + radiolinks.avatarImg + ')'}"></div>
+      </div>
+      <div id="current-song">{{radioplaylist.current.title}}</div>
+      <div id="current-artist"><div id="sta">{{radioplaylist.current.artist}}</div></div>
+      <div id="time"><div id="fint">{{radioplaylist.current.time}}</div></div>
+      <ion-grid>
+          <ion-row justify-content-center align-items-center style="height: 100%">
     
-    <ion-grid>
-      <ion-row justify-content-center align-items-center style="height: 100%">
-
-        <ion-col>
-          <!-- Play/Pause -->
-          <button ion-button class="play-pause-btn" (click)="playRadio()" color="primary" *ngIf="!isStreaming">
-            <ion-icon name="play"></ion-icon>
-          </button>
-
-          <button ion-button class="play-pause-btn" (click)=" pauseRadio()" color="secondary" *ngIf="isStreaming">
-            <ion-icon name="pause"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-
-    </ion-grid>
-
-  </div>
-
+            <ion-col>
+              <!-- Play/Pause -->
+              <button ion-button clear class="play-pause-btn" (click)="playRadio()" *ngIf="!isStreaming">
+                <ion-icon name="play" class="play-button-position"></ion-icon>
+              </button>
+    
+              <button ion-button clear class="play-pause-btn" (click)=" pauseRadio()" *ngIf="isStreaming">
+                <ion-icon name="pause"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      <div id="space"></div>
+      <div id="info">
+        <div id="play">
+          <div id="next-title">next: {{radioplaylist.next.title}}</div>
+          <div id="next-artist">{{radioplaylist.next.artist}}</div>
+        </div>
+      </div>
+    </div>
 </ion-content>
