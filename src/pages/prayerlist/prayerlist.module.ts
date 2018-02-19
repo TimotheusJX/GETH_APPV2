@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PrayerlistPage } from './prayerlist';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { PrayerlistPage } from './prayerlist';
   ],
   imports: [
     IonicPageModule.forChild(PrayerlistPage),
+    PdfViewerModule
   ],
   exports: [
     PrayerlistPage,   
