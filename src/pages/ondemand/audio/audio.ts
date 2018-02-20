@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Platform, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../../shared/monitoringStorage';
@@ -53,6 +53,7 @@ export class AudioPage {
     //public viewCtrl: ViewController,
     public favoriteProvider: FavoriteProvider,
     private http: HTTP,
+    private alertCtrl: AlertController,
     private restangular: Restangular) {
       // assign storage directory
       this.platform.ready().then(() => {
@@ -133,11 +134,21 @@ export class AudioPage {
               console.log("Download error! " + error.status);
               loading.dismiss();
               console.log(error.error);
+              this.doAlert();
             });
           }
         });
       });
     });
+  }
+
+  doAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Download Failed!',
+      subTitle: 'Please try again later or contact administrator for assistance.',
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 
   createAudioFile(pathToDirectory, filename): MediaObject {

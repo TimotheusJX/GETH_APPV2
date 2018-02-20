@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Platform, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { File } from '@ionic-native/file';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -33,7 +33,8 @@ export class ViewmagazinePage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public favoriteProvider: FavoriteProvider,
-    private http: HTTP
+    private http: HTTP,
+    private alertCtrl: AlertController
   ) {
     this.url = navParams.get('url');
     this.bookTitle = navParams.get('title');
@@ -111,11 +112,21 @@ export class ViewmagazinePage {
               console.log("Download error! " + error.status);
               loading.dismiss();
               console.log(error.error);
+              this.doAlert();
             });
           }
         });
       });
     });
+  }
+
+  doAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Download Failed!',
+      subTitle: 'Please try again later or contact administrator for assistance.',
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 
   share(){

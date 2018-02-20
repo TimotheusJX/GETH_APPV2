@@ -16,7 +16,7 @@
 
 </ion-header>
 
-<ion-content fullscreen>
+<ion-content fullscreen *ngIf="onDemandCategories">
     <ion-card *ngFor="let card of onDemandCategories" (click)="itemTapped($event, card)">
       <img [src]="card.imageUrl"/>
       <div class="card-title">{{card.title}}</div>
