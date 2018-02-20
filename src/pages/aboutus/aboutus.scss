@@ -20,7 +20,7 @@ page-aboutus {
         }
 
         .church-name {
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
     }
     /* Content */
@@ -105,5 +105,9 @@ page-aboutus {
     .toolbar-background {
         border-color: transparent;
         background: rgba(0, 0, 0, 0.21) !important;
+    }
+
+    ion-fab[top] {
+        top: -70px;
     }
 }
