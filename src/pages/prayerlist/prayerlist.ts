@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Prayerlist } from '../shared/prayerlist';
 import { Observable } from 'rxjs/Observable';
-
+import { FileOpener } from '@ionic-native/file-opener';
 /**
  * Generated class for the PrayerlistPage page.
  *
@@ -22,7 +22,8 @@ export class PrayerlistPage {
   errMess: string;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
+    private fileOpener: FileOpener, 
     private restangular: Restangular, 
     public navParams: NavParams) {
       this.getPrayerList().subscribe((data) => {
@@ -34,6 +35,12 @@ export class PrayerlistPage {
 
   getPrayerList(): Observable<Prayerlist> {
     return this.restangular.one('prayerlist').get();
+  }
+
+  share(){
+    this.fileOpener.open(this.pdfSrc, 'application/pdf')
+    .then(() => console.log('File is opened'))
+    .catch(e => console.log('Error openening file', e));
   }
 
 }
