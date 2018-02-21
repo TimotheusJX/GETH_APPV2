@@ -17,12 +17,10 @@
       <ion-icon [name]="devotion.icon"></ion-icon>
       <ion-card>
         <ion-card-content class="text-body">
-          <h3 class="style-header">{{devotion.title}}</h3>
+          <!--<h3 class="style-header">{{devotion.title}}</h3>-->
           <div class="textwrap">
             <div class="read-more">
-              <div class="content">
-                <p>{{devotion.fulltext}}</p>
-              </div>
+              <div class="content" [innerHTML]="devotion.fulltext"></div>
               <span data-read-more="+ read more" data-read-less="- show less" class="trigger" onclick="this.parentElement.classList.toggle('expanded')"></span>
             </div>
           </div>

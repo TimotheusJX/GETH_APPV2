@@ -20,9 +20,7 @@
           <h3 class="style-header">{{exhortation.title}}</h3>
           <div class="textwrap">
             <div class="read-more">
-              <div class="content">
-                <p>{{exhortation.fulltext}}</p>
-              </div>
+              <div class="content" [innerHTML]="exhortation.fulltext"></div>
               <span data-read-more="+ read more" data-read-less="- show less" class="trigger" onclick="this.parentElement.classList.toggle('expanded')"></span>
             </div>
           </div>
