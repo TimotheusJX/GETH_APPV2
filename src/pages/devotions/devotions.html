@@ -16,10 +16,8 @@
       <timeline-time [time]="devotion.created"></timeline-time>
       <ion-icon [name]="devotion.icon"></ion-icon>
       <ion-card>
-        <ion-card-header>
-          {{devotion.title}}
-        </ion-card-header>
-        <ion-card-content>
+        <ion-card-content class="text-body">
+          <h3 class="style-header">{{devotion.title}}</h3>
           <div class="textwrap">
             <div class="read-more">
               <div class="content">
