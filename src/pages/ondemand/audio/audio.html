@@ -9,9 +9,13 @@
 <ion-content fullscreen class="general-style" *ngIf="radiolinks">
   <div id="center" [ngStyle]="{ 'background': 'url(' + radiolinks.backgroundImg + ')'}">
     <div id="menu"></div>
-    <div id="album">
-      <div id="art" [ngStyle]="{ 'background-image': 'url(' + radiolinks.avatarImg + ')'}"></div>
-    </div>
+    <ion-row style="align-items:center;">
+      <ion-col col-2></ion-col>
+      <ion-col col-8>
+        <img class="user-avatar round" [src]="radiolinks.avatarImg"/>
+      </ion-col>
+      <ion-col col-2></ion-col>
+    </ion-row>
     <div id="current-song">{{filename}}</div>
 
     <!-- control bar -->

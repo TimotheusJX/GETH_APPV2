@@ -45,10 +45,7 @@ page-audio {
       height: 60px;
       width: 100%;
   }
-  #album {
-      height: 250px;
-      width: 100%;
-  }
+
   #current-song {
       height: 25px;
       width: 100%;
@@ -104,4 +101,10 @@ page-audio {
   .bar-position {
     margin-top: 33px;
   }
+    .user-avatar {
+        padding: .5em;
+    }   
+    .round {
+        border-radius: 50%;
+    }
 }
