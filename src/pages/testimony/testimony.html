@@ -33,9 +33,7 @@
           <h3>
             {{testimony.back.title}} - <span><h5>{{testimony.back.subtitle}}</h5></span>
           </h3>
-          <p class="main-content">
-            {{testimony.back.content}}
-          </p>
+          <div class="main-content" [innerHTML]="testimony.back.content"></div>
         </div>
       </ion-scroll>
     </div>

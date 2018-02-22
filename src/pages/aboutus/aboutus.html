@@ -24,9 +24,7 @@
   <section class="main-content">
     <ion-grid>
       <ion-row>
-        <p margin-left margin-right no-margin-top style="text-align: justify">
-          {{aboutUs.description}}
-        </p>
+        <div margin-left margin-right no-margin-top style="text-align: justify" [innerHTML]="aboutUs.description"></div>
       </ion-row>
     </ion-grid>
   </section>
