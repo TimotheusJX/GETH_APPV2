@@ -37,8 +37,8 @@ export class PrayerlistPage {
     return this.restangular.one('prayerlist').get();
   }
 
-  share(){
-    this.fileOpener.open(this.pdfSrc, 'application/pdf')
+  share(url: string){
+    this.fileOpener.open(url, 'application/pdf')
     .then(() => console.log('File is opened'))
     .catch(e => console.log('Error openening file', e));
   }

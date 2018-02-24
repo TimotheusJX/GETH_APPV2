@@ -19,37 +19,47 @@
 <ion-content fullscreen class="general-style" *ngIf="radioplaylist && radiolinks">
     <div id="center" [ngStyle]="{ 'background': 'url(' + radiolinks.backgroundImg + ')'}">
       <div id="menu"></div>
-      <ion-row style="align-items:center;">
+      <ion-row class="adjust-top" align-items-center justify-content-center>
         <ion-col col-2></ion-col>
         <ion-col col-8>
           <img class="user-avatar round" [src]="radiolinks.avatarImg"/>
         </ion-col>
         <ion-col col-2></ion-col>
       </ion-row>
-      <div id="current-song">{{radioplaylist.current.title}}</div>
-      <div id="current-artist"><div id="sta">{{radioplaylist.current.artist}}</div></div>
-      <div id="time"><div id="fint">{{radioplaylist.current.time}}</div></div>
+      <ion-row align-items-center justify-content-center>
+        <div id="current-song">{{radioplaylist.current.title}}</div>
+      </ion-row>
+      <ion-row align-items-center justify-content-center>
+        <div id="current-artist"><div id="sta">{{radioplaylist.current.artist}}</div></div>
+      </ion-row>
+      <ion-row align-items-center justify-content-center>
+        <div id="time"><div id="fint">{{radioplaylist.current.timing}}</div></div>
+      </ion-row>
       <ion-grid>
-          <ion-row justify-content-center align-items-center style="height: 100%">
-    
-            <ion-col>
-              <!-- Play/Pause -->
-              <button ion-button clear class="play-pause-btn" (click)="playRadio()" *ngIf="!isStreaming">
-                <ion-icon name="play" class="play-button-position"></ion-icon>
-              </button>
-    
-              <button ion-button clear class="play-pause-btn" (click)=" pauseRadio()" *ngIf="isStreaming">
-                <ion-icon name="pause"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      <div id="space"></div>
-      <div id="info">
-        <div id="play">
-          <div id="next-title">next: {{radioplaylist.next.title}}</div>
-          <div id="next-artist">{{radioplaylist.next.artist}}</div>
-        </div>
-      </div>
+        <ion-row justify-content-center align-items-center>
+          <ion-col>
+            <!-- Play/Pause -->
+            <button ion-button clear class="play-pause-btn" (click)="playRadio()" *ngIf="!isStreaming">
+              <ion-icon name="play" class="play-button-position"></ion-icon>
+            </button>
+  
+            <button ion-button clear class="play-pause-btn" (click)=" pauseRadio()" *ngIf="isStreaming">
+              <ion-icon name="pause"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+          <div id="info">
+            <div id="play">
+              <ion-row align-items-center justify-content-center>
+                <div id="next-title">Next: {{radioplaylist.next.title}}</div>
+              </ion-row>
+              <ion-row justify-content-center align-items-center>
+                <div id="next-artist">{{radioplaylist.next.artist}}</div>
+              </ion-row>
+            </div>
+          </div>
+        </ion-row>
+      </ion-grid>
     </div>
 </ion-content>

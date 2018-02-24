@@ -39,10 +39,12 @@ export class RadioPage {
       .subscribe(() => {
         this.prepareRadioDetail().subscribe((data) => {
           //first insertion radioplaylist is null, subsequent change only update when current title changes
+          console.log("detail");
+          console.log(data);
           if(this.radioplaylist == null){
-            this.radioplaylist = data;
-          }else if(this.radioplaylist != null && this.radioplaylist.current.title != data.current.title){
-            this.radioplaylist = data;
+            this.radioplaylist = data.radioplaylist;
+          }else if(this.radioplaylist != null && this.radioplaylist.current.title != data.radioplaylist.current.title){
+            this.radioplaylist = data.radioplaylist;
           }
         }, errmess => {this.radioplaylist = null; this.errMess = <any>errmess});
       });
@@ -64,7 +66,7 @@ export class RadioPage {
     this.radio.release();
   }
   
-  prepareAudioFile(): Observable<Radiolinks> {
+  prepareAudioFile(): Observable<any> {
   //  let url = "http://biblewitness.com:8000/listen.pls";
 
   /*  this.platform.ready().then(() => {
@@ -73,9 +75,9 @@ export class RadioPage {
     return this.Restangular.one('radioresources').get();
   }
 
-  prepareRadioDetail(): Observable<RadioPlaylist> {
+  prepareRadioDetail(): Observable<any> {
     //console.log("start");
-    return this.RestangularRadio.one('radioplaylist').get();
+    return this.RestangularRadio.one('db2').get();
   }
 
   playRadio() {

@@ -9,7 +9,7 @@
 
 <ion-content fullscreen padding *ngIf="prayerlist">
   <ion-fab bottom right>
-    <button ion-fab class="pop-in" color="dark" (click)="share()">
+    <button ion-fab class="pop-in" color="dark" (click)="share(prayerlist.url)">
       <ion-icon ios="ios-share-outline" md="md-share"></ion-icon>
     </button>
   </ion-fab>

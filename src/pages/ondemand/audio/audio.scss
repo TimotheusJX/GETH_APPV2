@@ -31,8 +31,9 @@ page-audio {
       left: 0;
   }
   #center {
-      height: 100%;
-      border-radius: 3px;
+      height: auto;
+      min-height: 100%;
+      //border-radius: 3px;
       //background: url('assets/img/misc/aurorabackground.jpeg');
       background-size: cover;
       //border: 4px solid #DDD;
@@ -47,10 +48,12 @@ page-audio {
   }
 
   #current-song {
-      height: 25px;
+      height: auto;
+      min-height: 30px;
       width: 100%;
       font-size: 25px;
       padding-bottom: 10px;
+      padding-top: 7px;
   }
   #space {
       height: 33.33333333px;
@@ -106,5 +109,9 @@ page-audio {
     }   
     .round {
         border-radius: 50%;
+    }
+
+    .adjust-buttons{
+        margin-top: 17px;
     }
 }
