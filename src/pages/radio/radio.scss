@@ -34,15 +34,16 @@ page-radio {
         height: auto;
         width: 100%;
         font-size: 25px;
-        padding-bottom: 10px;
+        padding-bottom: 3px;
+        padding-top: 7px;
     }
     #current-artist {
         padding: 0 auto;
-        height: 10px;
+        height: auto;
         width: 100%;
     }
     #time {
-        margin-top: 15px;
+        margin-top: 4px;
         height: 33.33333333px;
         width: 100%;
     }
@@ -51,7 +52,7 @@ page-radio {
         width: 100%;
     }
     #info {
-        margin-top: 27px;
+        margin-top: 23px;
         padding-bottom: 11px;
         height: auto;
         width: 100%;
@@ -73,7 +74,7 @@ page-radio {
         display: inline-block;
         width: 100%;
         height: auto;
-        margin-top: 11px;
+        margin-top: 7px;
     }
     #fin {
         display: inline-block;

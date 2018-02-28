@@ -24,6 +24,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { Media, MediaObject } from '@ionic-native/media';
 import { HttpModule } from '@angular/http';
@@ -70,6 +71,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     YtProvider,
     YoutubeVideoPlayer,
     {provide: RESTANGULAR_RADIO, useFactory:  RestangularRadioFactory, deps: [Restangular]},
+    BackgroundMode,
   ]
 })
 export class AppModule {}

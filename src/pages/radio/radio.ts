@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import { RadioPlaylist } from '../shared/radioPlaylist';
 import { Radiolinks } from '../shared/radiolinks';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 @IonicPage({})
 @Component({
@@ -25,6 +26,7 @@ export class RadioPage {
 
   constructor(
     private media: Media,  
+    public backgroundMode : BackgroundMode,
     public platform: Platform,
     @Inject(Restangular) public Restangular,
     @Inject(RESTANGULAR_RADIO) public RestangularRadio
@@ -62,6 +64,7 @@ export class RadioPage {
   }
 
   ionViewWillLeave(){
+    this.disableBackgroundMode();
     this.radio.stop();
     this.radio.release();
   }
@@ -81,13 +84,28 @@ export class RadioPage {
   }
 
   playRadio() {
+    this.enableBackgroundMode();
     this.radio.play();
     this.isStreaming = true;
   }
 
   pauseRadio() {
+    this.disableBackgroundMode();
     this.radio.pause();
     this.isStreaming = false;
   }
 
+  private enableBackgroundMode(): void {
+    if(!this.backgroundMode.isEnabled()) {
+      console.log("enable background.....");
+      this.backgroundMode.enable();
+    }
+  }
+
+  private disableBackgroundMode(): void {
+      if(this.backgroundMode.isEnabled()) {
+        console.log("disable background.....");
+        this.backgroundMode.disable();
+      }
+  }
 }

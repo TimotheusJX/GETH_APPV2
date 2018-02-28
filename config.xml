@@ -93,4 +93,5 @@
     <plugin name="cordova-plugin-youtube-video-player" spec="^1.0.6" />
     <plugin name="cordova-sqlite-storage" spec="^2.2.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
 </widget>

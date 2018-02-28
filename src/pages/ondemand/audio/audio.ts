@@ -7,6 +7,7 @@ import { HTTP } from '@ionic-native/http';
 import { Radiolinks } from '../../shared/radiolinks';
 import { Observable } from 'rxjs/Observable';
 import { Restangular } from 'ngx-restangular';
+import { BackgroundMode } from '@ionic-native/background-mode';
 /**
  * Generated class for the AudioPage page.
  *
@@ -54,7 +55,8 @@ export class AudioPage {
     public favoriteProvider: FavoriteProvider,
     private http: HTTP,
     private alertCtrl: AlertController,
-    private restangular: Restangular) {
+    private restangular: Restangular,  
+    public backgroundMode : BackgroundMode) {
       // assign storage directory
       this.platform.ready().then(() => {
         if(this.platform.is('ios')) {
@@ -231,10 +233,12 @@ export class AudioPage {
   }
 
   playRecording() {
+    this.enableBackgroundMode();
     this.curr_playing_file.play();
   }
 
   pausePlayRecording() {
+    this.disableBackgroundMode();
     this.curr_playing_file.pause();
   }
 
@@ -266,6 +270,21 @@ export class AudioPage {
   }*/
 
   ionViewWillLeave(){
+    this.disableBackgroundMode();
     this.stopPlayRecording();
+  }
+
+  private enableBackgroundMode(): void {
+    if(!this.backgroundMode.isEnabled()) {
+      console.log("enable background.....");
+      this.backgroundMode.enable();
+    }
+  }
+
+  private disableBackgroundMode(): void {
+      if(this.backgroundMode.isEnabled()) {
+        console.log("disable background.....");
+        this.backgroundMode.disable();
+      }
   }
 }
