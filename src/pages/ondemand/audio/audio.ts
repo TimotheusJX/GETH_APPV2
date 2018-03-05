@@ -5,8 +5,6 @@ import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../../shared/monitoringStorage';
 import { HTTP } from '@ionic-native/http';
 import { Radiolinks } from '../../shared/radiolinks';
-import { Observable } from 'rxjs/Observable';
-import { Restangular } from 'ngx-restangular';
 import { BackgroundMode } from '@ionic-native/background-mode';
 /**
  * Generated class for the AudioPage page.
@@ -28,6 +26,7 @@ export class AudioPage {
   storageKey: string;
   isFavorite: boolean;
   radiolinks: Radiolinks;
+  jsonStorageKey: string = 'appJsonList';
 
   is_playing: boolean = false;
   is_in_play: boolean = false;
@@ -51,11 +50,9 @@ export class AudioPage {
     public loadingCtrl: LoadingController,
     private file: File,
     private media: Media,
-    //public viewCtrl: ViewController,
     public favoriteProvider: FavoriteProvider,
     private http: HTTP,
     private alertCtrl: AlertController,
-    private restangular: Restangular,  
     public backgroundMode : BackgroundMode) {
       // assign storage directory
       this.platform.ready().then(() => {
@@ -81,14 +78,15 @@ export class AudioPage {
   ionViewWillEnter(){
     // comment out the following line when adjusting UI in browsers
     this.prepareAudioFile();
-    this.prepareAudioResource().subscribe((data) => {
-      console.log("links: " + data);
-      this.radiolinks = data;
-    }, errmess => {this.radiolinks = null; this.errMess = <any>errmess});
+    this.getJsonList();
   }
 
-  prepareAudioResource(): Observable<Radiolinks> {
-    return this.restangular.one('radioresources').get();
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("radioresources(audio): ");
+      console.log(data);
+      this.radiolinks = data.radioresources;
+    })
   }
 
   prepareAudioFile() {

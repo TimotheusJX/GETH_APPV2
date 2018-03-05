@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestangularModule, Restangular } from 'ngx-restangular';
-
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 import { Devotions } from '../shared/devotionsDesc';
-
-import { Observable } from 'rxjs/Observable';
+import { RefresherProvider } from '../shared/dragToRefresh';
 
 @IonicPage({})
 @Component({
@@ -12,19 +10,49 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: 'devotions.html',
 })
 export class DevotionsPage {
-
-  devotions: Devotions[];
+  jsonStorageKey: string = 'appJsonList';
+  devotions: Devotions[] = [];
   errMess: string;
 
-  constructor(public navCtrl: NavController, private restangular: Restangular, public navParams: NavParams) {
-    this.getDevotions().subscribe((data) => {
-      console.log("devotions: " + data);
-      this.devotions = data;
-    }, errmess => {this.devotions = null; this.errMess = <any>errmess});
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public favoriteProvider: FavoriteProvider,
+    public refreshProvider: RefresherProvider,
+    public loadingCtrl: LoadingController
+  ) {}
+
+  ionViewWillEnter(){
+    this.getJsonList();
   }
 
-  getDevotions(): Observable<Devotions[]> {
-    return this.restangular.all('devotions').getList();
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("devotions: ");
+      console.log(data);
+      this.devotions = data.devotions;
+    })
   }
 
+  doRefresh(refresher){
+    let loading = this.loadingCtrl.create({
+      content: 'Updating Content...'
+    });
+    loading.present();
+    this.refreshProvider.prepareJsonList().subscribe((data) => {
+      this.favoriteProvider.favoriteAndOverwritePreviousItem(this.jsonStorageKey, data).then(() => {
+        loading.dismiss();
+        refresher.complete();
+        let loading2 = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: 'Success!',
+            duration: 500
+        });
+        loading2.present();
+        this.devotions = data.devotions;
+        console.log("updated successsssss ");
+        console.log(this.devotions);
+      });
+    }, errmess => {loading.dismiss(); refresher.complete(); this.refreshProvider.doAlert(); this.errMess = <any>errmess;})
+
+  }
 }

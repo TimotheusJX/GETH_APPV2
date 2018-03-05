@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ChurchInfoDesc } from '../../shared/churchInfoDesc';
-import { Observable } from 'rxjs/Observable';
-import { RestangularModule, Restangular } from 'ngx-restangular';
 import { FlashCardComponent } from '../../../components/flash-card/flash-card';
+import { FavoriteProvider } from '../../../pages/shared/monitoringStorage';
 
 /**
  * Generated class for the PopupfabmodalPage page.
@@ -17,21 +16,16 @@ import { FlashCardComponent } from '../../../components/flash-card/flash-card';
   templateUrl: 'popupfabmodal.html',
 })
 export class PopupfabmodalPage {
+  jsonStorageKey: string = 'appJsonList';
   churchInfo: ChurchInfoDesc;
   errMess: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public viewCtrl: ViewController,
-    private restangular: Restangular
-  ) {
-    this.getChurchInfo().subscribe((data) => {
-      console.log("churchInfo: ");
-      console.log(data);
-      this.churchInfo = data;
-    }, errmess => {this.churchInfo = null; this.errMess = <any>errmess});
-  }
+    public viewCtrl: ViewController, 
+    public favoriteProvider: FavoriteProvider
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PopupFabModalPage');
@@ -41,8 +35,17 @@ export class PopupfabmodalPage {
     this.viewCtrl.dismiss();
   }
 
-  getChurchInfo(): Observable<ChurchInfoDesc> {
-    return this.restangular.one('churchInfo').get();
+  //retrieve jsonList
+  ionViewWillEnter(){
+    this.getJsonList();
+  }
+
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("churchInfo: ");
+      console.log(data);
+      this.churchInfo = data.churchInfo;
+    })
   }
 
 }

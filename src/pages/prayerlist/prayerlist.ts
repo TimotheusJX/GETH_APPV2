@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Prayerlist } from '../shared/prayerlist';
-import { Observable } from 'rxjs/Observable';
 import { FileOpener } from '@ionic-native/file-opener';
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 /**
  * Generated class for the PrayerlistPage page.
  *
@@ -17,24 +16,28 @@ import { FileOpener } from '@ionic-native/file-opener';
   templateUrl: 'prayerlist.html',
 })
 export class PrayerlistPage {
+  jsonStorageKey: string = 'appJsonList';
   prayerlist: Prayerlist;
   pdfSrc: string;
-  errMess: string;
 
   constructor(
     public navCtrl: NavController,
-    private fileOpener: FileOpener, 
-    private restangular: Restangular, 
-    public navParams: NavParams) {
-      this.getPrayerList().subscribe((data) => {
-        console.log("prayerlist: ");
-        console.log(data);
-        this.prayerlist = data;
-      }, errmess => {this.prayerlist = null; this.errMess = <any>errmess});
+    private fileOpener: FileOpener,
+    public navParams: NavParams, 
+    public favoriteProvider: FavoriteProvider
+  ) {}
+
+  //retrieve jsonList
+  ionViewWillEnter(){
+    this.getJsonList();
   }
 
-  getPrayerList(): Observable<Prayerlist> {
-    return this.restangular.one('prayerlist').get();
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("prayerlists: ");
+      console.log(data.prayerlists);
+      this.prayerlist = data.prayerlists;
+    })
   }
 
   share(url: string){

@@ -15,6 +15,9 @@
  
 
 <ion-content fullscreen>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="searching" class="spinner-container">
       <ion-spinner></ion-spinner>
   </div>

@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Menuavatar } from '../shared/menuavatar';
-import { Observable } from 'rxjs/Observable';
-import { RestangularModule, Restangular } from 'ngx-restangular';
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 
 @IonicPage({})
 @Component({
@@ -10,19 +9,16 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
   templateUrl: 'menu.html',
 })
 export class MenuPage {
-
+  jsonStorageKey: string = 'appJsonList';
   homePage: any;
   menuavatar: Menuavatar;
-  errMess: string;
   @ViewChild('content') childNavCtrl: NavController;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private restangular: Restangular) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public favoriteProvider: FavoriteProvider) {
     this.homePage = 'HomePage';
-    this.getMenuAvatar().subscribe((data) => {
-      console.log(data);
-      //to replace url of image src assets/img/avatar/gbpc.png
-      this.menuavatar = data;
-    }, errmess => {this.menuavatar = null; this.errMess = <any>errmess});
+    console.log("i am in menu first........");
   }
 
   ionViewDidLoad() {
@@ -53,8 +49,16 @@ export class MenuPage {
     }
   }
 
-  getMenuAvatar(): Observable<Menuavatar> {
-    return this.restangular.one('menuavatar').get();
+  ionViewWillEnter(){
+    this.getJsonList();
+  }
+
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("menuavatar: ");
+      console.log(data);
+      this.menuavatar = data.menuavatar;
+    })
   }
 
 }

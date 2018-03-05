@@ -7,6 +7,7 @@ import { AudioPage } from '../pages/ondemand/audio/audio';
 import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
 import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
+import { RefresherProvider } from '../pages/shared/dragToRefresh';
 import { PopupfabmodalPage } from '../pages/aboutus/popupfabmodal/popupfabmodal';
 import { PlaylistPage } from '../pages/video/playlist/playlist';
 
@@ -15,8 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HTTP } from '@ionic-native/http';
 
 import { RestangularModule, Restangular } from 'ngx-restangular';
-//import { RestangularConfigFactory, RestangularVideoFactory, RESTANGULAR_VIDEO } from '../pages/shared/restConfig';
-import { RestangularConfigFactory, RestangularRadioFactory, RESTANGULAR_RADIO } from '../pages/shared/restConfig';
+import { RestangularConfigFactory } from '../pages/shared/restConfig';
+//import { RestangularConfigFactory, RestangularRadioFactory, RESTANGULAR_RADIO } from '../pages/shared/restConfig';
 
 import { SharedModule } from './shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -30,6 +31,7 @@ import { Media, MediaObject } from '@ionic-native/media';
 import { HttpModule } from '@angular/http';
 import { YtProvider } from '../providers/yt/yt';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { Network } from '@ionic-native/network';
 //import { FlashCardComponent } from '../components/flash-card/flash-card';
 
 @NgModule({
@@ -67,11 +69,13 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
     Media,
     FileOpener,
     FavoriteProvider,
+    RefresherProvider,
     HTTP,
     YtProvider,
     YoutubeVideoPlayer,
-    {provide: RESTANGULAR_RADIO, useFactory:  RestangularRadioFactory, deps: [Restangular]},
+    //{provide: RESTANGULAR_RADIO, useFactory:  RestangularRadioFactory, deps: [Restangular]},
     BackgroundMode,
+    Network,
   ]
 })
 export class AppModule {}

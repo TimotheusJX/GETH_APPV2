@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, NavParams, ModalController, LoadingController, ItemSliding } from 'ionic-angular';
-import { RestangularModule, Restangular } from 'ngx-restangular';
 import { OnDemandItem } from '../../shared/onDemandItemDesc';
-import { Observable } from 'rxjs/Observable';
 import { AudioPage } from '../audio/audio';
 import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../../shared/monitoringStorage';
@@ -30,10 +28,11 @@ export class OndemandcategoriesPage {
   searchControl: FormControl;
   searchTerm: string = '';
   searching: any = false;
+  jsonStorageKey: string = 'appJsonList';
+  onDemandGrpData: any;
 
   constructor(
-    public navCtrl: NavController, 
-    private restangular: Restangular, 
+    public navCtrl: NavController,
     public navParams: NavParams, 
     public modalCtrl: ModalController,
     public favoriteProvider: FavoriteProvider,
@@ -51,6 +50,8 @@ export class OndemandcategoriesPage {
       this.storageKey = "men";
     }else if(key === 'youth'){
       this.storageKey = "youth";
+    }else if(key === 'sundaysermon'){
+      this.storageKey = "sundaysermon";
     }
     //assign directory
     this.platform.ready().then(() => {
@@ -64,12 +65,20 @@ export class OndemandcategoriesPage {
   }
   
   prepareData(){
-    this.getItems(this.page).subscribe((data) => {
-      console.log(data);
+    this.getJsonList().then((data) => {
+      if(this.page === "OndemandmenPage"){
+        this.onDemandGrpData = data.OnDemand_men;
+      }else if(this.page === "OndemandwomenPage"){
+        this.onDemandGrpData = data.OnDemand_women;
+      }else if(this.page === "OndemandyouthPage"){
+        this.onDemandGrpData = data.OnDemand_youth;
+      }else if(this.page === "SundaySermonPage"){
+        this.onDemandGrpData = data.OnDemand_sundaysermon;
+      }
       //set isFavorite to true if item already downloaded, else set false
       this.favoriteProvider.getAllFavoriteItems(this.storageKey).then(result => {
         if (result) {
-          for(let item of data){
+          for(let item of this.onDemandGrpData){
             if(result.indexOf(item.title) != -1){
               item.isFavorite = true;
             }else{
@@ -78,19 +87,13 @@ export class OndemandcategoriesPage {
           }
         }
       })
-      this.onDemandItems = data;
-      this.currentODItems = data;
+      this.onDemandItems = this.onDemandGrpData;
+      this.currentODItems = this.onDemandGrpData;
     }, errmess => {this.onDemandItems = null; this.currentODItems = null; this.errMess = <any>errmess});
   }
 
-  getItems(page): Observable<OnDemandItem[]> {
-    if(page === "OndemandmenPage"){
-      return this.restangular.all('OnDemand_men').getList();
-    }else if(page === "OndemandwomenPage"){
-      return this.restangular.all('OnDemand_women').getList();
-    }else if(page === "OndemandyouthPage"){
-      return this.restangular.all('OnDemand_youth').getList();
-    }
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey);
   }
 
   ionViewDidLoad() {
@@ -101,15 +104,6 @@ export class OndemandcategoriesPage {
     this.navCtrl.push(AudioPage, item);
   }
 
-/*  openModal(item) {
-    console.log("this is items" + item);
-    let modal = this.modalCtrl.create(AudioPage, item, { cssClass: 'inset-modal' });
-    modal.onDidDismiss(() => {
-      this.prepareData();
-    });
-    modal.present();
-  }
-*/
   removeDownloadedItem(event, item, slidingItem:ItemSliding){
     let audioTitle: string = item.title;
     this.platform.ready().then(() => {
@@ -151,12 +145,8 @@ export class OndemandcategoriesPage {
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
-//      this.getItems(this.page).subscribe((data) => {
-        //set isFavorite to true if item already downloaded, else set false
-        
-        this.onDemandItems = this.currentODItems;
-        this.searchItems();
-//      }, errmess => {this.onDemandItems = null; this.errMess = <any>errmess});
+      this.onDemandItems = this.currentODItems;
+      this.searchItems();
     });
   }
 

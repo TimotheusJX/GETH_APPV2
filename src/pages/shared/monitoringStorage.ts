@@ -40,5 +40,8 @@ export class FavoriteProvider {
     getAllFavoriteItems(storageKey) {
         return this.storage.get(storageKey);
     }
-
+    //set storageKey with only one item and overwrite any previous record
+    favoriteAndOverwritePreviousItem(storageKey, item){
+        return this.storage.set(storageKey, item);
+    }
 }

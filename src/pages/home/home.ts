@@ -1,34 +1,22 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, AlertController, NavController, Slides } from 'ionic-angular';
-import { RestangularModule, Restangular } from 'ngx-restangular';
+import { IonicPage, NavController, Slides } from 'ionic-angular';
 
-import { FeaturedItems } from '../shared/featuredItems';
-
-import { Observable } from 'rxjs/Observable';
 @IonicPage({})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  
+  storageKey: string = "appJsonList";
 
   @ViewChild('slider') slider: Slides;
 
   slideEffect = "coverflow";
 
-  slides: FeaturedItems[];
   errMess: string;    
 
-  constructor(public navCtrl: NavController, private restangular: Restangular, public alertCtrl: AlertController) {
-    this.getFeaturedItems().subscribe((data) => {
-      console.log(data);
-      this.slides = data;
-    }, errmess => {this.slides = null; this.errMess = <any>errmess});
-  }
-
-  getFeaturedItems(): Observable<FeaturedItems[]> {
-    return this.restangular.all('featuredItems').getList();
-  }
+  constructor(public navCtrl: NavController) {}
 
   onSlideChanged() {
     let currentIndex = this.slider.getActiveIndex();

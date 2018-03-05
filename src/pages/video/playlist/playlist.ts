@@ -32,8 +32,8 @@ export class PlaylistPage {
   ){
     this.searchControl = new FormControl();
     this.listId = this.navParams.get('id');
-    this.ytProvider.getCredentials().subscribe((data) => {
-      this.apiKey = data.apiKey;
+    this.ytProvider.prepareCredentials().then((data) =>{
+      this.apiKey = data.videoCredential[0].apiKey;
       this.searchPlaylistVideos();
     }, errmess => {this.errMess = <any>errmess});
   }

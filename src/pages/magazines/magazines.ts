@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, Platform, NavController, NavParams, LoadingController, ItemSliding } from 'ionic-angular';
-import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Magazines } from '../shared/magazines';
-import { Observable } from 'rxjs/Observable';
 import { ViewmagazinePage } from '../magazines/viewmagazine/viewmagazine';
 import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../shared/monitoringStorage';
 import { FormControl } from '@angular/forms';
+import { RefresherProvider } from '../shared/dragToRefresh';
 
 @IonicPage({})
 @Component({
@@ -25,15 +24,16 @@ export class MagazinesPage {
   searchControl: FormControl;
   searchTerm: string = '';
   searching: any = false;
+  jsonStorageKey: string = 'appJsonList';
 
   constructor(
-    public navCtrl: NavController, 
-    private restangular: Restangular, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private file: File,
     public platform: Platform,
     public favoriteProvider: FavoriteProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public refreshProvider: RefresherProvider) {
     this.searchControl = new FormControl();
     // assign storage directory
     this.platform.ready().then(() => {
@@ -48,14 +48,14 @@ export class MagazinesPage {
 
   prepareData(){
     //prepare magazine data
-    this.getMagazines().subscribe((data) => {
-      console.log("magazines: " + data);
+    this.getJsonList().then((data) =>{
+      console.log("magazines: " + data.magazines);
       //set isFavorite to true if item already downloaded, else set false
       this.favoriteProvider.getAllFavoriteItems(this.storageKey).then(result => {
         if (result) {
           console.log("value of result: ");
           console.log(result);
-          for(let item of data){
+          for(let item of data.magazines){
             if(result.indexOf(item.title) != -1){
               item.isFavorite = true;
             }else{
@@ -64,13 +64,13 @@ export class MagazinesPage {
           }
         }
       })
-      this.magazines = data;
-      this.currentMag = data;
+      this.magazines = data.magazines;
+      this.currentMag = data.magazines;
     }, errmess => {this.magazines = null; this.currentMag = null; this.errMess = <any>errmess});
   }
 
-  getMagazines(): Observable<Magazines[]> {
-    return this.restangular.all('magazines').getList();
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey);
   }
 
   itemTapped(event, item) {
@@ -133,5 +133,42 @@ export class MagazinesPage {
         return item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
       });  
     }
+  }
+
+  doRefresh(refresher){
+    let loading = this.loadingCtrl.create({
+      content: 'Updating Content...'
+    });
+    loading.present();
+    this.refreshProvider.prepareJsonList().subscribe((data) => {
+      this.favoriteProvider.favoriteAndOverwritePreviousItem(this.jsonStorageKey, data).then(() => {
+        loading.dismiss();
+        refresher.complete();
+        let loading2 = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: 'Success!',
+            duration: 500
+        });
+        loading2.present();
+        //set isFavorite to true if item already downloaded, else set false
+        this.favoriteProvider.getAllFavoriteItems(this.storageKey).then(result => {
+          if (result) {
+            console.log("value of result: ");
+            console.log(result);
+            for(let item of data.magazines){
+              if(result.indexOf(item.title) != -1){
+                item.isFavorite = true;
+              }else{
+                item.isFavorite = false;
+              }
+            }
+          }
+        })
+        this.magazines = data.magazines;
+        this.currentMag = data.magazines;
+        console.log("updated successsssss ");
+        console.log(this.magazines);
+      });
+    }, errmess => {this.magazines = null; this.currentMag = null; loading.dismiss(); refresher.complete(); this.refreshProvider.doAlert(); this.errMess = <any>errmess;})
   }
 }

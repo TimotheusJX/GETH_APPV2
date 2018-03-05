@@ -2,12 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { IonicPage, Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { RestangularModule, Restangular } from 'ngx-restangular';
-import { RESTANGULAR_RADIO } from '../shared/restConfig';
 import { Observable } from 'rxjs/Observable';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import { RadioPlaylist } from '../shared/radioPlaylist';
 import { Radiolinks } from '../shared/radiolinks';
 import { BackgroundMode } from '@ionic-native/background-mode';
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 
 @IonicPage({})
 @Component({
@@ -23,13 +23,14 @@ export class RadioPage {
   private alive: boolean;
   private interval: number;
   errMess: string;
+  jsonStorageKey: string = 'appJsonList';
 
   constructor(
     private media: Media,  
     public backgroundMode : BackgroundMode,
     public platform: Platform,
-    @Inject(Restangular) public Restangular,
-    @Inject(RESTANGULAR_RADIO) public RestangularRadio
+    public restangular: Restangular, 
+    public favoriteProvider: FavoriteProvider
   ) {
     this.alive = true;
     this.interval = 5000;
@@ -41,7 +42,7 @@ export class RadioPage {
       .subscribe(() => {
         this.prepareRadioDetail().subscribe((data) => {
           //first insertion radioplaylist is null, subsequent change only update when current title changes
-          console.log("detail");
+          console.log("radio items detail: ");
           console.log(data);
           if(this.radioplaylist == null){
             this.radioplaylist = data.radioplaylist;
@@ -50,13 +51,7 @@ export class RadioPage {
           }
         }, errmess => {this.radioplaylist = null; this.errMess = <any>errmess});
       });
-    this.prepareAudioFile().subscribe((data) => {
-      console.log("links: " + data);
-      this.radiolinks = data;
-      this.platform.ready().then(() => {
-        this.radio = this.media.create(this.radiolinks.radiolink);
-      })
-    }, errmess => {this.radiolinks = null; this.errMess = <any>errmess});
+    this.prepareAudioFile();
   }
   ngOnDestroy(){
     //console.log("destroy");
@@ -68,19 +63,21 @@ export class RadioPage {
     this.radio.stop();
     this.radio.release();
   }
-  
-  prepareAudioFile(): Observable<any> {
-  //  let url = "http://biblewitness.com:8000/listen.pls";
 
-  /*  this.platform.ready().then(() => {
-      this.radio = this.media.create(url);
-    })*/
-    return this.Restangular.one('radioresources').get();
+  prepareAudioFile(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("radioresources: ");
+      console.log(data);
+      this.radiolinks = data.radioresources;
+      this.platform.ready().then(() => {
+        this.radio = this.media.create(this.radiolinks.radiolink);
+      })
+    })
   }
 
   prepareRadioDetail(): Observable<any> {
     //console.log("start");
-    return this.RestangularRadio.one('db2').get();
+    return this.restangular.one('db2').get();
   }
 
   playRadio() {

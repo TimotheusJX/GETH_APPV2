@@ -1,4 +1,6 @@
 export class TestimoniesDesc {
-    front: {imageUrl: string, quote: string, name: string, identity: string};
-    back: {title: string, subtitle: string, content: string}
+    title: string;
+    created: {date: string, name: string};
+    fulltext: string;
+    icon: string;
 }

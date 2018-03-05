@@ -11,6 +11,9 @@
 
 
 <ion-content fullscreen padding *ngIf="devotions">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
   <timeline endIcon="bookmarks">
     <timeline-item *ngFor="let devotion of devotions">
       <timeline-time [time]="devotion.created"></timeline-time>

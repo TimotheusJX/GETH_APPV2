@@ -16,12 +16,12 @@ export class VideoPage {
   tempPlaylists: any[];
   errMess: string;
   apiKey:string;
-  channelId: string;
+  channelId: string; 
 
   constructor(public navCtrl: NavController, private ytProvider: YtProvider, private alertCtrl: AlertController) { 
-    this.ytProvider.getCredentials().subscribe((data) => {
-      this.apiKey = data.apiKey;
-      this.channelId = data.channelId;
+    this.ytProvider.prepareCredentials().then((data) =>{
+      this.apiKey = data.videoCredential[0].apiKey;
+      this.channelId = data.videoCredential[0].channelId;
       this.searchPlaylists();
     }, errmess => {this.errMess = <any>errmess});
   }

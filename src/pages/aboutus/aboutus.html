@@ -14,6 +14,9 @@
 </ion-header>
 
 <ion-content fullscreen elestic-header *ngIf="aboutUs">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <section class="pic-image"
             [ngStyle]="{ 'background-image': 'url(' + aboutUs.image + ')'}">
     <section class="pic-banner" padding>

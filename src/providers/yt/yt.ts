@@ -1,25 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { RestangularModule, Restangular } from 'ngx-restangular';
-import { Observable } from 'rxjs/Observable';
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
  
 @Injectable()
 export class YtProvider {
   errMess: string;
+  jsonStorageKey: string = 'appJsonList';
 
-  constructor(public http: Http, private restangular: Restangular) { 
-  }
+  constructor(
+    public http: Http,
+    public favoriteProvider: FavoriteProvider
+  ){}
 
   prepareCredentials(){
-    console.log("Init credentials for video.....");
-    this.getCredentials().subscribe((data) => {
-      return data;
-    }, errmess => {this.errMess = <any>errmess});
-  }
-
-  getCredentials(){
-    return this.restangular.one('videoCredential').get();
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey);
   }
  
   getPlaylistsForChannel(channelId, apiKey) {

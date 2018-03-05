@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AboutUsDesc } from '../shared/aboutusDesc';
-import { RestangularModule, Restangular } from 'ngx-restangular';
-import { Observable } from 'rxjs/Observable';
 import { PopupfabmodalPage } from './popupfabmodal/popupfabmodal';
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
+import { RefresherProvider } from '../shared/dragToRefresh';
 /**
  * Generated class for the AboutusPage page.
  *
@@ -17,31 +17,36 @@ import { PopupfabmodalPage } from './popupfabmodal/popupfabmodal';
   templateUrl: 'aboutus.html',
 })
 export class AboutusPage {
+  jsonStorageKey: string = 'appJsonList';
   aboutUs: AboutUsDesc;
-  errMess: string;
   expanded: any;
   contracted: any;
   showIcon = true;
   preload  = true;
+  errMess: string;
 
   constructor(
-    public navCtrl: NavController, 
-    private restangular: Restangular, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController) {
-    this.getAboutUs().subscribe((data) => {
-      //console.log("aboutUs: ");
-      //console.log(data[0]);
-      this.aboutUs = data;
-    }, errmess => {this.aboutUs = null; this.errMess = <any>errmess});
-  }
+    public modalCtrl: ModalController, 
+    public favoriteProvider: FavoriteProvider,
+    public refreshProvider: RefresherProvider,
+    public loadingCtrl: LoadingController
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AboutusPage');
   }
 
-  getAboutUs(): Observable<AboutUsDesc> {
-    return this.restangular.one('aboutus').get();
+  ionViewWillEnter(){
+    this.getJsonList();
+  }
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("aboutus: ");
+      console.log(data.aboutus);
+      this.aboutUs = data.aboutus;
+    })
   }
 
   expand() {
@@ -57,6 +62,27 @@ export class AboutusPage {
       });
       modal.present();
     },         200);
+  }
+
+  doRefresh(refresher){
+    let loading = this.loadingCtrl.create({
+      content: 'Updating Content...'
+    });
+    loading.present();
+    this.refreshProvider.prepareJsonList().subscribe((data) => {
+      this.favoriteProvider.favoriteAndOverwritePreviousItem(this.jsonStorageKey, data).then(() => {
+        loading.dismiss();
+        refresher.complete();
+        let loading2 = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: 'Success!',
+            duration: 500
+        });
+        loading2.present();
+        this.aboutUs = data.aboutUs;
+      });
+    }, errmess => {loading.dismiss(); refresher.complete(); this.refreshProvider.doAlert(); this.errMess = <any>errmess;})
+
   }
  
 }

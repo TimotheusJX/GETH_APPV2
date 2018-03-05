@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestangularModule, Restangular } from 'ngx-restangular';
-
-import { Observable } from 'rxjs/Observable';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { OnDemandCats } from '../shared/onDemandDesc';
 import { OndemandcategoriesPage } from './ondemandcategories/ondemandcategories';
-
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
+import { RefresherProvider } from '../shared/dragToRefresh';
 /**
  * Generated class for the OndemandPage page.
  *
@@ -18,33 +16,62 @@ import { OndemandcategoriesPage } from './ondemandcategories/ondemandcategories'
   templateUrl: 'ondemand.html',
 })
 export class OndemandPage {
-
-  onDemandCategories: OnDemandCats[];
+  jsonStorageKey: string = 'appJsonList';
+  onDemandCategories: OnDemandCats[] = [];
   errMess: string;
 
-  constructor(public navCtrl: NavController, private restangular: Restangular, public navParams: NavParams) {
-    this.getCategories().subscribe((data) => {
-      console.log(data);
-      this.onDemandCategories = data;
-    }, errmess => {this.onDemandCategories = null; this.errMess = <any>errmess});
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public favoriteProvider: FavoriteProvider,
+    public refreshProvider: RefresherProvider,
+    public loadingCtrl: LoadingController
+  ){}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OndemandPage');
+  //retrieve jsonList
+  ionViewWillEnter(){
+    this.getJsonList();
   }
-
-  getCategories(): Observable<OnDemandCats[]> {
-    return this.restangular.all('ondemandcats').getList();
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("ondemandcats: ");
+      console.log(data.ondemandcats);
+      this.onDemandCategories = data.ondemandcats;
+    })
   }
 
   itemTapped(event, item) {
-    if(item.page === "OndemandmenPage"){
+  /*  if(item.page === "OndemandmenPage"){
       this.navCtrl.push(OndemandcategoriesPage, item);
     }else if(item.page === "OndemandwomenPage"){
       this.navCtrl.push(OndemandcategoriesPage, item);
     }else if(item.page === "OndemandyouthPage"){
       this.navCtrl.push(OndemandcategoriesPage, item);
-    }
+    }*/
+    this.navCtrl.push(OndemandcategoriesPage, item);
+  }
+
+  doRefresh(refresher){
+    let loading = this.loadingCtrl.create({
+      content: 'Updating Content...'
+    });
+    loading.present();
+    this.refreshProvider.prepareJsonList().subscribe((data) => {
+      this.favoriteProvider.favoriteAndOverwritePreviousItem(this.jsonStorageKey, data).then(() => {
+        loading.dismiss();
+        refresher.complete();
+        let loading2 = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: 'Success!',
+            duration: 500
+        });
+        loading2.present();
+        this.onDemandCategories = data.ondemandcats;
+        console.log("updated successsssss ");
+        console.log(this.onDemandCategories);
+      });
+    }, errmess => {loading.dismiss(); refresher.complete(); this.refreshProvider.doAlert(); this.errMess = <any>errmess;})
+
   }
 
 }

@@ -1,40 +1,60 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
-import { RestangularModule, Restangular } from 'ngx-restangular';
-import { FlashCardComponent } from '../../components/flash-card/flash-card';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { TestimoniesDesc } from '../shared/testimoniesDesc';
-/**
- * Generated class for the TestimonyPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
+import { RefresherProvider } from '../shared/dragToRefresh';
+
 @IonicPage({})
 @Component({
   selector: 'page-testimony',
   templateUrl: 'testimony.html',
 })
 export class TestimonyPage {
-  testimonies: TestimoniesDesc[];
+  jsonStorageKey: string = 'appJsonList';
+  testimonies: TestimoniesDesc[] = [];
   errMess: string;
 
   constructor(    
     public navCtrl: NavController, 
-    public navParams: NavParams,
-    private restangular: Restangular
-  ) {
-    this.getTestimoniesInfo().subscribe((data) => {
-      console.log("testimonies: ");
-      console.log(data);
-      this.testimonies = data;
-    }, errmess => {this.testimonies = null; this.errMess = <any>errmess});
+    public navParams: NavParams, 
+    public favoriteProvider: FavoriteProvider,
+    public refreshProvider: RefresherProvider,
+    public loadingCtrl: LoadingController
+  ) {}
+
+  //retrieve jsonList
+  ionViewWillEnter(){
+    this.getJsonList();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TestimonyPage');
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("testimonies: ");
+      console.log(data.testimonies);
+      this.testimonies = data.testimonies;
+    })
   }
-  getTestimoniesInfo(): Observable<TestimoniesDesc[]> {
-    return this.restangular.all('testimonies').getList();
+
+  doRefresh(refresher){
+    let loading = this.loadingCtrl.create({
+      content: 'Updating Content...'
+    });
+    loading.present();
+    this.refreshProvider.prepareJsonList().subscribe((data) => {
+      this.favoriteProvider.favoriteAndOverwritePreviousItem(this.jsonStorageKey, data).then(() => {
+        loading.dismiss();
+        refresher.complete();
+        let loading2 = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: 'Success!',
+            duration: 500
+        });
+        loading2.present();
+        this.testimonies = data.testimonies;
+        console.log("updated successsssss ");
+        console.log(this.testimonies);
+      });
+    }, errmess => {loading.dismiss(); refresher.complete(); this.refreshProvider.doAlert(); this.errMess = <any>errmess;})
+
   }
 }
