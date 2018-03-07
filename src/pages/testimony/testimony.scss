@@ -10,15 +10,27 @@ page-testimony {
         background: rgba(0, 0, 0, 0.21) !important;
     }
 
-    /*.scroll-content {
-        padding-top: 45px !important;
-    }*/
-
     .style-header {
         margin-bottom: 7px;
     }
 
     .text-body {
         text-align: justify;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .style_span_first {
+        font-size: 15px;
+        font-weight: normal;
+    }
+
+    .style_span_second {
+        font-size: 13px !important;
+        font-family: Arial;
+    }
+
+    timeline .timeline timeline-item {
+        margin-top: 26px;
     }
 }

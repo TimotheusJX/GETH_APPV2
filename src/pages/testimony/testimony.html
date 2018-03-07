@@ -16,7 +16,7 @@
   <timeline endIcon="bookmarks">
     <timeline-item *ngFor="let testimony of testimonies">
       <timeline-time [time]="testimony.created"></timeline-time>
-      <ion-icon [name]="testimony.icon"></ion-icon>
+      <ion-icon name="quote"></ion-icon>
       <ion-card>
         <ion-card-content class="text-body">
           <h3 class="style-header">{{testimony.title}}</h3>

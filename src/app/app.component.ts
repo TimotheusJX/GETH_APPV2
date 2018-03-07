@@ -42,16 +42,16 @@ export class MyApp {
       this.network.onConnect().subscribe((data) => {
         //console.log("trying here");
         console.log(data);
-        this.displayNetworkUpdate(data.type);
+        this.displayOnlineUpdate(data.type);
         this.downloadJsonList();
       });
       //on disconnect, shows warning
       this.network.onDisconnect().subscribe((data) => {
         console.log(data);
-        this.displayNetworkUpdate(data.type);
+        this.displayOfflineUpdate(data.type);
         let loading3 = this.loadingCtrl.create({
           spinner: 'hide',
-          content: 'Certain functions may not perform as expected in offline mode.',
+          content: 'Certain functions may not perform as expected in offline mode :(',
           duration: 3000
         });
         loading3.present();
@@ -63,11 +63,19 @@ export class MyApp {
     return this.restangular.one('db').get();
   }
 
-  displayNetworkUpdate(connectionState: string){
+  displayOnlineUpdate(connectionState: string){
     let networkType = this.network.type;
     this.toast.create({
-      message: 'You are now ${connectionState} via ${networkType}.',
-      duration: 3000
+      message: 'You are now online.',
+      duration: 2000
+    }).present();
+  }
+
+  displayOfflineUpdate(connectionState: string){
+    let networkType = this.network.type;
+    this.toast.create({
+      message: 'You are now offline.',
+      duration: 2000
     }).present();
   }
 
