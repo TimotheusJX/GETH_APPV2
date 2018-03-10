@@ -79,7 +79,7 @@ export class AboutusPage {
             duration: 500
         });
         loading2.present();
-        this.aboutUs = data.aboutUs;
+        this.aboutUs = data.aboutus;
       });
     }, errmess => {loading.dismiss(); refresher.complete(); this.refreshProvider.doAlert(); this.errMess = <any>errmess;})
 

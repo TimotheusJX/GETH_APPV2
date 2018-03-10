@@ -78,7 +78,6 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
-    <engine name="ios" spec="^4.5.4" />
     <plugin name="cordova-plugin-advanced-http" spec="^1.10.1" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
@@ -95,4 +94,5 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <engine name="ios" spec="~4.5.4" />
 </widget>

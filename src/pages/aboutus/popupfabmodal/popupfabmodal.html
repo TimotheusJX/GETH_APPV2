@@ -9,7 +9,7 @@
   <ion-navbar transparent>
     <ion-buttons right>
       <button ion-button large strong (click)="dismiss(false)">
-          <ion-icon name="close"></ion-icon>
+          <ion-icon name="close" class="close_button_style"></ion-icon>
       </button>
     </ion-buttons>
     <ion-title>About Us</ion-title>
@@ -42,7 +42,7 @@
       </div>
     </ion-slide>
     <ion-slide>
-      <div class="header-image" [ngStyle]="{'background-image': 'url(' + churchInfo.headerImage +')'}"></div>
+      <div class="header-image"></div>
       <div class="main-content" text-wrap text-center>
         <div class="circular" [ngStyle]="{'background-image': 'url(' + churchInfo.circularImage +')'}"></div>
         <h2>{{churchInfo.churchName}}</h2>

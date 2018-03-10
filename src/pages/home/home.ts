@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides } from 'ionic-angular';
+import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 
 @IonicPage({})
 @Component({
@@ -8,7 +9,8 @@ import { IonicPage, NavController, Slides } from 'ionic-angular';
 })
 export class HomePage {
   
-  storageKey: string = "appJsonList";
+  jsonStorageKey: string = 'appJsonList';
+  slides: any[];
 
   @ViewChild('slider') slider: Slides;
 
@@ -16,10 +18,28 @@ export class HomePage {
 
   errMess: string;    
 
-  constructor(public navCtrl: NavController) {}
+  constructor(
+    public navCtrl: NavController,
+    public favoriteProvider: FavoriteProvider
+  ) {}
+
+  //retrieve jsonList
+  ionViewWillEnter(){
+    this.getJsonList();
+  }
+
+  getJsonList(): any {
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
+      console.log("featuredItems: ");
+      console.log(data.featuredItems);
+      this.slides = data.featuredItems;
+    })
+  }
 
   onSlideChanged() {
     let currentIndex = this.slider.getActiveIndex();
     console.log("Slide changed! Current index is", currentIndex);
   }
+
+
 }

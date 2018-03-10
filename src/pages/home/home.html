@@ -9,22 +9,13 @@
  
 <ion-content fullscreen>
   <ion-grid class="verticalAlignCentre">
-<!--    <ion-slides #slider autoplay="2000" effect="{{slideEffect}}" (ionSlideDidChange)="onSlideChanged()" *ngIf="slides && slides.length">
-      <ion-slide *ngFor="let slide of slides" [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
-        <h2>{{slide.title}}</h2>
-        <p> {{slide.description}} </p>
-      </ion-slide>
-    </ion-slides>-->
-    <ion-slides #slider autoplay="2000" effect="{{slideEffect}}" (ionSlideDidChange)="onSlideChanged()">
-      <ion-slide class="slide_1">
-      </ion-slide>
-      <ion-slide class="slide_2">
-      </ion-slide>
-      <ion-slide class="slide_3">
-      </ion-slide>
-      <ion-slide class="slide_4">
-      </ion-slide>
-      <ion-slide class="slide_5">
+    <ion-slides #slider autoplay="2000" effect="{{slideEffect}}" (ionSlideDidChange)="onSlideChanged()" *ngIf="slides">
+      <ion-slide *ngFor="let slide of slides">
+        <ion-row>
+          <ion-col col-12>
+            <img [src]="slide.imageUrl"/>
+          </ion-col>
+        </ion-row>
       </ion-slide>
     </ion-slides>
   </ion-grid>
