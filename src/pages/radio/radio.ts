@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { IonicPage, Platform, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, Platform, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Observable } from 'rxjs/Observable';
@@ -24,35 +24,81 @@ export class RadioPage {
   private interval: number;
   errMess: string;
   jsonStorageKey: string = 'appJsonList';
+  testRadioOpen = false;
 
   constructor(
     private media: Media,  
     public backgroundMode : BackgroundMode,
     public platform: Platform,
     public restangular: Restangular, 
-    public favoriteProvider: FavoriteProvider
+    public favoriteProvider: FavoriteProvider,
+    public alertCtrl: AlertController
   ) {
     this.alive = true;
     this.interval = 5000;
   }
 
   ngOnInit() {
-    TimerObservable.create(0, this.interval)
-      .takeWhile(() => this.alive)
-      .subscribe(() => {
-        this.prepareRadioDetail().subscribe((data) => {
-          //first insertion radioplaylist is null, subsequent change only update when current title changes
-          console.log("radio items detail: ");
-          console.log(data);
-          if(this.radioplaylist == null){
-            this.radioplaylist = data.radioplaylist;
-          }else if(this.radioplaylist != null && this.radioplaylist.current.title != data.radioplaylist.current.title){
-            this.radioplaylist = data.radioplaylist;
-          }
-        }, errmess => {this.radioplaylist = null; this.errMess = <any>errmess});
-      });
-    this.prepareAudioFile();
+    this.prepareAudioFile().then((data) => {
+      this.radiolinks = data.radioresources;
+      //set radio frequency
+      this.doRadioFreq(this.radiolinks);
+
+      TimerObservable.create(0, this.interval)
+        .takeWhile(() => this.alive)
+        .subscribe(() => {
+          this.prepareRadioDetail().subscribe((data) => {
+            //first insertion radioplaylist is null, subsequent change only update when current title changes
+            console.log("radio items detail: ");
+            console.log(data);
+            if(this.radioplaylist == null){
+              this.radioplaylist = data.radioplaylist;
+            }else if(this.radioplaylist != null && this.radioplaylist.current.title != data.radioplaylist.current.title){
+              this.radioplaylist = data.radioplaylist;
+            }
+          }, errmess => {this.radioplaylist = null; this.errMess = <any>errmess});
+        });
+    })
   }
+
+  doRadioFreq(radiolinks) {
+    const alert = this.alertCtrl.create();
+    alert.setTitle('Please select a radio frequency: ');
+    alert.addInput({
+      type: 'radio',
+      label: 'Normal',
+      value: this.radiolinks.radiolink,
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Good',
+      value: this.radiolinks.radiolink_1
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Best',
+      value: this.radiolinks.radiolink_2
+    });
+
+    alert.addButton({
+      text: 'Ok',
+      handler: (data: any) => {
+        console.log('Radio link chosen:', data);
+        this.testRadioOpen = false;
+        this.platform.ready().then(() => {
+          this.radio = this.media.create(data);
+        });
+      }
+    });
+
+    alert.present();
+  }
+
+
+
   ngOnDestroy(){
     //console.log("destroy");
     this.alive = false; // switches your TimerObservable off
@@ -65,14 +111,7 @@ export class RadioPage {
   }
 
   prepareAudioFile(): any {
-    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
-      console.log("radioresources: ");
-      console.log(data);
-      this.radiolinks = data.radioresources;
-      this.platform.ready().then(() => {
-        this.radio = this.media.create(this.radiolinks.radiolink);
-      })
-    })
+    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey);
   }
 
   prepareRadioDetail(): Observable<any> {
