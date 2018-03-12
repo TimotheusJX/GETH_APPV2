@@ -20,6 +20,7 @@ import { HTTP } from '@ionic-native/http';
 export class ViewmagazinePage {
   url: string;
   bookTitle: string;
+  savedBookTitle: string;
   storageDirectory: any;
   pdfSrc: string;
   storageKey: string;
@@ -38,6 +39,7 @@ export class ViewmagazinePage {
   ) {
     this.url = navParams.get('url');
     this.bookTitle = navParams.get('title');
+    this.savedBookTitle = this.bookTitle.replace(/[^0-9a-z]/gi, '');
     this.isFavorite = navParams.get('isFavorite');
     let key = navParams.get('key');
     //determine the storageKey to use
@@ -71,10 +73,10 @@ export class ViewmagazinePage {
       this.file.resolveDirectoryUrl(this.storageDirectory).then((resolvedDirectory) => {
         // inspired by: https://github.com/ionic-team/ionic-native/issues/1711
         console.log("resolved  directory: " + resolvedDirectory.nativeURL);
-        this.file.checkFile(resolvedDirectory.nativeURL, this.bookTitle + ".pdf").then((data) => {
+        this.file.checkFile(resolvedDirectory.nativeURL, this.savedBookTitle + ".pdf").then((data) => {
           if(data == true) {  // exist
             //open pdf file
-            this.pdfSrc = this.storageDirectory + this.bookTitle + '.pdf';
+            this.pdfSrc = this.storageDirectory + this.savedBookTitle + '.pdf';
 
           } else {  // not sure if File plugin will return false. go to download
             console.log("not found!");
@@ -96,7 +98,7 @@ export class ViewmagazinePage {
               this.url, 
               {}, 
               {}, 
-              resolvedDirectory.nativeURL + this.bookTitle + ".pdf"
+              resolvedDirectory.nativeURL + this.savedBookTitle + ".pdf"
             ).then((response) => {
                 // prints the filename
                 console.log(response.status);
@@ -107,7 +109,7 @@ export class ViewmagazinePage {
                 this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
                   this.isFavorite = true;
                 });
-                this.pdfSrc = resolvedDirectory.nativeURL + this.bookTitle + ".pdf";
+                this.pdfSrc = resolvedDirectory.nativeURL + this.savedBookTitle + ".pdf";
             }).catch(error => {
               console.log("Download error! " + error.status);
               loading.dismiss();

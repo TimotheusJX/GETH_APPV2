@@ -17,7 +17,7 @@
       <ion-col col-2></ion-col>
     </ion-row>
     <ion-row align-items-center justify-content-center>
-      <div id="current-song">{{filename}}</div>
+      <div id="current-song" [innerHTML]="filename"></div>
     </ion-row>
     <!-- control bar -->
     <div class="bar-position">

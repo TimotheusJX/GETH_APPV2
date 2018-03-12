@@ -1,7 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Menuavatar } from '../shared/menuavatar';
-import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 
 @IonicPage({})
 @Component({
@@ -11,14 +9,12 @@ import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 export class MenuPage {
   jsonStorageKey: string = 'appJsonList';
   homePage: any;
-  menuavatar: Menuavatar;
   @ViewChild('content') childNavCtrl: NavController;
 
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
-    public favoriteProvider: FavoriteProvider) {
+    public navParams: NavParams
+  ) {
     this.homePage = 'HomePage';
-    console.log("i am in menu first........");
   }
 
   ionViewDidLoad() {
@@ -47,18 +43,6 @@ export class MenuPage {
     }else if(pageName === "home"){
       this.childNavCtrl.setRoot('HomePage');
     }
-  }
-
-  ionViewWillEnter(){
-    this.getJsonList();
-  }
-
-  getJsonList(): any {
-    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
-      console.log("menuavatar: ");
-      console.log(data);
-      this.menuavatar = data.menuavatar;
-    })
   }
 
 }

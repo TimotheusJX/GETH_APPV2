@@ -11,7 +11,7 @@
   <ion-list [virtualScroll]="videosInPlaylist" approxItemHeight="40px" approxHeaderHeight="0px" approxFooterHeight="0px">
     <ion-item *virtualItem="let video" (click)="openVideo(video)">
       <ion-thumbnail item-start *ngIf="video.snippet.thumbnails">
-        <img [src]="video.snippet.thumbnails.default.url" onError="this.src='../../assets/img/avatar/gbpc2.jpeg';" alt="..." />
+        <img [src]="video.snippet.thumbnails.default.url" alt="..." />
       </ion-thumbnail>
       <h2 *ngIf="video.snippet.title">{{ video.snippet.title }}</h2>
       <p *ngIf="video.snippet.description">{{ video.snippet.description }}</p>

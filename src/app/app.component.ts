@@ -60,7 +60,7 @@ export class MyApp {
   }
 
   prepareJsonList(): Observable<any> {
-    return this.restangular.one('db').get();
+    return this.restangular.one('db').one('db').get();
   }
 
   displayOnlineUpdate(connectionState: string){

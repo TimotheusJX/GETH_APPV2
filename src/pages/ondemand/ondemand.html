@@ -11,7 +11,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>On Demand Audios</ion-title>
+    <ion-title>BWWR On Demands</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -23,6 +23,6 @@
     <ion-card *ngFor="let card of onDemandCategories" (click)="itemTapped($event, card)">
       <img [src]="card.imageUrl"/>
       <div class="card-title">{{card.title}}</div>
-      <div class="card-subtitle">{{card.subtitle}}</div>
+      <!--<div class="card-subtitle">{{card.subtitle}}</div>-->
     </ion-card>
 </ion-content>

@@ -3,16 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="prayerlist">{{prayerlist.date}}</ion-title>
+    <ion-title *ngIf="prayerlist">Prayer List</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content fullscreen padding *ngIf="prayerlist">
-  <ion-fab bottom right>
-    <button ion-fab class="pop-in" color="dark" (click)="share(prayerlist.url)">
-      <ion-icon ios="ios-share-outline" md="md-share"></ion-icon>
-    </button>
-  </ion-fab>
   <pdf-viewer [src]="prayerlist.url" [render-text]="true" [original-size]="false" [autoresize]="true" style="display: block; max-width: 1000px;">
   </pdf-viewer>
 </ion-content>

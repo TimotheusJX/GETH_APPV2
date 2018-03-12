@@ -23,7 +23,7 @@
         <span class="ribbon {{item.class}}" *ngIf="item.ribbontext != 'no'">
           <span>{{item.ribbontext}}</span>
         </span>
-        <h2>{{item.title}}</h2>
+        <h2 [innerHTML]="item.title"></h2>
         <p>{{item.broadcast}}</p>
         <button ion-button color="secondary" clear item-end *ngIf="item.isFavorite == true"><ion-icon name='star' is-active="false"></ion-icon></button>
       </ion-item>

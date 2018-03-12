@@ -6,12 +6,12 @@
 -->
 <ion-header no-border>
   <ion-navbar transparent>
-    <ion-title>{{bookTitle}}</ion-title>
+    <ion-title [innerHTML]="bookTitle"></ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content fullscreen padding>
   <ion-fab bottom right>
       <button ion-fab class="pop-in" color="dark" (click)="share()">
           <ion-icon ios="ios-share-outline" md="md-share"></ion-icon>

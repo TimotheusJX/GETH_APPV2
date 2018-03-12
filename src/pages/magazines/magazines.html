@@ -30,7 +30,7 @@
           </span>
           <img [src]="item.image">
         </ion-thumbnail>
-        <h2>{{item.title}}</h2>
+        <h2 [innerHTML]="item.title"></h2>
         <p>{{item.date}} {{item.description}}</p>
         <button ion-button color="secondary" clear item-end *ngIf="item.isFavorite == true"><ion-icon name='star' is-active="false"></ion-icon></button>
       </ion-item>

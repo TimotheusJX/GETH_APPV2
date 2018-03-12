@@ -79,18 +79,19 @@ export class MagazinesPage {
 
   removeDownloadedItem(event, item, slidingItem:ItemSliding){
     let bookTitle: string = item.title;
+    let savedBookTitle: string = item.title.replace(/[^0-9a-z]/gi, '');
     this.platform.ready().then(() => {
       this.file.resolveDirectoryUrl(this.storageDirectory).then((resolvedDirectory) => {
         // inspired by: https://github.com/ionic-team/ionic-native/issues/1711
         console.log("resolved  directory: " + resolvedDirectory.nativeURL);
-        this.file.checkFile(resolvedDirectory.nativeURL, bookTitle + ".pdf").then((data) => {
+        this.file.checkFile(resolvedDirectory.nativeURL, savedBookTitle + ".pdf").then((data) => {
           if(data == true) {  // exist
             let loading = this.loadingCtrl.create({
               content: 'Removing the PDF...'
             });
             loading.present();
             //delete pdf file
-            this.file.removeFile(resolvedDirectory.nativeURL, bookTitle + '.pdf').then((entry) => {
+            this.file.removeFile(resolvedDirectory.nativeURL, savedBookTitle + '.pdf').then((entry) => {
               //remove info from db as downloaded/favourite content
               this.favoriteProvider.unfavoriteItem(this.storageKey, bookTitle).then(() => {
                 item.isFavorite = false;

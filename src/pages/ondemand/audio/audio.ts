@@ -20,6 +20,7 @@ import { BackgroundMode } from '@ionic-native/background-mode';
 
 export class AudioPage {
   filename: any;
+  savedFilename: any;
   curr_playing_file: MediaObject;
   storageDirectory: any;
   url: any;
@@ -64,6 +65,7 @@ export class AudioPage {
       });
       this.url = navParams.get('url');
       this.filename = navParams.get('title');
+      this.savedFilename = this.filename.replace(/[^0-9a-z]/gi, '');
       let key = navParams.get('key');
       //determine the storageKey to use
       if(key === 'women'){
@@ -95,7 +97,7 @@ export class AudioPage {
       this.file.resolveDirectoryUrl(this.storageDirectory).then((resolvedDirectory) => {
         // inspired by: https://github.com/ionic-team/ionic-native/issues/1711
         console.log("resolved  directory: " + resolvedDirectory.nativeURL);
-        this.file.checkFile(resolvedDirectory.nativeURL, this.filename + ".mp3").then((data) => {
+        this.file.checkFile(resolvedDirectory.nativeURL, this.savedFilename + ".mp3").then((data) => {
           if(data == true) {  // exist
             this.getDurationAndSetToPlay();
           } else {  // not sure if File plugin will return false. go to download
@@ -118,7 +120,7 @@ export class AudioPage {
               this.url, 
               {}, 
               {}, 
-              resolvedDirectory.nativeURL + this.filename + ".mp3"
+              resolvedDirectory.nativeURL + this.savedFilename + ".mp3"
             ).then((response) => {
                 // prints the filename
                 console.log(response.status);
@@ -160,7 +162,7 @@ export class AudioPage {
   }
 
   getDurationAndSetToPlay() {
-    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.filename + ".mp3");
+    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.savedFilename + ".mp3");
     this.curr_playing_file.play();
     this.curr_playing_file.setVolume(0.0);  // you don't want users to notice that you are playing the file
     let self = this;
@@ -199,7 +201,7 @@ export class AudioPage {
   }
 
   setRecordingToPlay() {
-    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.filename + ".mp3");
+    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.savedFilename + ".mp3");
     this.curr_playing_file.onStatusUpdate.subscribe(status => {
       // 2: playing
       // 3: pause
@@ -232,6 +234,9 @@ export class AudioPage {
 
   playRecording() {
     this.enableBackgroundMode();
+    this.backgroundMode.on("activate").subscribe(()=>{
+      this.curr_playing_file.play();
+    });
     this.curr_playing_file.play();
   }
 

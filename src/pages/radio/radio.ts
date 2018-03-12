@@ -66,21 +66,21 @@ export class RadioPage {
     alert.setTitle('Please select a radio frequency: ');
     alert.addInput({
       type: 'radio',
-      label: 'Normal',
-      value: this.radiolinks.radiolink,
+      label: 'Low Bit-rate (48kpbs)',
+      value: this.radiolinks.radiolink_48KBPS,
       checked: true
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'Good',
-      value: this.radiolinks.radiolink_1
+      label: 'Medium Bit-rate (56kpbs)',
+      value: this.radiolinks.radiolink
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'Best',
-      value: this.radiolinks.radiolink_2
+      label: 'High Bit-rate (128kpbs)',
+      value: this.radiolinks.radiolink_128KBPS
     });
 
     alert.addButton({
@@ -121,6 +121,10 @@ export class RadioPage {
 
   playRadio() {
     this.enableBackgroundMode();
+    this.backgroundMode.on("activate").subscribe(()=>{
+      this.radio.play();
+      this.isStreaming = true;
+    });  
     this.radio.play();
     this.isStreaming = true;
   }

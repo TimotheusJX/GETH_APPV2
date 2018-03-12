@@ -1,7 +1,7 @@
 export class Radiolinks {
     avatarImg: string;
     radiolink: string;
-    radiolink_1: string;
-    radiolink_2: string;
+    radiolink_48KBPS: string;
+    radiolink_128KBPS: string;
     backgroundImg: string;
 }

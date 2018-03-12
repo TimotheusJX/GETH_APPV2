@@ -106,18 +106,19 @@ export class OndemandcategoriesPage {
 
   removeDownloadedItem(event, item, slidingItem:ItemSliding){
     let audioTitle: string = item.title;
+    let savedFileAudioTitle: string = item.title.replace(/[^0-9a-z]/gi, ''); //to replace all special characters
     this.platform.ready().then(() => {
       this.file.resolveDirectoryUrl(this.storageDirectory).then((resolvedDirectory) => {
         // inspired by: https://github.com/ionic-team/ionic-native/issues/1711
-        console.log("resolved  directory: " + resolvedDirectory.nativeURL);
-        this.file.checkFile(resolvedDirectory.nativeURL, audioTitle + ".mp3").then((data) => {
+        console.log("resolved  directory: " + resolvedDirectory.nativeURL + savedFileAudioTitle + ".mp3");
+        this.file.checkFile(resolvedDirectory.nativeURL, savedFileAudioTitle + ".mp3").then((data) => {
           if(data == true) {  // exist
             let loading = this.loadingCtrl.create({
               content: 'Removing the recording...'
             });
             loading.present();
             //delete pdf file
-            this.file.removeFile(resolvedDirectory.nativeURL, audioTitle + '.mp3').then((entry) => {
+            this.file.removeFile(resolvedDirectory.nativeURL, savedFileAudioTitle + '.mp3').then((entry) => {
               //remove info from db as downloaded/favourite content
               this.favoriteProvider.unfavoriteItem(this.storageKey, audioTitle).then(() => {
                 item.isFavorite = false;

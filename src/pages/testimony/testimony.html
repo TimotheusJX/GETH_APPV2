@@ -19,7 +19,7 @@
       <ion-icon name="quote"></ion-icon>
       <ion-card>
         <ion-card-content class="text-body">
-          <h3 class="style-header">{{testimony.title}}</h3>
+          <h3 class="style-header" [innerHTML]="testimony.title"></h3>
           <div class="textwrap">
             <div class="read-more">
               <div class="content" [innerHTML]="testimony.fulltext"></div>

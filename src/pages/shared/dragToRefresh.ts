@@ -18,7 +18,7 @@ export class RefresherProvider {
     ) {}
 
     prepareJsonList(): Observable<any> {
-        return this.restangular.one('db').get();
+        return this.restangular.one('db').one('db').get();
     }
 
     doAlert() {

@@ -40,11 +40,5 @@ export class PrayerlistPage {
     })
   }
 
-  share(url: string){
-    this.fileOpener.open(url, 'application/pdf')
-    .then(() => console.log('File is opened'))
-    .catch(e => console.log('Error openening file', e));
-  }
-
 }
  

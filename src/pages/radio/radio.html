@@ -27,10 +27,10 @@
         <ion-col col-2></ion-col>
       </ion-row>
       <ion-row align-items-center justify-content-center *ngIf="radioplaylist">
-        <div id="current-song">{{radioplaylist.current.title}}</div>
+        <div id="current-song" [innerHTML]="radioplaylist.current.title"></div>
       </ion-row>
       <ion-row align-items-center justify-content-center *ngIf="radioplaylist">
-        <div id="current-artist"><div id="sta">{{radioplaylist.current.artist}}</div></div>
+        <div id="current-artist"><div id="sta" [innerHTML]="radioplaylist.current.artist"></div></div>
       </ion-row>
       <ion-row align-items-center justify-content-center *ngIf="radioplaylist">
         <div id="time"><div id="fint">{{radioplaylist.current.timing}}</div></div>
@@ -52,10 +52,10 @@
           <div id="info">
             <div id="play" *ngIf="radioplaylist">
               <ion-row align-items-center justify-content-center>
-                <div id="next-title">Next: {{radioplaylist.next.title}}</div>
+                  <div id="next-title" [innerHTML]="radioplaylist.next.title"></div>
               </ion-row>
               <ion-row justify-content-center align-items-center>
-                <div id="next-artist">{{radioplaylist.next.artist}}</div>
+                <div id="next-artist" [innerHTML]="radioplaylist.next.artist"></div>
               </ion-row>
             </div>
           </div>
