@@ -23,7 +23,11 @@
         <flash-card *ngFor="let card of churchInfo.churchSessionAndStaff" >
           <div class="flash-card-front">
               <figure class="snip1574">
-                  <img [src]="card.front.image" alt="sample" />
+                  <ion-row>
+                      <ion-col col-12>
+                        <img [src]="card.front.image" alt="sample" />
+                      </ion-col>
+                  </ion-row>
                   <figcaption>
                     <h3>{{card.front.title}}</h3>
                     <h5 *ngIf="card.front.subtitle">{{card.front.subtitle}}</h5>
@@ -35,14 +39,18 @@
                 <h3>
                   {{card.back.title}} <span><h5>{{card.back.subtitle}}</h5></span>
                 </h3>
-                <p class="main-content" [innerHTML]="card.back.content"></p>
+                <ion-row>
+                  <ion-col col-12>
+                    <p class="main-content" [innerHTML]="card.back.content"></p>
+                  </ion-col>
+                </ion-row>
             </ion-scroll>
           </div>
         </flash-card>
       </div>
     </ion-slide>
     <ion-slide>
-      <div class="header-image"><img src="assets/img/misc/churchinfo.jpg"></div>
+      <div class="header-image"></div>
       <div class="main-content" text-wrap text-center>
         <div class="circular" [ngStyle]="{'background-image': 'url(' + churchInfo.circularImage +')'}"></div>
         <h2>{{churchInfo.churchName}}</h2>

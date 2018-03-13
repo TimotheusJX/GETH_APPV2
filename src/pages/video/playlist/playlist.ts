@@ -1,11 +1,10 @@
 import { YtProvider } from '../../../providers/yt/yt';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { FormControl } from '@angular/forms';
 
-@IonicPage()
 @Component({
   selector: 'page-playlist',
   templateUrl: 'playlist.html',

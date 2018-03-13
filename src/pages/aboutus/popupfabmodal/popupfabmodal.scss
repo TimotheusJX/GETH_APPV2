@@ -49,7 +49,7 @@ page-popupfabmodal {
     }
     //slide 2
     .header-image {
-        //background-image: url('assets/img/misc/churchinfo.jpg');
+        background-image: url(../assets/img/misc/churchinfo.jpg);
         height: 37vh;
         background-size: cover;
         background-position: center center;
@@ -101,7 +101,7 @@ page-popupfabmodal {
     .snip1574 {
         font-family: 'Lato', Arial, sans-serif;
         position: relative;
-        display: inline-block;
+        //display: inline-block;
         overflow: hidden;
         margin: 8px 0px;
         min-width: 250px;
@@ -132,7 +132,7 @@ page-popupfabmodal {
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 80px 10% 15%;
+        padding: 80px 10% 7%;
     }
 
     .snip1574 figcaption:before {
@@ -162,14 +162,16 @@ page-popupfabmodal {
         font-weight: 400;
         line-height: 24px;
         margin: 3px 0;
+        color: aliceblue;
     }
 
     .snip1574 h5 {
         font-weight: 400;
         margin: 0;
         text-transform: uppercase;
-        color: #bbb;
+        color: aliceblue;
         letter-spacing: 1px;
+        font-size: 14px;
     }
 
     //styling text body for back page
@@ -183,7 +185,7 @@ page-popupfabmodal {
         margin: 0 auto;
         text-align: justify;
         height:100%;
-        background: whitesmoke;
+        background: aliceblue;
     }
 
     .text-body h3{
@@ -194,6 +196,7 @@ page-popupfabmodal {
         -webkit-margin-end: 0px;
         font-weight: bold;
         margin-left: 2% !important;
+        width: 93%;
     }
 
     .text-body h5{
@@ -222,6 +225,10 @@ page-popupfabmodal {
 
     .adjustTop{
         margin-top: 22%;
+    }
+
+    .flash-card-front{
+        width: 100%;
     }
       
 }

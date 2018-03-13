@@ -122,6 +122,7 @@ export class RadioPage {
   playRadio() {
     this.enableBackgroundMode();
     this.backgroundMode.on("activate").subscribe(()=>{
+      console.log("radio activated.............");
       this.radio.play();
       this.isStreaming = true;
     });  
