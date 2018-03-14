@@ -2,9 +2,14 @@ page-prayerlist {
     @import url(https://fonts.googleapis.com/css?family=Lato:700);
     .prayerlist_style {
       font-family: "Lato", sans-serif;
-      background: url(../../assets/img/misc/dark_stripes.png);
+      //background: url(../../assets/img/misc/dark_stripes.png);
       text-align: center;
+      //height: 100%;
+    }
+
+    ion-grid {
       height: 100%;
+      justify-content: center;
     }
     
     .container {

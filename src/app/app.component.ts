@@ -103,7 +103,7 @@ export class MyApp {
         loading.dismiss();
         let loading2 = this.loadingCtrl.create({
           spinner: 'hide',
-          content: 'Success!',
+          content: 'Complete!',
           duration: 500
         });
         loading2.present();

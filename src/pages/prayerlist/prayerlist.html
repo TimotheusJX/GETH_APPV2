@@ -8,14 +8,18 @@
 </ion-header>
 
 <ion-content fullscreen padding class="prayerlist_style">
-  <ion-row align-items-center justify-content-center *ngIf="prayerlist">
+    <ion-grid>
+  <ion-row >
+    <ion-col text-center>
     <div class="container">
-      <div class="toggle">
+      <div class="toggle" *ngIf="prayerlist">
         <input type="checkbox" (change)="downloadPrayerlist($event, prayerlist.url)">
         <span class="button"></span>
         <span class="label"><ion-icon name="md-download"></ion-icon></span>
       </div>
     </div>
+    </ion-col>
   </ion-row>
+</ion-grid>
 </ion-content>
   
