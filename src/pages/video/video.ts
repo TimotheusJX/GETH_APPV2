@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController} from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { PlaylistPage } from './playlist/playlist';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+
 @IonicPage({})
 @Component({
   selector: 'page-video',
@@ -14,11 +16,12 @@ export class VideoPage {
   nextPageTokenString: string;
   errorMessage: string;
   tempPlaylists: any[];
-  errMess: string;
+  errMess: string; 
   apiKey:string;
   channelId: string; 
 
-  constructor(public navCtrl: NavController, private ytProvider: YtProvider, private alertCtrl: AlertController) { 
+  constructor(public navCtrl: NavController, private ytProvider: YtProvider, private alertCtrl: AlertController, private screenOrientation: ScreenOrientation) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT); 
     this.ytProvider.prepareCredentials().then((data) =>{
       this.apiKey = data.videoCredential[0].apiKey;
       this.channelId = data.videoCredential[0].channelId;

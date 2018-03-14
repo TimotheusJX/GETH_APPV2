@@ -5,7 +5,6 @@ import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic
 import { MyApp } from './app.component';
 import { AudioPage } from '../pages/ondemand/audio/audio';
 import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ondemandcategories';
-import { ViewmagazinePage } from '../pages/magazines/viewmagazine/viewmagazine';
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
 import { RefresherProvider } from '../pages/shared/dragToRefresh';
 import { PopupfabmodalPage } from '../pages/aboutus/popupfabmodal/popupfabmodal';
@@ -26,12 +25,14 @@ import { IonicStorageModule } from '@ionic/storage';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import { BackgroundMode } from '@ionic-native/background-mode';
-
+import { ViewPdfProvider } from '../pages/shared/viewmagazine';
 import { Media, MediaObject } from '@ionic-native/media';
 import { HttpModule } from '@angular/http';
 import { YtProvider } from '../providers/yt/yt';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { Network } from '@ionic-native/network';
+import { DocumentViewer } from '@ionic-native/document-viewer';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 //import { FlashCardComponent } from '../components/flash-card/flash-card';
 
 @NgModule({
@@ -39,7 +40,6 @@ import { Network } from '@ionic-native/network';
     MyApp,
     AudioPage,
     OndemandcategoriesPage,
-    ViewmagazinePage,
     PopupfabmodalPage,
     PlaylistPage,
   ],
@@ -57,7 +57,6 @@ import { Network } from '@ionic-native/network';
     MyApp,
     AudioPage,
     OndemandcategoriesPage,
-    ViewmagazinePage,
     PopupfabmodalPage,
     PlaylistPage,
   ],
@@ -76,6 +75,9 @@ import { Network } from '@ionic-native/network';
     //{provide: RESTANGULAR_RADIO, useFactory:  RestangularRadioFactory, deps: [Restangular]},
     BackgroundMode,
     Network,
+    DocumentViewer,
+    ViewPdfProvider,
+    ScreenOrientation,
   ]
 })
 export class AppModule {}

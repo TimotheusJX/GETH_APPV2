@@ -16,11 +16,11 @@ page-aboutus {
 
         .header-subtitle {
             display: block;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
         }
 
         .church-name {
-            font-size: 2.5rem;
+            font-size: 2.7rem;
         }
     }
     /* Content */
@@ -110,5 +110,9 @@ page-aboutus {
     ion-fab[top] {
         top: -55px;
         right: -7px;
+    }
+
+    .style_description{
+        font-size: 18px;
     }
 }

@@ -4,6 +4,7 @@ import { OnDemandCats } from '../shared/onDemandDesc';
 import { OndemandcategoriesPage } from './ondemandcategories/ondemandcategories';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 import { RefresherProvider } from '../shared/dragToRefresh';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 /**
  * Generated class for the OndemandPage page.
  *
@@ -25,11 +26,13 @@ export class OndemandPage {
     public navParams: NavParams, 
     public favoriteProvider: FavoriteProvider,
     public refreshProvider: RefresherProvider,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private screenOrientation: ScreenOrientation
   ){}
 
   //retrieve jsonList
   ionViewWillEnter(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.getJsonList();
   }
   getJsonList(): any {

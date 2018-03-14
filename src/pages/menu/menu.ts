@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage({})
 @Component({
@@ -11,9 +12,12 @@ export class MenuPage {
   homePage: any;
   @ViewChild('content') childNavCtrl: NavController;
 
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private screenOrientation: ScreenOrientation
   ) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.homePage = 'HomePage';
   }
 

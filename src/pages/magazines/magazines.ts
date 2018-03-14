@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, Platform, NavController, NavParams, LoadingController, ItemSliding } from 'ionic-angular';
+import { IonicPage, Platform, LoadingController, ItemSliding } from 'ionic-angular';
 import { Magazines } from '../shared/magazines';
-import { ViewmagazinePage } from '../magazines/viewmagazine/viewmagazine';
+import { ViewPdfProvider } from '../shared/viewmagazine';
 import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../shared/monitoringStorage';
 import { FormControl } from '@angular/forms';
 import { RefresherProvider } from '../shared/dragToRefresh';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage({})
 @Component({
@@ -27,13 +28,14 @@ export class MagazinesPage {
   jsonStorageKey: string = 'appJsonList';
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
     private file: File,
     public platform: Platform,
     public favoriteProvider: FavoriteProvider,
     public loadingCtrl: LoadingController,
-    public refreshProvider: RefresherProvider) {
+    public refreshProvider: RefresherProvider,
+    public viewPdfProvider: ViewPdfProvider,
+    private screenOrientation: ScreenOrientation
+  ) {
     this.searchControl = new FormControl();
     // assign storage directory
     this.platform.ready().then(() => {
@@ -74,7 +76,7 @@ export class MagazinesPage {
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(ViewmagazinePage, item);
+    this.viewPdfProvider.preparePdf(item);
   }
 
   removeDownloadedItem(event, item, slidingItem:ItemSliding){
@@ -99,7 +101,7 @@ export class MagazinesPage {
                 slidingItem.close();
               });
             }).catch(err_2 => {
-              console.log("Download error!");
+              console.log("error in remove!");
               loading.dismiss();
               console.log(err_2);
             });  
@@ -116,6 +118,7 @@ export class MagazinesPage {
   }
 
   ionViewWillEnter(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;

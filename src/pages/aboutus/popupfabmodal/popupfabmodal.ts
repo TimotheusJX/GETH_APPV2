@@ -3,13 +3,7 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ChurchInfoDesc } from '../../shared/churchInfoDesc';
 import { FlashCardComponent } from '../../../components/flash-card/flash-card';
 import { FavoriteProvider } from '../../../pages/shared/monitoringStorage';
-
-/**
- * Generated class for the PopupfabmodalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
   selector: 'page-popupfabmodal',
@@ -24,7 +18,8 @@ export class PopupfabmodalPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public viewCtrl: ViewController, 
-    public favoriteProvider: FavoriteProvider
+    public favoriteProvider: FavoriteProvider,
+    private screenOrientation: ScreenOrientation
   ) {}
 
   ionViewDidLoad() {
@@ -37,6 +32,7 @@ export class PopupfabmodalPage {
 
   //retrieve jsonList
   ionViewWillEnter(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.getJsonList();
   }
 

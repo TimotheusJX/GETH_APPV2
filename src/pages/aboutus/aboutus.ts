@@ -4,6 +4,7 @@ import { AboutUsDesc } from '../shared/aboutusDesc';
 import { PopupfabmodalPage } from './popupfabmodal/popupfabmodal';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 import { RefresherProvider } from '../shared/dragToRefresh';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 /**
  * Generated class for the AboutusPage page.
  *
@@ -31,7 +32,8 @@ export class AboutusPage {
     public modalCtrl: ModalController, 
     public favoriteProvider: FavoriteProvider,
     public refreshProvider: RefresherProvider,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private screenOrientation: ScreenOrientation
   ) {}
 
   ionViewDidLoad() {
@@ -39,6 +41,7 @@ export class AboutusPage {
   }
 
   ionViewWillEnter(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.getJsonList();
   }
   getJsonList(): any {

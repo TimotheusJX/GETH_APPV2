@@ -5,6 +5,7 @@ import { AudioPage } from '../audio/audio';
 import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../../shared/monitoringStorage';
 import { FormControl } from '@angular/forms';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 /**
  * Generated class for the OndemandcategoriesPage page.
  *
@@ -38,7 +39,9 @@ export class OndemandcategoriesPage {
     public favoriteProvider: FavoriteProvider,
     private file: File,
     public platform: Platform,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    private screenOrientation: ScreenOrientation
+  ) {
     this.searchControl = new FormControl();
     this.page = navParams.get('page');
     this.onDemandCategoryTitle = navParams.get('title');
@@ -143,6 +146,7 @@ export class OndemandcategoriesPage {
   }
 
   ionViewWillEnter(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;

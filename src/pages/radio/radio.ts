@@ -8,6 +8,7 @@ import { RadioPlaylist } from '../shared/radioPlaylist';
 import { Radiolinks } from '../shared/radiolinks';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage({})
 @Component({
@@ -32,8 +33,10 @@ export class RadioPage {
     public platform: Platform,
     public restangular: Restangular, 
     public favoriteProvider: FavoriteProvider,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private screenOrientation: ScreenOrientation
   ) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.alive = true;
     this.interval = 5000;
   }
@@ -62,7 +65,7 @@ export class RadioPage {
   }
 
   doRadioFreq(radiolinks) {
-    const alert = this.alertCtrl.create();
+    const alert = this.alertCtrl.create({enableBackdropDismiss: false});
     alert.setTitle('Please select a radio frequency: ');
     alert.addInput({
       type: 'radio',

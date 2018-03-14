@@ -3,12 +3,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="prayerlist">Prayer List</ion-title>
+    <ion-title>Prayer List</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content fullscreen padding *ngIf="prayerlist">
-  <pdf-viewer [src]="prayerlist.url" [render-text]="true" [original-size]="false" [autoresize]="true" style="display: block; max-width: 1000px;">
-  </pdf-viewer>
+<ion-content fullscreen padding class="prayerlist_style">
+  <ion-row align-items-center justify-content-center *ngIf="prayerlist">
+    <div class="container">
+      <div class="toggle">
+        <input type="checkbox" (change)="downloadPrayerlist($event, prayerlist.url)">
+        <span class="button"></span>
+        <span class="label"><ion-icon name="md-download"></ion-icon></span>
+      </div>
+    </div>
+  </ion-row>
 </ion-content>
   

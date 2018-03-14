@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { FormControl } from '@angular/forms';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
   selector: 'page-playlist',
@@ -27,7 +28,8 @@ export class PlaylistPage {
     private ytProvider: YtProvider, 
     private youtube: YoutubeVideoPlayer, 
     private plt: Platform,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private screenOrientation: ScreenOrientation
   ){
     this.searchControl = new FormControl();
     this.listId = this.navParams.get('id');
@@ -97,6 +99,7 @@ export class PlaylistPage {
 
 
   ionViewWillEnter(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
       this.videosInPlaylist = this.currentVideosInPlaylist;
