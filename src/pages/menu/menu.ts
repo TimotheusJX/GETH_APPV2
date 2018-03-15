@@ -38,8 +38,6 @@ export class MenuPage {
       this.childNavCtrl.setRoot('MagazinesPage');
     }else if(pageName === "video"){
       this.childNavCtrl.setRoot('VideoPage');
-    }else if(pageName === "prayerlist"){
-      this.childNavCtrl.setRoot('PrayerlistPage');
     }else if(pageName === "aboutus"){
       this.childNavCtrl.setRoot('AboutusPage');
     }else if(pageName === "testimonies"){

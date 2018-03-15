@@ -16,11 +16,11 @@ page-aboutus {
 
         .header-subtitle {
             display: block;
-            font-size: 1.25rem;
+            font-size: 1.45rem;
         }
 
         .church-name {
-            font-size: 2.7rem;
+            font-size: 2.75rem;
         }
     }
     /* Content */
@@ -113,6 +113,10 @@ page-aboutus {
     }
 
     .style_description{
-        font-size: 18px;
+        font-size: 19px;
+    }
+
+    .style_description p:first-child {
+        font-size: 13px;
     }
 }
