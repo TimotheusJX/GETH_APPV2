@@ -25,7 +25,7 @@
         </span>
         <h2 [innerHTML]="item.title"></h2>
         <p>{{item.broadcast}}</p>
-        <button ion-button color="secondary" clear item-end *ngIf="item.isFavorite == true"><ion-icon name='star' is-active="false"></ion-icon></button>
+        <button ion-button color="positive" clear item-end *ngIf="item.isFavorite == true"><ion-icon name='download' is-active="false"></ion-icon></button>
       </ion-item>
 
       <ion-item-options icon-start (ionSwipe)="removeDownloadedItem($event, item, slidingItem)" *ngIf="item.isFavorite == true">

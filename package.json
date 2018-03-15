@@ -77,7 +77,6 @@
       "cordova-plugin-media": {
         "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
       },
-      "cordova-plugin-console": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
@@ -91,7 +90,8 @@
       "cordova-plugin-background-mode": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-document-viewer": {},
-      "cordova-plugin-screen-orientation": {}
+      "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-console": {}
     },
     "platforms": [
       "ios"

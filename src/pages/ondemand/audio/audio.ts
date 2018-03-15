@@ -77,6 +77,8 @@ export class AudioPage {
         this.storageKey = "men";
       }else if(key === 'youth'){
         this.storageKey = "youth";
+      }else if(key === 'sundaysermon'){
+        this.storageKey = "sundaysermon";
       }
   }
 

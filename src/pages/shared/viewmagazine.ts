@@ -13,7 +13,7 @@ export class ViewPdfProvider {
   savedBookTitle: string;
   storageDirectory: any;
   pdfSrc: string;
-  storageKey: string;
+  storageKey: string = 'magazines';
   isFavorite: boolean;
 
   constructor(    
@@ -31,8 +31,6 @@ export class ViewPdfProvider {
     this.url = item.url;
     this.bookTitle = item.title;
     this.savedBookTitle = this.bookTitle.replace(/[^0-9a-z]/gi, '');
-    this.isFavorite = item.isFavorite;
-    this.storageKey = item.key;
     // assign storage directory
     this.platform.ready().then(() => {
       if(this.platform.is('ios')) {
@@ -81,7 +79,7 @@ export class ViewPdfProvider {
                 loading.dismiss();
                 //insert info into db as downloaded/favourite content
                 this.favoriteProvider.favoriteItem(this.storageKey, this.bookTitle).then(() => {
-                  this.isFavorite = true;
+                  item.isFavorite = true;
                 });
                 this.document.viewDocument(resolvedDirectory.nativeURL + this.savedBookTitle + ".pdf", 'application/pdf', {
                   documentView: { closeLabel: 'Back' },
