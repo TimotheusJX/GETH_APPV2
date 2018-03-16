@@ -15,8 +15,6 @@ export class HomePage {
 
   @ViewChild('slider') slider: Slides;
 
-  slideEffect = "coverflow";
-
   errMess: string;    
 
   constructor(
