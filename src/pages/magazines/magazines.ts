@@ -6,7 +6,7 @@ import { File } from '@ionic-native/file';
 import { FavoriteProvider } from '../shared/monitoringStorage';
 import { FormControl } from '@angular/forms';
 import { RefresherProvider } from '../shared/dragToRefresh';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+//import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage({})
 @Component({
@@ -34,7 +34,7 @@ export class MagazinesPage {
     public loadingCtrl: LoadingController,
     public refreshProvider: RefresherProvider,
     public viewPdfProvider: ViewPdfProvider,
-    private screenOrientation: ScreenOrientation
+    //private screenOrientation: ScreenOrientation
   ) {
     this.searchControl = new FormControl();
     // assign storage directory
@@ -118,7 +118,7 @@ export class MagazinesPage {
   }
 
   ionViewWillEnter(){
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;

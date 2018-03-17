@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides } from 'ionic-angular';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+//import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage({})
 @Component({
@@ -20,12 +20,12 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public favoriteProvider: FavoriteProvider,
-    private screenOrientation: ScreenOrientation
+    //private screenOrientation: ScreenOrientation
   ) {}
 
   //retrieve jsonList
   ionViewWillEnter(){
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.getJsonList();
   }
 

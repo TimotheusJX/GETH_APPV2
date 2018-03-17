@@ -17,26 +17,22 @@
 </ion-header>
 
 <ion-content no-bounce class="container" *ngIf="churchInfo">
-    <div class="adjustTop">
-  <ion-grid>
+  <div class="adjustTop">
     <ion-slides loop="true" centeredSlides="true" pager="true" paginationType="fraction" effect="flip" direction="horizontal">
       <ion-slide *ngFor="let card of churchInfo.churchSessionAndStaff">
-        <ion-row>
-          <ion-col>
-            <ion-card>
-              <ion-item>
-                <h2>{{card.front.title}}</h2>
-                <p>{{card.front.subtitle}}</p>
-              </ion-item>
-              <img [src]="card.front.image">
-              <ion-card-content class="styleText">
-                <p text-left [innerHTML]="card.back.content"></p>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+        <ion-card>
+          <ion-item>
+            <h2>{{card.front.title}}</h2>
+            <p>{{card.front.subtitle}}</p>
+          </ion-item>
+          <ion-row justify-content-center align-items-center>
+            <img [src]="card.front.image">
+          </ion-row>
+          <ion-card-content class="styleText">
+            <p text-left [innerHTML]="card.back.content"></p>
+          </ion-card-content>
+        </ion-card>
       </ion-slide>
     </ion-slides>
-  </ion-grid>
   </div>
 </ion-content>

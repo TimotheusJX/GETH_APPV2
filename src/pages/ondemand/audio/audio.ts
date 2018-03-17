@@ -6,7 +6,7 @@ import { FavoriteProvider } from '../../shared/monitoringStorage';
 import { HTTP } from '@ionic-native/http';
 import { Radiolinks } from '../../shared/radiolinks';
 import { BackgroundMode } from '@ionic-native/background-mode';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+//import { ScreenOrientation } from '@ionic-native/screen-orientation';
 /**
  * Generated class for the AudioPage page.
  *
@@ -56,7 +56,7 @@ export class AudioPage {
     private http: HTTP,
     private alertCtrl: AlertController,
     public backgroundMode : BackgroundMode,
-    private screenOrientation: ScreenOrientation
+    //private screenOrientation: ScreenOrientation
   ) {
       // assign storage directory
       this.platform.ready().then(() => {
@@ -83,7 +83,7 @@ export class AudioPage {
   }
 
   ionViewWillEnter(){
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.prepareAudioFile();
     this.getJsonList();
   }

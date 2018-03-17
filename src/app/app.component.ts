@@ -8,6 +8,7 @@ import { FavoriteProvider } from '../pages/shared/monitoringStorage';
 import { MenuPage } from '../pages/menu/menu';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Connection } from '@angular/http';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +28,9 @@ export class MyApp {
     private restangular: Restangular,
     public favoriteProvider: FavoriteProvider,
     public loadingCtrl: LoadingController,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private screenOrientation: ScreenOrientation
+  ) {
     this.initializeApp();
   }
 
@@ -37,6 +40,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       this.downloadJsonList();
       //on connect, refresh content
       this.network.onConnect().subscribe((data) => {

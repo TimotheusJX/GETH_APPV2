@@ -9,7 +9,7 @@
   <ion-navbar transparent>
     <ion-title>{{onDemandCategoryTitle}}</ion-title>
   </ion-navbar>
-  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" class="styleHeaderSearch"></ion-searchbar>
 </ion-header>
 
  
@@ -25,7 +25,7 @@
         </span>
         <h2 [innerHTML]="item.title"></h2>
         <p>{{item.broadcast}}</p>
-        <button ion-button color="positive" clear item-end *ngIf="item.isFavorite == true"><ion-icon name='download' is-active="false"></ion-icon></button>
+        <button ion-button large color="positive" clear item-end *ngIf="item.isFavorite == true"><ion-icon name='download' is-active="false"></ion-icon></button>
       </ion-item>
 
       <ion-item-options icon-start (ionSwipe)="removeDownloadedItem($event, item, slidingItem)" *ngIf="item.isFavorite == true">

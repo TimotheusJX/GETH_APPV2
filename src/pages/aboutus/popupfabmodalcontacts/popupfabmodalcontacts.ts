@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ChurchInfoDesc } from '../../shared/churchInfoDesc';
 import { FavoriteProvider } from '../../../pages/shared/monitoringStorage';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+//import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
   selector: 'page-popupfabmodalcontacts',
@@ -18,7 +18,7 @@ export class PopupfabmodalcontactsPage {
     public navParams: NavParams,
     public viewCtrl: ViewController, 
     public favoriteProvider: FavoriteProvider,
-    private screenOrientation: ScreenOrientation
+    //private screenOrientation: ScreenOrientation
   ) {}
 
   ionViewDidLoad() {
@@ -31,7 +31,7 @@ export class PopupfabmodalcontactsPage {
 
   //retrieve jsonList
   ionViewWillEnter(){
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.getJsonList();
   }
 

@@ -11,11 +11,7 @@
   <ion-grid class="verticalAlignCentre">
     <ion-slides #slider autoplay="3000" centeredSlides="true" pager="true" paginationType="fraction" effect="cube" loop="true" (ionSlideDidChange)="onSlideChanged()" *ngIf="slides">
       <ion-slide *ngFor="let slide of slides">
-        <ion-row>
-          <ion-col>
-            <img [src]="slide.imageUrl"/>
-          </ion-col>
-        </ion-row>
+        <img [src]="slide.imageUrl"/>
       </ion-slide>
     </ion-slides>
   </ion-grid>

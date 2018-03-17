@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { Exhortations } from '../shared/exhortationsDesc';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 import { RefresherProvider } from '../shared/dragToRefresh';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+//import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage({})
 @Component({
@@ -21,12 +21,12 @@ export class ExhortationsPage {
     public favoriteProvider: FavoriteProvider,
     public loadingCtrl: LoadingController,
     public refreshProvider: RefresherProvider,
-    private screenOrientation: ScreenOrientation
+    //private screenOrientation: ScreenOrientation
   ){}
 
   //retrieve jsonList
   ionViewWillEnter(){
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.getJsonList();
   }
 
