@@ -5,10 +5,10 @@ import { FavoriteProvider } from '../../../pages/shared/monitoringStorage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
-  selector: 'page-popupfabmodal',
-  templateUrl: 'popupfabmodal.html',
+  selector: 'page-popupfabmodalcontacts',
+  templateUrl: 'popupfabmodalcontacts.html',
 })
-export class PopupfabmodalPage {
+export class PopupfabmodalcontactsPage {
   jsonStorageKey: string = 'appJsonList';
   churchInfo: ChurchInfoDesc;
   errMess: string;
@@ -22,7 +22,7 @@ export class PopupfabmodalPage {
   ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupFabModalPage');
+    console.log('ionViewDidLoad PopupFabModalcontactsPage');
   }
 
   dismiss() {

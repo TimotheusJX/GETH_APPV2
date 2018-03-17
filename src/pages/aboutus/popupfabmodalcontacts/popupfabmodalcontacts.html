@@ -1,0 +1,46 @@
+
+<ion-header no-border>
+  <ion-navbar transparent>
+    <ion-buttons right>
+      <button ion-button large strong (click)="dismiss(false)">
+          <ion-icon name="close" class="close_button_style"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Contact Us</ion-title>
+  </ion-navbar>
+</ion-header>
+      
+<ion-content fullscreen parallax-header no-bounce class="container" *ngIf="churchInfo">
+  <div class="header-image"></div>
+  <div class="main-content" text-wrap text-center>
+    <div class="circular" [ngStyle]="{'background-image': 'url(' + churchInfo.circularImage +')'}"></div>
+    <h2>{{churchInfo.churchName}}</h2>
+    <p>{{churchInfo.worshipPlace}} &bull; {{churchInfo.worshipLocation}}</p>
+    <p class="profile-description">{{churchInfo.worshipTiming}}</p>
+    <hr>
+    <ion-list no-lines>
+        <ion-item>
+            <ion-icon item-start name="mail" color="primary"></ion-icon>
+            <p>Email</p>
+            {{churchInfo.email}}
+            <a button ion-button href="mailto:{{churchInfo.email}}" color="primary" item-end medium>Send</a>
+        </ion-item>
+        <ion-item>
+            <ion-icon item-start name="call" color="danger"></ion-icon>
+            <p>Tel</p>
+            {{churchInfo.phoneChurchOffice}}
+            <a button ion-button href="tel:{{churchInfo.phoneChurchOffice}}" color="danger" item-end medium>Call</a>
+        </ion-item>
+        <ion-item>
+            <ion-icon item-start name="pin" color="twitter"></ion-icon>
+            <p>Church Office</p>
+            {{churchInfo.churchOfficeAddress}}
+        </ion-item>
+        <ion-item>
+            <ion-icon item-start name="pin" color="twitter"></ion-icon>
+            <p>Church Worship Venue</p>
+            {{churchInfo.worshipPlaceAddress}}
+        </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

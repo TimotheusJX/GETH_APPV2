@@ -1,0 +1,248 @@
+page-popupfabmodalcontacts {
+    -moz-animation: fade-in .8s ease-in-out;
+    -webkit-animation: fade-in .8s ease-in-out;
+    animation: fade-in .8s ease-in-out;
+    @-moz-keyframes fade-in {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    @-webkit-keyframes fade-in {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    @keyframes fade-in {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
+    /*ion-icon {
+        color: white;
+        font-weight: bold;
+    }*/
+
+    .container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        margin: auto;
+    }
+
+    .scroll-content {
+        padding-top: 0px !important;
+    }
+
+    /* Header */
+    .toolbar-background {
+        border-color: transparent;
+        background: rgba(58, 119, 184, 0.927) !important;
+    }
+
+    .bar-button,
+    .toolbar-title {
+        color: white;
+    }
+
+    .close_button_style{
+        font-size: 41px !important;
+        color: white;
+        font-weight: 900;
+    }
+    //slide 2
+    .header-image {
+        background-image: url(../assets/img/misc/churchinfo.jpg);
+        height: 37vh;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        z-index: -2;
+    } 
+    .main-content {
+        margin-top: -20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 20px;
+        background-color: white;
+        -webkit-box-shadow: 0px 0px 55px -17px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 55px -17px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 55px -17px rgba(0, 0, 0, 0.75);
+        // background: #F5F5F5;
+        position: relative !important;
+        z-index: 0;
+        line-height: 1.6;
+    }
+    .circular {
+        width: 100px;
+        height: 100px;
+        position: inherit;
+        border-radius: 50%;
+        -webkit-border-radius: 150px;
+        -moz-border-radius: 150px;
+        border: solid white;
+        background: no-repeat;
+        background-size: 100%;
+        margin-top: -70px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: white;
+        // margin-bottom: 50px;
+    }
+    .profile-description {
+        font-size: 15px;
+        color: #888;
+    }
+
+    .swiper-slide { 
+        overflow-y: scroll; 
+        display: block; 
+    }
+//slide 1
+    @import url(https://fonts.googleapis.com/css?family=Lato);
+    @import url(https://fonts.googleapis.com/css?family=Oswald);
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+    .snip1574 {
+        font-family: 'Lato', Arial, sans-serif;
+        position: relative;
+        //display: inline-block;
+        overflow: hidden;
+        margin: 8px 0px;
+        min-width: 250px;
+        max-width: 100%;
+        //width: 100%;
+        background-color: #000000;
+        color: #ffffff;
+        text-align: center;
+        font-size: 16px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .snip1574 * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .snip1574 img {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: top;
+        opacity: 0.77;
+    }
+
+    .snip1574 figcaption {
+        position: absolute;
+        //top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 80px 10% 7%;
+    }
+
+    .snip1574 figcaption:before {
+        font-family: 'FontAwesome';
+        //content: "\201C";
+        position: absolute;
+        font-size: 170px;
+        opacity: 0.35;
+        font-style: normal;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        top: 0px;
+        left: 50%;
+    }
+
+    .snip1574 blockquote {
+        padding: 0;
+        margin: 0;
+        font-style: italic;
+        font-size: 1.2em;
+    }
+
+    .snip1574 h3 {
+        font-family: 'Oswald';
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        margin: 3px 0;
+        color: aliceblue;
+    }
+
+    .snip1574 h5 {
+        font-weight: 400;
+        margin: 0;
+        text-transform: uppercase;
+        color: aliceblue;
+        letter-spacing: 1px;
+        font-size: 14px;
+    }
+
+    //styling text body for back page
+    .main-content{
+        color: #666;
+    }
+
+    .text-body{
+        padding: 0;
+        min-width: 100%;
+        margin: 0 auto;
+        text-align: justify;
+        height:100%;
+        background: aliceblue;
+    }
+
+    .text-body h3{
+        display: block;
+        -webkit-margin-before: 0.67em;
+        -webkit-margin-after: 0.67em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        font-weight: bold;
+        margin-left: 2% !important;
+        width: 93%;
+    }
+
+    .text-body h5{
+        margin-top: 0px;
+    }
+
+
+    .text-body p{
+        display: block;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+        
+    //stylehr:nth-of-type(1):after { content: "\263c"; }
+    .styleScrollArea{
+        height: 100%;
+    }
+
+    .scroll-zoom-wrapper{
+        margin-right: 3%;
+        margin-left: 3%;
+        font-size: medium;
+    }
+
+    .adjustTop{
+        margin-top: 22%;
+    }
+
+    .verticalAlignCentre{
+        height: 100%;
+        justify-content: center;
+    }
+      
+}
+
+ion-modal {
+    .modal-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 0px !important;
+    }
+}

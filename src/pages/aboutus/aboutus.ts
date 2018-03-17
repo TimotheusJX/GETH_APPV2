@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AboutUsDesc } from '../shared/aboutusDesc';
 import { PopupfabmodalPage } from './popupfabmodal/popupfabmodal';
+import { PopupfabmodalcontactsPage } from './popupfabmodalcontacts/popupfabmodalcontacts';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 import { RefresherProvider } from '../shared/dragToRefresh';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -52,12 +53,27 @@ export class AboutusPage {
     })
   }
 
-  expand() {
+  expandEldersPage() {
     this.expanded = true;
     this.contracted = !this.expanded;
     this.showIcon = false;
     setTimeout(() => {
       const modal = this.modalCtrl.create(PopupfabmodalPage);
+      modal.onDidDismiss(data => {
+        this.expanded = false;
+        this.contracted = !this.expanded;
+        setTimeout(() => this.showIcon = true, 330);
+      });
+      modal.present();
+    },         200);
+  }
+
+  expandContactsPage() {
+    this.expanded = true;
+    this.contracted = !this.expanded;
+    this.showIcon = false;
+    setTimeout(() => {
+      const modal = this.modalCtrl.create(PopupfabmodalcontactsPage);
       modal.onDidDismiss(data => {
         this.expanded = false;
         this.contracted = !this.expanded;

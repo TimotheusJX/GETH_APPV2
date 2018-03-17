@@ -31,13 +31,22 @@
       </ion-row>
     </ion-grid>
   </section>
-  <ion-fab top right>
-    <button class="pop-in"
-            [ngClass]="{ 'expand' : expanded, 'contract': contracted }"
-            ion-fab mini
-            (click)="expand()">
-      <ion-icon [hidden]="!showIcon" name="ios-arrow-forward"></ion-icon>
-    </button>
+  <ion-fab bottom right >
+    <button ion-fab class="pop-in" color="danger"><ion-icon name="information-circle"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button class="pop-in"
+        [ngClass]="{ 'expand' : expanded, 'contract': contracted }"
+        ion-fab mini
+        (click)="expandEldersPage()" color="primary">
+        <ion-icon [hidden]="!showIcon" name="person"></ion-icon>
+      </button>
+      <button class="pop-in"
+        [ngClass]="{ 'expand' : expanded, 'contract': contracted }"
+        ion-fab mini
+        (click)="expandContactsPage()" color="secondary">
+        <ion-icon [hidden]="!showIcon" name="call"></ion-icon>
+      </button>
+    </ion-fab-list>
   </ion-fab>
 </ion-content>
   

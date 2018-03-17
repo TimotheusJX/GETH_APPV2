@@ -5,9 +5,6 @@ page-ondemandcategories {
     background-color: rgba(0, 0, 0, .5) !important;
     padding: 50px !important;
   }
-  .toolbar-background {
-    color: red !important;
-  }
   ion-modal.modal-wrapper {
     transform: translateY(30%) !important;
   }
@@ -119,17 +116,19 @@ page-ondemandcategories {
   /* Header */
   .toolbar-background {
       border-color: transparent;
-      background: rgba(0, 0, 0, 0.21) !important;
+      background: rgba(58, 119, 184, 0.927) !important;
   }
-
-  /*.scroll-content {
-      padding-top: 89px !important;
-  }*/
 
   .toolbar{
     padding-top: 0px;
     padding-bottom: 0px;
   }
+
+  .styleHeaderSearch {
+    transition: 0.3s linear;
+    background: rgba(58, 119, 184, 0.927);
+  }
+
 }
 
 ion-modal.inset-modal {

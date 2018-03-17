@@ -42,9 +42,6 @@ page-aboutus {
 
     .fab {
         transition: 1s all ease;
-        margin-top: 20rem !important;
-        margin-right: 3rem !important;
-        background: #00ccb2;
     }
 
     .expand {
@@ -104,12 +101,7 @@ page-aboutus {
     /* Header */
     .toolbar-background {
         border-color: transparent;
-        background: rgba(0, 0, 0, 0.21) !important;
-    }
-
-    ion-fab[top] {
-        top: -55px;
-        right: -7px;
+        background: rgba(58, 119, 184, 0.927) !important;
     }
 
     .style_description{

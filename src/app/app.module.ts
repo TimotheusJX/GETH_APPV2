@@ -8,6 +8,7 @@ import { OndemandcategoriesPage } from '../pages/ondemand/ondemandcategories/ond
 import { FavoriteProvider } from '../pages/shared/monitoringStorage';
 import { RefresherProvider } from '../pages/shared/dragToRefresh';
 import { PopupfabmodalPage } from '../pages/aboutus/popupfabmodal/popupfabmodal';
+import { PopupfabmodalcontactsPage } from '../pages/aboutus/popupfabmodalcontacts/popupfabmodalcontacts';
 import { PlaylistPage } from '../pages/video/playlist/playlist';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -33,7 +34,6 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { Network } from '@ionic-native/network';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-//import { FlashCardComponent } from '../components/flash-card/flash-card';
 
 @NgModule({
   declarations: [
@@ -41,6 +41,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     AudioPage,
     OndemandcategoriesPage,
     PopupfabmodalPage,
+    PopupfabmodalcontactsPage,
     PlaylistPage,
   ],
   imports: [
@@ -59,6 +60,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     OndemandcategoriesPage,
     PopupfabmodalPage,
     PlaylistPage,
+    PopupfabmodalcontactsPage,
   ],
   providers: [
     StatusBar,
