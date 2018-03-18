@@ -33,7 +33,7 @@ export class MagazinesPage {
     public favoriteProvider: FavoriteProvider,
     public loadingCtrl: LoadingController,
     public refreshProvider: RefresherProvider,
-    public viewPdfProvider: ViewPdfProvider,
+    public viewPdfProvider: ViewPdfProvider
     //private screenOrientation: ScreenOrientation
   ) {
     this.searchControl = new FormControl();

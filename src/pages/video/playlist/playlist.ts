@@ -47,6 +47,7 @@ export class PlaylistPage {
         this.nextPageTokenString = data.nextPageToken;
         this.getNextPageVideos();
       }else{
+        this.tempVideosInPlaylist.reverse();
         this.videosInPlaylist = this.tempVideosInPlaylist;
         this.currentVideosInPlaylist = this.tempVideosInPlaylist;
       }
@@ -62,18 +63,19 @@ export class PlaylistPage {
 
   //retrieve second page of videos
   getNextPageVideos(){
-    console.log("here 111 ");
+    //console.log("here 111 ");
     this.ytProvider.getNextListVideos(this.listId, this.nextPageTokenString, this.apiKey).subscribe((data) => {
-      console.log('videos2222: ', data);
+      //console.log('videos2222: ', data);
       if(data.hasOwnProperty('nextPageToken')){
         this.nextPageTokenString = data.nextPageToken;
         this.getNextPageVideos();
-        console.log("here 222");
+        //console.log("here 222");
       }
       for(let i=0; i<data.items.length; i++) {
         this.tempVideosInPlaylist.push(data.items[i]);
       }
       if(this.tempVideosInPlaylist.length === this.videoListSize){
+        this.tempVideosInPlaylist.reverse();
         this.videosInPlaylist = this.tempVideosInPlaylist;
         this.currentVideosInPlaylist = this.tempVideosInPlaylist;
         console.log("more itemssss: ");
