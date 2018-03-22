@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides } from 'ionic-angular';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
-//import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { ImageLoaderConfig } from 'ionic-image-loader';
 
 @IonicPage({})
 @Component({
@@ -20,12 +20,15 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public favoriteProvider: FavoriteProvider,
-    //private screenOrientation: ScreenOrientation
-  ) {}
+    private imageLoaderConfig: ImageLoaderConfig
+  ) {
+    this.imageLoaderConfig.enableSpinner(true);
+    this.imageLoaderConfig.setConcurrency(5);
+    this.imageLoaderConfig.setMaximumCacheAge(1 * 24 * 60 * 60 * 1000); //1 day
+  }
 
   //retrieve jsonList
   ionViewWillEnter(){
-    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.getJsonList();
   }
 

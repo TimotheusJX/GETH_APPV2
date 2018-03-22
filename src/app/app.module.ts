@@ -34,6 +34,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { Network } from '@ionic-native/network';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     PdfViewerModule,
     IonicStorageModule.forRoot(),
     HttpModule,
+    IonicImageLoader.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
