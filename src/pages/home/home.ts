@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, Slides } from 'ionic-angular';
+import { IonicPage, NavController, Slides, LoadingController } from 'ionic-angular';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
-import { ImageLoaderConfig } from 'ionic-image-loader';
+import { ImageLoaderConfig, ImageLoader } from 'ionic-image-loader';
 
 @IonicPage({})
 @Component({
@@ -20,30 +20,47 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public favoriteProvider: FavoriteProvider,
-    private imageLoaderConfig: ImageLoaderConfig
+    private imageLoaderConfig: ImageLoaderConfig,
+    private imageLoader: ImageLoader,
+    public loadingCtrl: LoadingController,
   ) {
     this.imageLoaderConfig.enableSpinner(true);
-    this.imageLoaderConfig.setConcurrency(5);
     this.imageLoaderConfig.setMaximumCacheAge(1 * 24 * 60 * 60 * 1000); //1 day
+    this.imageLoader.preload('http://gethsemanebpc.com/app/01_Feature.jpg');
+    this.imageLoader.preload('http://gethsemanebpc.com/app/02_Feature.jpg');
+    this.imageLoader.preload('http://gethsemanebpc.com/app/03_Feature.jpg');
+    this.imageLoader.preload('http://gethsemanebpc.com/app/04_Feature.jpg');
+    this.imageLoader.preload('http://gethsemanebpc.com/app/05_Feature.jpg');
   }
 
   //retrieve jsonList
-  ionViewWillEnter(){
-    this.getJsonList();
+  ionViewDidEnter(){
   }
 
-  getJsonList(): any {
-    return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
-      console.log("featuredItems: ");
-      console.log(data.featuredItems);
-      this.slides = data.featuredItems;
-    })
+  doRefresh(refresher){
+    let loading = this.loadingCtrl.create({
+      content: 'Updating Content...'
+    });
+    loading.present();
+
+    this.imageLoader.clearCache();
+    this.imageLoader.preload('http://gethsemanebpc.com/app/01_Feature.jpg');
+    this.imageLoader.preload('http://gethsemanebpc.com/app/02_Feature.jpg');
+    this.imageLoader.preload('http://gethsemanebpc.com/app/03_Feature.jpg');
+    this.imageLoader.preload('http://gethsemanebpc.com/app/04_Feature.jpg');
+    this.imageLoader.preload('http://gethsemanebpc.com/app/05_Feature.jpg');
+
+    let time_in_ms = 2000
+    let hideRefresherTimeout = setTimeout( () => {
+      refresher.complete();
+      loading.dismiss();
+      let loading2 = this.loadingCtrl.create({
+        spinner: 'hide',
+        content: 'Complete!',
+        duration: 500
+      });
+      loading2.present();
+    }, time_in_ms);
   }
-
-  onSlideChanged() {
-    let currentIndex = this.slider.getActiveIndex();
-    console.log("Slide changed! Current index is", currentIndex);
-  }
-
-
 }
+ 
