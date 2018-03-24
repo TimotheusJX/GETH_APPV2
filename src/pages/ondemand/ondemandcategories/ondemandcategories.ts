@@ -129,7 +129,7 @@ export class OndemandcategoriesPage {
                 slidingItem.close();
               });
             }).catch(err_2 => {
-              console.log("Download error!");
+              console.log("Remove error!");
               loading.dismiss();
               console.log(err_2);
             });  

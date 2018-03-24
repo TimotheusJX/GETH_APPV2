@@ -12,21 +12,21 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid class="verticalAlignCentre">
-    <ion-slides #slider autoplay="3000" centeredSlides="true" pager="true" paginationType="fraction" effect="cube">
-      <ion-slide>
-        <img-loader src="http://gethsemanebpc.com/app/01_Feature.jpg" useImg></img-loader>
+    <ion-slides autoplay="3000" centeredSlides="true" pager="true" paginationType="fraction" effect="cube" *ngIf="feature01 || feature02 || feature03 || feature04 || feature05">
+      <ion-slide *ngIf="feature01">
+        <img [src]="feature01" (error)="errorHandler($event, feature01)" />
       </ion-slide>
-      <ion-slide>
-        <img-loader src="http://gethsemanebpc.com/app/02_Feature.jpg" useImg></img-loader>
+      <ion-slide *ngIf="feature02">
+        <img [src]="feature02" (error)="errorHandler($event, feature02)" />
       </ion-slide>
-      <ion-slide>
-        <img-loader src="http://gethsemanebpc.com/app/03_Feature.jpg" useImg></img-loader>
+      <ion-slide *ngIf="feature03">
+        <img [src]="feature03" (error)="errorHandler($event, feature03)" />
       </ion-slide>  
-      <ion-slide>
-        <img-loader src="http://gethsemanebpc.com/app/04_Feature.jpg" useImg></img-loader>
+      <ion-slide *ngIf="feature04">
+        <img [src]="feature04" (error)="errorHandler($event, feature04)" />
       </ion-slide>
-      <ion-slide>
-        <img-loader src="http://gethsemanebpc.com/app/05_Feature.jpg" useImg></img-loader>
+      <ion-slide *ngIf="feature05">
+        <img [src]="feature05" (error)="errorHandler($event, feature05)" />
       </ion-slide>
     </ion-slides>
   </ion-grid>

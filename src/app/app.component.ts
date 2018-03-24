@@ -9,6 +9,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Connection } from '@angular/http';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { LoadHomeImagesProvider } from '../pages/shared/loadHomeImages';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +30,8 @@ export class MyApp {
     public favoriteProvider: FavoriteProvider,
     public loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private screenOrientation: ScreenOrientation
+    private screenOrientation: ScreenOrientation,
+    public loadHomeImagesProvider: LoadHomeImagesProvider
   ) {
     this.initializeApp();
   }
@@ -42,6 +44,7 @@ export class MyApp {
       this.splashScreen.hide();
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       this.downloadJsonList();
+      this.loadHomeImagesProvider.prepareImages();
       //on connect, refresh content
       this.network.onConnect().subscribe((data) => {
         //console.log("trying here");
@@ -68,7 +71,6 @@ export class MyApp {
   }
 
   displayOnlineUpdate(connectionState: string){
-    let networkType = this.network.type;
     this.toast.create({
       message: 'You are now online.',
       duration: 2000
@@ -76,7 +78,6 @@ export class MyApp {
   }
 
   displayOfflineUpdate(connectionState: string){
-    let networkType = this.network.type;
     this.toast.create({
       message: 'You are now offline.',
       duration: 2000
@@ -99,8 +100,8 @@ export class MyApp {
     loading.present();
 
     this.prepareJsonList().subscribe((data) => {
-      console.log("initial data: ");
-      console.log(data);
+      //console.log("initial data: ");
+      //console.log(data);
       //insert info into db as downloaded/favourite content
       this.favoriteProvider.favoriteAndOverwritePreviousItem(this.jsonStorageKey, data).then(() => {
         console.log("database updated..");

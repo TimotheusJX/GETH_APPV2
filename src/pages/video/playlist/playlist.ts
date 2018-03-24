@@ -1,7 +1,7 @@
 import { YtProvider } from '../../../providers/yt/yt';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { NavParams, Platform, AlertController } from 'ionic-angular';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { FormControl } from '@angular/forms';
 //import { ScreenOrientation } from '@ionic-native/screen-orientation';

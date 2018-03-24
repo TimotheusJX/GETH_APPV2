@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { IonicPage, Platform, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, Platform, AlertController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Observable } from 'rxjs/Observable';

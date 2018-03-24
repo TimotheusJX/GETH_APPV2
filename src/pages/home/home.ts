@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, Slides, LoadingController } from 'ionic-angular';
-import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
-import { ImageLoaderConfig, ImageLoader } from 'ionic-image-loader';
+import { IonicPage, NavController, LoadingController, Platform, normalizeURL } from 'ionic-angular';
+import { LoadHomeImagesProvider } from '../shared/loadHomeImages';
+import { File } from '@ionic-native/file';
 
 @IonicPage({})
 @Component({
@@ -9,32 +9,34 @@ import { ImageLoaderConfig, ImageLoader } from 'ionic-image-loader';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  
-  jsonStorageKey: string = 'appJsonList';
-  slides: any[];
-
-  @ViewChild('slider') slider: Slides;
-
-  errMess: string;    
+  storageDirectory: any;
+  feature01: any; 
+  feature02: any;
+  feature03: any; 
+  feature04: any;
+  feature05: any;
 
   constructor(
+    private file: File,
     public navCtrl: NavController,
-    public favoriteProvider: FavoriteProvider,
-    private imageLoaderConfig: ImageLoaderConfig,
-    private imageLoader: ImageLoader,
     public loadingCtrl: LoadingController,
+    public loadHomeImagesProvider: LoadHomeImagesProvider,
+    public platform: Platform
   ) {
-    this.imageLoaderConfig.enableSpinner(true);
-    this.imageLoaderConfig.setMaximumCacheAge(1 * 24 * 60 * 60 * 1000); //1 day
-    this.imageLoader.preload('http://gethsemanebpc.com/app/01_Feature.jpg');
-    this.imageLoader.preload('http://gethsemanebpc.com/app/02_Feature.jpg');
-    this.imageLoader.preload('http://gethsemanebpc.com/app/03_Feature.jpg');
-    this.imageLoader.preload('http://gethsemanebpc.com/app/04_Feature.jpg');
-    this.imageLoader.preload('http://gethsemanebpc.com/app/05_Feature.jpg');
-  }
+    this.platform.ready().then(() => {
+      if(this.platform.is('ios')) {
+          this.storageDirectory = this.file.dataDirectory;
+      } else if(this.platform.is('android')) {
+          this.storageDirectory = this.file.externalDataDirectory;
+      }
 
-  //retrieve jsonList
-  ionViewDidEnter(){
+      this.feature01 = normalizeURL(this.storageDirectory + '01_Feature.jpg');
+      this.feature02 = normalizeURL(this.storageDirectory + '02_Feature.jpg');
+      this.feature03 = normalizeURL(this.storageDirectory + '03_Feature.jpg');
+      this.feature04 = normalizeURL(this.storageDirectory + '04_Feature.jpg');
+      this.feature05 = normalizeURL(this.storageDirectory + '05_Feature.jpg');
+
+    });
   }
 
   doRefresh(refresher){
@@ -43,12 +45,7 @@ export class HomePage {
     });
     loading.present();
 
-    this.imageLoader.clearCache();
-    this.imageLoader.preload('http://gethsemanebpc.com/app/01_Feature.jpg');
-    this.imageLoader.preload('http://gethsemanebpc.com/app/02_Feature.jpg');
-    this.imageLoader.preload('http://gethsemanebpc.com/app/03_Feature.jpg');
-    this.imageLoader.preload('http://gethsemanebpc.com/app/04_Feature.jpg');
-    this.imageLoader.preload('http://gethsemanebpc.com/app/05_Feature.jpg');
+    this.loadHomeImagesProvider.prepareImages();
 
     let time_in_ms = 2000
     let hideRefresherTimeout = setTimeout( () => {
@@ -60,7 +57,15 @@ export class HomePage {
         duration: 500
       });
       loading2.present();
-    }, time_in_ms);
+    }, time_in_ms); 
   }
+
+  errorHandler(event, itemUrl) {
+    setTimeout(() => {
+      event.target.src = itemUrl;
+    }, 1000);
+  }
+
+
 }
  

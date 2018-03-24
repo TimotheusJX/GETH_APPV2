@@ -27,6 +27,7 @@ import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { ViewPdfProvider } from '../pages/shared/viewmagazine';
+import { LoadHomeImagesProvider } from '../pages/shared/loadHomeImages';
 import { Media, MediaObject } from '@ionic-native/media';
 import { HttpModule } from '@angular/http';
 import { YtProvider } from '../providers/yt/yt';
@@ -34,7 +35,6 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { Network } from '@ionic-native/network';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [
@@ -52,8 +52,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     SharedModule,
     PdfViewerModule,
     IonicStorageModule.forRoot(),
-    HttpModule,
-    IonicImageLoader.forRoot()
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -81,6 +80,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     Network,
     DocumentViewer,
     ViewPdfProvider,
+    LoadHomeImagesProvider,
     ScreenOrientation,
   ]
 })
