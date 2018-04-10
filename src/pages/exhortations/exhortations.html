@@ -14,23 +14,16 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <timeline endIcon="bookmarks">
-    <timeline-item *ngFor="let exhortation of exhortations">
-      <timeline-time [time]="exhortation.created"></timeline-time>
-      <ion-icon name="bookmarks"></ion-icon>
-      <ion-card>
-        <ion-card-content class="text-body">
-          <h3 class="style-header" [innerHTML]="exhortation.title"></h3>
-          <div class="textwrap">
-            <div class="read-more">
-              <div class="content" [innerHTML]="exhortation.fulltext"></div>
-              <span data-read-more="+ read more" data-read-less="- show less" class="trigger" onclick="this.parentElement.classList.toggle('expanded')"></span>
-            </div>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </timeline-item>
-    
-  </timeline> 
-
+  <div id="wrapper">
+    <ion-slides #slider loop="true" effect="slide" direction="horizontal" zoom="true">
+      <ion-slide *ngFor="let exhortation of exhortations">
+        <ion-card>
+          <ion-card-content>
+            <h2 text-left [innerHTML]="exhortation.title"></h2>
+            <p text-left [innerHTML]="exhortation.fulltext"></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>

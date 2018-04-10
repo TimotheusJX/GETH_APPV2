@@ -1,6 +1,6 @@
 import { YtProvider } from './../../providers/yt/yt';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, AlertController, LoadingController} from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { PlaylistPage } from './playlist/playlist';
 //import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -18,20 +18,30 @@ export class VideoPage {
   tempPlaylists: any[];
   errMess: string; 
   apiKey:string;
-  channelId: string; 
+  channelId: string;
+  loadContent: any; 
 
   constructor(
     public navCtrl: NavController, 
     private ytProvider: YtProvider, 
-    private alertCtrl: AlertController, 
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     //private screenOrientation: ScreenOrientation
   ) {
+    this.loadContent = this.loadingCtrl.create({
+      content: 'loading...'
+    });
+    this.loadContent.present();
     //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT); 
     this.ytProvider.prepareCredentials().then((data) =>{
       this.apiKey = data.videoCredential[0].apiKey;
       this.channelId = data.videoCredential[0].channelId;
       this.searchPlaylists();
     }, errmess => {this.errMess = <any>errmess});
+  }
+
+  ionViewDidEnter(){
+    this.loadContent.dismiss();
   }
  
   searchPlaylists() {

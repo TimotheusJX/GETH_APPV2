@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, Slides } from 'ionic-angular';
 import { Exhortations } from '../shared/exhortationsDesc';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 import { RefresherProvider } from '../shared/dragToRefresh';
-//import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage({})
 @Component({
@@ -11,9 +11,11 @@ import { RefresherProvider } from '../shared/dragToRefresh';
   templateUrl: 'exhortations.html',
 })
 export class ExhortationsPage {
+  @ViewChild('slider') slider: Slides;
   jsonStorageKey: string = 'appJsonList';
   exhortations: Exhortations[] = [];
   errMess: string;
+  loadContent: any; 
 
   constructor(
     public navCtrl: NavController, 
@@ -21,13 +23,26 @@ export class ExhortationsPage {
     public favoriteProvider: FavoriteProvider,
     public loadingCtrl: LoadingController,
     public refreshProvider: RefresherProvider,
-    //private screenOrientation: ScreenOrientation
-  ){}
+    private screenOrientation: ScreenOrientation
+  ){
+    this.loadContent = this.loadingCtrl.create({
+      content: 'loading...'
+    });
+  }
 
   //retrieve jsonList
   ionViewWillEnter(){
-    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    this.screenOrientation.unlock();
+    this.loadContent.present();
     this.getJsonList();
+  }
+
+  ionViewDidEnter(){
+    this.loadContent.dismiss();
+  }
+
+  ionViewWillLeave(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
 
   getJsonList(): any {
@@ -58,7 +73,10 @@ export class ExhortationsPage {
         console.log(this.exhortations);
       });
     }, errmess => {loading.dismiss(); refresher.complete(); this.refreshProvider.doAlert(); this.errMess = <any>errmess;})
+  }
 
+  ngAfterViewInit() {
+    this.slider.autoHeight = true;
   }
 }
 

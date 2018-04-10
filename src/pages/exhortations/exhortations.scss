@@ -10,42 +10,37 @@ page-exhortations {
         background: rgba(58, 119, 184, 0.927) !important;
     }
 
-    .style-header{
-        margin-bottom: 9px;
-        font-size: 19px;
+    .swiper-slide:not(.swiper-slide-active) > div {
+        display:none;
     }
 
-    .text-body {
+    p, li {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-font-smoothing: antialiased !important;
+        text-rendering: optimizelegibility !important;
+        letter-spacing: .03em;
+        hyphens: auto;
         text-align: justify;
-        padding-left: 7px;
-        padding-right: 7px;
     }
 
-    .style_span_first {
-        font-size: 19px;
-        font-weight: 600;
+    .card p {
+        margin-top: 0.5em;
     }
 
-    .style_span_second {
-        font-size: 13px !important;
-        font-family: Arial;
-        margin-top: 3px;
+    .card h1 {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+        margin-top: 0.3em;
+        letter-spacing: .05em;
     }
 
-    .content p, div, h3, strong, u, ul, li {
-        font-size: 19px;
+    .card h2 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+        margin-top: 0.3em;
+        letter-spacing: .05em
     }
-
-    .content h2 {
-        font-size: 20px;
-    }
-
-    .content h1 {
-        font-size: 21px;
-    }
-
-    .card-ios h3{
-        font-size: 19px;
-    }
-
 }

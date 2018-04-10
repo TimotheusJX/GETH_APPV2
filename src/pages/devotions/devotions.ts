@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, Slides } from 'ionic-angular';
 import { FavoriteProvider } from '../../pages/shared/monitoringStorage';
 import { Devotions } from '../shared/devotionsDesc';
 import { RefresherProvider } from '../shared/dragToRefresh';
-//import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage({})
 @Component({
@@ -11,21 +11,37 @@ import { RefresherProvider } from '../shared/dragToRefresh';
   templateUrl: 'devotions.html',
 })
 export class DevotionsPage {
+  @ViewChild('slider') slider: Slides;
+
   jsonStorageKey: string = 'appJsonList';
   devotions: Devotions[] = [];
   errMess: string;
+  loadContent: any; 
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public favoriteProvider: FavoriteProvider,
     public refreshProvider: RefresherProvider,
     public loadingCtrl: LoadingController,
-    //private screenOrientation: ScreenOrientation
-  ) {}
+    private screenOrientation: ScreenOrientation
+  ) {
+    this.loadContent = this.loadingCtrl.create({
+      content: 'loading...'
+    });
+  }
 
   ionViewWillEnter(){
-    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    this.screenOrientation.unlock();
+    this.loadContent.present();
     this.getJsonList();
+  }
+
+  ionViewDidEnter(){
+    this.loadContent.dismiss();
+  }
+
+  ionViewWillLeave(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
 
   getJsonList(): any {
@@ -56,6 +72,9 @@ export class DevotionsPage {
         console.log(this.devotions);
       });
     }, errmess => {loading.dismiss(); refresher.complete(); this.refreshProvider.doAlert(); this.errMess = <any>errmess;})
+  }
 
+  ngAfterViewInit() {
+    this.slider.autoHeight = true;
   }
 }

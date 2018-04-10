@@ -7,8 +7,8 @@
   </ion-navbar>
 </ion-header>
 <ion-content *ngIf="playlists" fullscreen>
-  <ion-list [virtualScroll]="playlists" approxItemHeight="40px" approxHeaderHeight="0px" approxFooterHeight="0px">
-    <ion-item *virtualItem="let list" (click)="openPlaylist(list.id)">
+  <ion-list>
+    <ion-item *ngFor="let list of playlists" detail-none (click)="openPlaylist(list.id)">
       <ion-thumbnail item-start>
         <img [src]="list.snippet.thumbnails.default.url" />
       </ion-thumbnail>

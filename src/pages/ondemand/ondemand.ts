@@ -20,6 +20,7 @@ export class OndemandPage {
   jsonStorageKey: string = 'appJsonList';
   onDemandCategories: OnDemandCats[] = [];
   errMess: string;
+  loadContent: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -28,13 +29,23 @@ export class OndemandPage {
     public refreshProvider: RefresherProvider,
     public loadingCtrl: LoadingController,
     //private screenOrientation: ScreenOrientation
-  ){}
+  ){
+    this.loadContent = this.loadingCtrl.create({
+      content: 'loading...'
+    });
+  }
 
   //retrieve jsonList
   ionViewWillEnter(){
+    this.loadContent.present();
     //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.getJsonList();
   }
+
+  ionViewDidEnter(){
+    this.loadContent.dismiss();
+  }
+
   getJsonList(): any {
     return this.favoriteProvider.getAllFavoriteItems(this.jsonStorageKey).then((data) =>{
       console.log("ondemandcats: ");

@@ -8,8 +8,8 @@
   <div *ngIf="searching" class="spinner-container">
       <ion-spinner></ion-spinner>
   </div>
-  <ion-list [virtualScroll]="videosInPlaylist" approxItemHeight="40px" approxHeaderHeight="0px" approxFooterHeight="0px">
-    <ion-item *virtualItem="let video" (click)="openVideo(video)">
+  <ion-list>
+    <ion-item *ngFor="let video of videosInPlaylist" detail-none (click)="openVideo(video)">
       <ion-thumbnail item-start *ngIf="video.snippet.thumbnails">
         <img [src]="video.snippet.thumbnails.default.url" alt="..." />
       </ion-thumbnail>

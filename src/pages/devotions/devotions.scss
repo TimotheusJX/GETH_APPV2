@@ -10,28 +10,21 @@ page-devotions {
         background: rgba(58, 119, 184, 0.927) !important;
     }
 
-    .style-header {
-        margin-bottom: 7px;
+    .swiper-slide:not(.swiper-slide-active) > div {
+        display:none;
     }
 
-    .text-body {
+    p {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-font-smoothing: antialiased !important;
+        text-rendering: optimizelegibility !important;
+        letter-spacing: .03em;
+        hyphens: auto;
         text-align: justify;
-        padding-left: 7px;
-        padding-right: 7px;
     }
 
-    .style_span_first {
-        font-size: 19px;
-        font-weight: 600;
-    }
-
-    .style_span_second {
-        font-size: 13px !important;
-        font-family: Arial;
-        margin-top: 3px;
-    }
-
-    .content p {
-        font-size: 19px;
+    .card p {
+        margin-top: 0.5em;
     }
 }

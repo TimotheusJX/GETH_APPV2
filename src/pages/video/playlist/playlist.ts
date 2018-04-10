@@ -1,7 +1,7 @@
 import { YtProvider } from '../../../providers/yt/yt';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { NavParams, Platform, AlertController } from 'ionic-angular';
+import { NavParams, Platform, AlertController, LoadingController } from 'ionic-angular';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { FormControl } from '@angular/forms';
 //import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -23,14 +23,20 @@ export class PlaylistPage {
   searching: any = false;
   errMess: string;
   apiKey:string;
+  loadContent: any; 
  
   constructor(private navParams: NavParams, 
     private ytProvider: YtProvider, 
     private youtube: YoutubeVideoPlayer, 
     private plt: Platform,
     private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     //private screenOrientation: ScreenOrientation
   ){
+    this.loadContent = this.loadingCtrl.create({
+      content: 'loading...'
+    });
+    this.loadContent.present();
     this.searchControl = new FormControl();
     this.listId = this.navParams.get('id');
     this.ytProvider.prepareCredentials().then((data) =>{
@@ -59,6 +65,10 @@ export class PlaylistPage {
       });
       alert.present();
     });
+  }
+
+  ionViewDidEnter(){
+    this.loadContent.dismiss();
   }
 
   //retrieve second page of videos

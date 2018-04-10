@@ -26,6 +26,7 @@ export class MagazinesPage {
   searchTerm: string = '';
   searching: any = false;
   jsonStorageKey: string = 'appJsonList';
+  loadContent: any;
 
   constructor(
     private file: File,
@@ -46,6 +47,9 @@ export class MagazinesPage {
       }
     });
     //this.prepareData();
+    this.loadContent = this.loadingCtrl.create({
+      content: 'loading...'
+    });
   }
 
   prepareData(){
@@ -119,12 +123,17 @@ export class MagazinesPage {
 
   ionViewWillEnter(){
     //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    this.loadContent.present();
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
       this.magazines = this.currentMag;
       this.searchItems();
     });
+  }
+
+  ionViewDidEnter(){
+    this.loadContent.dismiss();
   }
 
   onSearchInput(){

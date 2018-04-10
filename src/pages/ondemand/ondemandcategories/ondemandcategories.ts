@@ -31,6 +31,7 @@ export class OndemandcategoriesPage {
   searching: any = false;
   jsonStorageKey: string = 'appJsonList';
   onDemandGrpData: any;
+  loadContent: any;
 
   constructor(
     public navCtrl: NavController,
@@ -65,6 +66,9 @@ export class OndemandcategoriesPage {
       }
     });
     //this.prepareData();
+    this.loadContent = this.loadingCtrl.create({
+      content: 'loading...'
+    });
   }
   
   prepareData(){
@@ -147,12 +151,17 @@ export class OndemandcategoriesPage {
 
   ionViewWillEnter(){
     //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    this.loadContent.present();
     this.prepareData();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
       this.searching = false;
       this.onDemandItems = this.currentODItems;
       this.searchItems();
     });
+  }
+
+  ionViewDidEnter(){
+    this.loadContent.dismiss();
   }
 
   onSearchInput(){
