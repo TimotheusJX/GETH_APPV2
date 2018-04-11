@@ -14,7 +14,7 @@ page-exhortations {
         display:none;
     }
 
-    p, li {
+    p, li, h3 {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased !important;
         -moz-font-smoothing: antialiased !important;
@@ -22,25 +22,46 @@ page-exhortations {
         letter-spacing: .03em;
         hyphens: auto;
         text-align: justify;
-    }
-
-    .card p {
         margin-top: 0.5em;
+        text-shadow:0 0 1px transparent;
+        color: #131516;
     }
 
-    .card h1 {
-        font-size: 1.5em;
+    h1 {
         font-weight: bold;
         margin-bottom: 0.5em;
         margin-top: 0.3em;
         letter-spacing: .05em;
     }
 
-    .card h2 {
-        font-size: 1.2em;
+    h2 {
         font-weight: bold;
         margin-bottom: 0.5em;
         margin-top: 0.3em;
         letter-spacing: .05em
     }
+
+    // POP-IN (FLOAT ACTION BUTTON EFFECT) -------------
+    .pop-in {
+        animation: pop-in 0.65s;
+    }
+    @keyframes pop-in {
+        0% {
+            transform: scale(0); 
+        }
+        45% {
+            transform: scale(0);
+        }
+        90% {
+            transform: scale(1.15);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .styleFab {
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,.14), 0 4px 5px rgba(0,0,0,.1);
+    }
+    
 }

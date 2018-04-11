@@ -12,14 +12,23 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <ion-fab right top edge>
+    <button ion-fab class="pop-in styleFab" color="dark" (click)="clickMainFAB()">
+        FONT
+    </button>
+    <ion-fab-list>
+      <button ion-fab class="styleFab" (click)="increaseFontSize()"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab class="styleFab" (click)="decreaseFontSize()"><ion-icon name="remove"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
   <div id="wrapper">
-    <ion-slides #slider loop="true" effect="slide" direction="horizontal" zoom="true">
+    <ion-slides #slider pager="true" paginationType="fraction" loop="true" effect="slide" direction="horizontal">
       <ion-slide *ngFor="let devotion of devotions">
-        <ion-card>
-          <ion-card-content>
+      
+          <ion-card-content [style.font-size.rem]="fontSize">
             <p text-left [innerHTML]="devotion.fulltext"></p>
           </ion-card-content>
-        </ion-card>
+      
       </ion-slide>
     </ion-slides>
   </div>

@@ -16,6 +16,9 @@ export class ExhortationsPage {
   exhortations: Exhortations[] = [];
   errMess: string;
   loadContent: any; 
+  fontSize: number;
+  fontSizeStorageKey: string = 'devotionAndExhortationFontSize';
+  pullToRefreshStateKey: string = 'devotionExhortPullToRefreshState';
 
   constructor(
     public navCtrl: NavController, 
@@ -27,6 +30,13 @@ export class ExhortationsPage {
   ){
     this.loadContent = this.loadingCtrl.create({
       content: 'loading...'
+    });
+    this.favoriteProvider.getAllFavoriteItems(this.fontSizeStorageKey).then(result => {
+      if (result) {
+        this.fontSize = result;
+      }else{
+        this.fontSize = 1.7;
+      }
     });
   }
 
@@ -77,6 +87,30 @@ export class ExhortationsPage {
 
   ngAfterViewInit() {
     this.slider.autoHeight = true;
+  }
+
+  clickMainFAB() {
+    this.favoriteProvider.getAllFavoriteItems(this.pullToRefreshStateKey).then(result => {  
+      if(!result){
+        let loading3 = this.loadingCtrl.create({
+          spinner: 'hide',
+          content: 'Please pull to refresh to enable any change in font size.',
+          duration: 3000
+        });
+        loading3.present();
+        this.favoriteProvider.favoriteAndOverwritePreviousItem(this.pullToRefreshStateKey, "true");
+      }
+    });
+  }
+
+  increaseFontSize() {
+    this.fontSize = this.fontSize * 1.1;
+    this.favoriteProvider.favoriteAndOverwritePreviousItem(this.fontSizeStorageKey, this.fontSize);
+  }
+
+  decreaseFontSize() {
+    this.fontSize = this.fontSize * 0.9;
+    this.favoriteProvider.favoriteAndOverwritePreviousItem(this.fontSizeStorageKey, this.fontSize);
   }
 }
 

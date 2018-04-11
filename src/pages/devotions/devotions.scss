@@ -22,9 +22,32 @@ page-devotions {
         letter-spacing: .03em;
         hyphens: auto;
         text-align: justify;
+        margin-top: 0.5em;
+        text-shadow:0 0 1px transparent;
+        color: #131516;
     }
 
-    .card p {
-        margin-top: 0.5em;
+    // POP-IN (FLOAT ACTION BUTTON EFFECT) -------------
+    .pop-in {
+        animation: pop-in 0.65s;
     }
+    @keyframes pop-in {
+        0% {
+            transform: scale(0); 
+        }
+        45% {
+            transform: scale(0);
+        }
+        90% {
+            transform: scale(1.15);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .styleFab {
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,.14), 0 4px 5px rgba(0,0,0,.1);
+    }
+
 }
