@@ -25,9 +25,14 @@
     <ion-slides #slider pager="true" paginationType="fraction" loop="true" effect="slide" direction="horizontal">
       <ion-slide *ngFor="let devotion of devotions">
       
-          <ion-card-content [style.font-size.rem]="fontSize">
-            <p text-left [innerHTML]="devotion.fulltext"></p>
-          </ion-card-content>
+        <ion-item class="styleDevotionItem">
+          <h2>{{devotion.created.name}}</h2>
+          <p>{{devotion.created.date}}</p>
+        </ion-item>
+
+        <ion-card-content [style.font-size.rem]="fontSize">
+          <p text-left [innerHTML]="devotion.fulltext"></p>
+        </ion-card-content>
       
       </ion-slide>
     </ion-slides>

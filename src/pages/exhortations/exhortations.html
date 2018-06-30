@@ -25,6 +25,11 @@
     <ion-slides #slider pager="true" paginationType="fraction" loop="true" effect="slide" direction="horizontal">
       <ion-slide *ngFor="let exhortation of exhortations">
         
+          <ion-item class="styleExhortationItem">
+            <h2>{{exhortation.created.name}}</h2>
+            <p>{{exhortation.created.date}}</p>
+          </ion-item>
+
           <ion-card-content>
             <h2 [style.font-size.rem]="fontSize*1.4" text-left [innerHTML]="exhortation.title"></h2>
             <p [style.font-size.rem]="fontSize" text-left [innerHTML]="exhortation.fulltext"></p>
